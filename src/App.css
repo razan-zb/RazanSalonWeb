@@ -1,38 +1,70 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f5dcc1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.welcome-frame {
+  width: 90%;
+  max-width: 400px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f3d2aa, #e5a467);
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.logo-container {
+  margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.salon-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #8c4e24;
+  margin: 10px 0;
+}
+
+.tagline {
+  font-size: 16px;
+  color: #b87549;
+}
+
+.button-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.action-button {
+  padding: 10px 20px;
+  background-color: #8c4e24;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.action-button:hover {
+  background-color: #6f3c1b;
 }
