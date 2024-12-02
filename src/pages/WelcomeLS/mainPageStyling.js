@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import DesktopBackground from '../../assest/images/WelcomeFrameDesktop.png';
+import DesktopBackground from '../../assest/images/WelcomeFrameDesktop2.png';
 import MobileBackground from '../../assest/images/WelcomeFrameMobile.png';
 
 export const WelcomeFrame = styled.div`
@@ -22,7 +22,7 @@ export const WelcomeFrame = styled.div`
 export const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 300px;
+  margin-top: 320px;
   justify-content: center;
   align-items: center;
 
@@ -71,7 +71,8 @@ export const SignUp = styled(LogIn)`
 
 export const LogInTitle = styled.h1`
   font-size: 2rem;
-  color: #333;
+  color: #6C400A;
+
 `;
 
 export const ContainerForLogIn = styled.div`
@@ -79,7 +80,8 @@ export const ContainerForLogIn = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f4f4f4;
+  flex-direction:column;
+  background-color: #E6A556;
 `;
 
 export const SignUpTitle = styled.h1`
@@ -95,3 +97,72 @@ export const ContainerForSignUp = styled.div`
   background-color: #f4f4f4;
 `;
 
+
+export const InputBox = styled.input`
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #6C400A;
+  border-radius: 4px;
+  margin-top: 10px;
+  width:300px;
+`;
+
+export const LoginButton = styled.button`
+  padding: 10px 20px;
+  background-color: #6C400A;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+`;
+
+export const ButtonText = styled.span`
+  font-size: 16px;
+`;
+
+export const Checkbox = styled.div`
+  width: 20px;
+  height: 20px;
+  border: 1px solid #6C400A;
+  border-radius: 4px;
+  background-color: ${(props) => (props.checked ? '#6C400A' : 'white')};
+  margin-right: 10px;
+`;
+
+export const ShownPassword = styled.span`
+  font-size: 14px;
+  color: #6C400A;
+  cursor: pointer;
+`;
+
+export const BackArrow = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+  font-size: 24px;
+`;
+
+export const LogInLabels = styled.label`
+  font-size: 16px;
+  color: #6C400A;
+`;
+
+export const InnerContainer = styled.div`
+    display:flex;
+    flex-direction:column;
+    background-color:#F6C992;
+    width:350px;
+    height:300px;
+    padding:10px;
+    margin-top:20px;
+    justify-content: center;
+    align-content: center;
+    border-radius: 10px;
+    border:1px;
+    border: 2px solid #6C400A;
+
+
+
+`;
