@@ -40,10 +40,10 @@ const MainScreen = () => {
           <SignUp>{t('SignUp')}</SignUp>
         </Link>
         <div>
-      <button onClick={() => changeLanguage('en')}>English</button>
-      <button onClick={() => changeLanguage('hr')}>Hebrew</button>
-      <button onClick={() => changeLanguage('ar')}>Arabic</button>
-    </div>
+        <button onClick={() => changeLanguage('en')}>English</button>
+        <button onClick={() => changeLanguage('hr')}>Hebrew</button>
+        <button onClick={() => changeLanguage('ar')}>Arabic</button>
+       </div>
       </ButtonsContainer>
       
     </WelcomeFrame>

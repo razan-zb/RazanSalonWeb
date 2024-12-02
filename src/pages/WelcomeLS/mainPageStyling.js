@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import DesktopBackground from '../../assest/images/WelcomeFrameDesktop2.png';
 import MobileBackground from '../../assest/images/WelcomeFrameMobile.png';
+import { Link } from "react-router-dom";
 
 export const WelcomeFrame = styled.div`
   height: 100vh;
@@ -115,8 +116,14 @@ export const LoginButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
   margin-top: 20px;
+  &:hover {
+    background-color: #5A3409;
+  }
 `;
 
+export const StyledLink = styled(Link)`
+  text-decoration: none; /* Remove underline */
+`;
 export const ButtonText = styled.span`
   font-size: 16px;
 `;

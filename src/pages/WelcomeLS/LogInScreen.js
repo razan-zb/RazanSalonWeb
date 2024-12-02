@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ContainerForLogIn, LogInTitle, InputBox, LoginButton, ButtonText, BackArrow, LogInLabels, Checkbox, ShownPassword,InnerContainer } from './mainPageStyling';
+import { useNavigate } from 'react-router-dom';
 
 const LogInScreen = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
 
 
   // Handle password visibility toggle
@@ -16,6 +19,7 @@ const LogInScreen = () => {
 
   const handleLoginPress = () => {
     console.log('Login button clicked');
+    navigate('/admin');
   };
 
  
@@ -59,7 +63,7 @@ const LogInScreen = () => {
   
       {/* Login Button */}
       <LoginButton onClick={handleLoginPress}>
-        <ButtonText>{t('login')}</ButtonText>
+         <ButtonText>{t('login')}</ButtonText>
       </LoginButton>
     </ContainerForLogIn>
   );
