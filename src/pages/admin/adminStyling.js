@@ -31,11 +31,55 @@ export const SmallContainer = styled.div`
 export const FirstSectionContainer = styled.div`
   height: 200px;
   width: 90%;
-  background-color: #F6C992;
+  background-color: #f6c992;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+  overflow-y: auto; 
+  position: relative;
+
+`;
+
+// Mini box for appointments
+export const MiniBoxContainer = styled.div`
+  height: 40px;
+  width: 100px;
+  background-color: ${({ bgColor }) => bgColor || '#E6A556'};
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+`;
+
+// Text inside mini boxes
+export const MiniBoxText = styled.span`
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+`;
+
+// Arrow button at the bottom-right
+export const ArrowButton = styled.button`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #cb8632;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  &:hover {
+    background-color: #a75d22;
+  }
 `;
 
 // Second Section
