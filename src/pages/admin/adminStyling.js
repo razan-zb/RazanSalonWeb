@@ -86,11 +86,47 @@ export const ArrowButton = styled.button`
 export const SecondSectionContainer = styled.div`
   height: 300px;
   width: 90%;
-  background-color: #F6C992;
   display: flex;
   justify-content: center;
+  flex-direction:column;
+  
+`;
+
+export const SecondSectionContainer2 = styled.div`
+  display: flex;
   align-items: center;
-  margin-top: 10px;
+  flex-direction:row;
+  justify-content: space-evenly;
+  width: 100%;
+
+`
+
+
+export const Title = styled.h2`
+  font-size: 24px;
+  color: #935b16;
+  text-align: center;
+  margin-top: 0px;
+`;
+
+// Container for each statistic
+export const Container1 = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-direction:column;
+  width: 200px;
+  justify-content: center;
+  height: 200px;
+  text-align:center;
+
+`;
+
+// Text for the statistics
+export const StatText = styled.p`
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
 `;
 
 // Clients
