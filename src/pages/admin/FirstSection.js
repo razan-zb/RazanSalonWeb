@@ -1,6 +1,7 @@
 import React from 'react';
-import { FirstSectionContainer, MiniBoxContainer, MiniBoxText, ArrowButton } from './adminStyling';
+import { FirstSectionTitle,FirstSectionContainer, MiniBoxContainer, MiniBoxText, ArrowButton } from './adminStyling';
 import { FaArrowRight } from 'react-icons/fa'; // Import an arrow icon
+import { useTranslation } from 'react-i18next';
 
 const FirstSection = () => {
   const appointments = [
@@ -19,6 +20,8 @@ const FirstSection = () => {
     { name: 'Hana Awed', time: '22:30' },
     { name: 'John Dock', time: '21:45' },
   ];
+  const { t } = useTranslation();
+
 
   // Function to convert time string to minutes
   const timeToMinutes = (time) => {
@@ -43,20 +46,26 @@ const FirstSection = () => {
   };
 
   return (
-    <FirstSectionContainer>
-      {sortedAppointments.map((appointment, index) => (
-        <MiniBoxContainer
-          key={index}
-          bgColor={generateShade(index, sortedAppointments.length)}
-        >
-          <MiniBoxText>{appointment.name}</MiniBoxText>
-          <MiniBoxText>{appointment.time}</MiniBoxText>
-        </MiniBoxContainer>
-      ))}
-      <ArrowButton onClick={handleArrowClick}>
-        <FaArrowRight size={20} color="#fff" />
-      </ArrowButton>
-    </FirstSectionContainer>
+  
+  
+    <>
+          <FirstSectionTitle>{t('scheduleForToday')}</FirstSectionTitle>
+          <FirstSectionContainer>
+        {sortedAppointments.map((appointment, index) => (
+          <MiniBoxContainer
+            key={index}
+            bgColor={generateShade(index, sortedAppointments.length)}
+          >
+            <MiniBoxText>{appointment.name}</MiniBoxText>
+            <MiniBoxText>{appointment.time}</MiniBoxText>
+          </MiniBoxContainer>
+        ))}
+        <ArrowButton onClick={handleArrowClick}>
+          <FaArrowRight size={20} color="#fff" />
+        </ArrowButton>
+      </FirstSectionContainer>
+    </>
+   
   );
 };
 

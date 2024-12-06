@@ -1,10 +1,15 @@
 import React from 'react';
-import {ClientsContainer ,Temp } from './adminStyling';
+import { FaUser } from 'react-icons/fa'; // Import a user icon
+import { ClientsContainer, Temp } from './adminStyling';
+import { useTranslation } from 'react-i18next';
 
 const Clients = () => {
+  const { t } = useTranslation();
+
   return (
     <ClientsContainer>
-      <Temp>Clients</Temp>
+      <FaUser size={30} color="white" />
+      <Temp>{t('clients')}</Temp>
     </ClientsContainer>
   );
 };
