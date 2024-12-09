@@ -26,7 +26,6 @@ export const SmallContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
   gap: 50px;
 `;
 
@@ -148,14 +147,14 @@ export const ClientsContainer = styled.div`
   width: 150px;
   background-color: #CB8632;
   display: flex;
-  flex-direction: column; /* Align icons and text vertically */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 10px; /* Rounded corners */
-  gap: 5px; /* Space between icon and text */
+  border-radius: 10px;
+  gap: 5px; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   &:hover {
-    background-color: #a75d22; /* Hover effect */
+    background-color: #a75d22; 
   }
 `;
 
