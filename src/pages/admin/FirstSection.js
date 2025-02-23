@@ -1,71 +1,90 @@
-import React from 'react';
-import { FirstSectionTitle,FirstSectionContainer, MiniBoxContainer, MiniBoxText, ArrowButton } from './adminStyling';
-import { FaArrowRight } from 'react-icons/fa'; // Import an arrow icon
+import React, { useEffect, useState } from 'react';
+import * as SC from './adminStyling';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import * as Functions from '../../assest/helpers/api';
+import { format } from 'date-fns';
+import { IoArrowDown } from 'react-icons/io5';
 
 const FirstSection = () => {
-  const appointments = [
-    { name: 'Razan Zbedy', time: '18:00' },
-    { name: 'Ali Ahmad', time: '19:00' },
-    { name: 'Sara Omar', time: '20:30' },
-    { name: 'John Doe', time: '21:15' },
-    { name: 'Alaa Karem', time: '17:00' },
-    { name: 'Amera Asma', time: '13:00' },
-    { name: 'Hana Awed', time: '22:30' },
-    { name: 'John Dock', time: '21:45' },    { name: 'Ali Ahmad', time: '19:00' },
-    { name: 'Sara Omar', time: '20:30' },
-    { name: 'John Doe', time: '21:15' },
-    { name: 'Alaa Karem', time: '17:00' },
-    { name: 'Amera Asma', time: '13:00' },
-    { name: 'Hana Awed', time: '22:30' },
-    { name: 'John Dock', time: '21:45' },
-  ];
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [appointments, setAppointments] = useState([]);
+  const today = format(new Date(), 'yyyy-MM-dd');
+  const [filteredAppointments, setFilteredAppointments] = useState([]);
+  const [clients, setClients] = useState([]);
 
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      const appointmentsData = await Functions.fetchAppointmentsData();
+      setAppointments(appointmentsData);
+      const filter = appointmentsData.filter(
+        (appointment) =>
+          appointment.status === 'pending' && today === format(appointment.date, 'yyyy-MM-dd')
+      );
+      setFilteredAppointments(filter);
+      const clientsData = await Functions.fetchClientsData();
+      setClients(clientsData);
+    };
 
-  // Function to convert time string to minutes
+    fetchAppointments();
+  }, [today]);
+
+  const getClientName = (clientId) => {
+    const client = clients.find((client) => client._id === clientId);
+    return client ? client.name : 'Unknown';
+  };
+
   const timeToMinutes = (time) => {
-    const [hours, minutes] = time.split(':').map(Number);
+    const [hoursAndMinutes, period] = time.split(' ');
+    let [hours, minutes] = hoursAndMinutes.split(':').map(Number);
+
+    if (period === 'PM' && hours !== 12) {
+      hours += 12;
+    } else if (period === 'AM' && hours === 12) {
+      hours = 0;
+    }
+
     return hours * 60 + minutes;
   };
 
-  // Sort appointments by time
-  const sortedAppointments = [...appointments].sort(
+  const sortedAppointments = [...filteredAppointments].sort(
     (a, b) => timeToMinutes(a.time) - timeToMinutes(b.time)
   );
 
-  // Generate shades for each box
   const generateShade = (index, total) => {
     const lightenFactor = (total - index) / total;
-    return `rgba(203, 134, 50, ${lightenFactor})`;
+    return `rgba(191, 159, 50, ${lightenFactor})`;
   };
 
   const handleArrowClick = () => {
-    console.log('Arrow button clicked!');
-    // Add your navigation or scroll logic here
+    navigate('/first-section-list');
+  };
+
+  const handlePressAppointment = (appointment) => {
+    navigate('/first-section-one-box', {
+      appointment: appointment,
+    });
   };
 
   return (
-  
-  
-    <>
-          <FirstSectionTitle>{t('scheduleForToday')}</FirstSectionTitle>
-          <FirstSectionContainer>
-        {sortedAppointments.map((appointment, index) => (
-          <MiniBoxContainer
+    <SC.FirstSectionContainer>
+      <SC.FirstSectionText>{t('scheduleForToday')}</SC.FirstSectionText>
+      <SC.FirstSectionContainer1>
+        {sortedAppointments.slice(0, 3).map((appointment, index) => (
+          <SC.MiniBoxContainer
             key={index}
             bgColor={generateShade(index, sortedAppointments.length)}
+            onPress={() => handlePressAppointment(appointment)}
           >
-            <MiniBoxText>{appointment.name}</MiniBoxText>
-            <MiniBoxText>{appointment.time}</MiniBoxText>
-          </MiniBoxContainer>
+            <SC.MiniBoxText>{getClientName(appointment?.client)}</SC.MiniBoxText>
+            <SC.MiniBoxText>{appointment.time}</SC.MiniBoxText>
+          </SC.MiniBoxContainer>
         ))}
-        <ArrowButton onClick={handleArrowClick}>
-          <FaArrowRight size={20} color="#fff" />
-        </ArrowButton>
-      </FirstSectionContainer>
-    </>
-   
+        <SC.ArrowButton onClick={handleArrowClick}>
+         <IoArrowDown size={20} color="#fff" />        </SC.ArrowButton>
+      </SC.FirstSectionContainer1>
+    </SC.FirstSectionContainer>
   );
 };
 

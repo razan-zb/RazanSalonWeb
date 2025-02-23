@@ -1,67 +1,91 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; 
+import * as SC from './behindAdminPageStyling';
 import { useTranslation } from 'react-i18next';
-import {
-  ClientsListContainer,
-  SearchBarContainer,
-  SearchInput,
-  ClientNameContainer,
-  ClientName,
-  PlusButton,
-} from './behindAdminPageStyling';
+import * as Functions from '../../assest/helpers/api';
 import { FaPlus, FaArrowLeft, FaSearch } from 'react-icons/fa'; // React Icons for web
 
-const ClientsList = ({ onBack }) => {
-
-  const [searchQuery, setSearchQuery] = useState('');
+const ClientsList = () => {
   const { t } = useTranslation();
-  const [clients, setClients] = useState([
-    'Razan Zbedy',
-    'Ali Ahmad',
-    'Sara Omar',
-    'John Doe',
-    'Alaa Karem',
-    'Amera Asma',
-    'Hana Awed',
-  ]);
+  const navigate = useNavigate(); 
+  const [searchQuery, setSearchQuery] = useState('');
+  const [clients, setClients] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const filteredClients = clients.filter((client) =>
-    client.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const clientsData = await Functions.fetchClientsData();
+        setClients(clientsData);
+      } catch (error) {
+        window.alert(t('Error') + ': ' + t('Failed to fetch data.'));
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const handleAddClient = () => {
-    console.log('Add new client clicked');
+    fetchData();
+  }, [clients.length, t]);
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
   };
 
+  const filteredClients = clients.filter((client) =>
+    client.name?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const handleAddClient = (client) => {
+    console.log("client",client)
+    navigate('/one-client', { state: { client } });
+  };
+
+  const handleAddNewClient = (client) => {
+    navigate('/new-one-client', { client });  };
+
+  const handleBack = () => {
+    navigate(-1); // Go back
+  };
+
+  if (loading) {
+    return <p>{t('Loading...')}</p>;
+  }
+
   return (
-    <ClientsListContainer>
+    <SC.ClientsListContainer>
+      {/* Back Button */}
       <FaArrowLeft
         size={30}
-        color="#935B16"
-        onClick={onBack}
-        style={{ cursor: 'pointer', marginBottom: '10px' }}
+        color="#1D1D1B"
+        onClick={handleBack}
+        style={{ cursor: 'pointer', marginBottom: '10px' ,alignSelf:'flex-end' }}
       />
 
-      <SearchBarContainer>
-        <FaSearch size={20} color="#935B16" />
-        <SearchInput
+      {/* Search Bar */}
+      <SC.SearchBarContainer>
+        <FaSearch size={20} color="#1D1D1B" />
+        <SC.SearchInput
           type="text"
           placeholder={t('Search for a client')}
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={handleSearch}
         />
-      </SearchBarContainer>
+      </SC.SearchBarContainer>
 
-      {filteredClients.map((client, index) => (
-        <ClientNameContainer key={index}>
-          <ClientName>{client}</ClientName>
-        </ClientNameContainer>
-      ))}
+      {/* Clients List */}
+      <div style={{ padding: '10px' }}>
+        {filteredClients.map((client, index) => (
+          <SC.ClientNameContainer key={index}>
+            <SC.ClientName onClick={() => handleAddClient(client)}>{client.name}</SC.ClientName>
+          </SC.ClientNameContainer>
+        ))}
+      </div>
 
       {/* Plus Button */}
-      <PlusButton onClick={handleAddClient}>
+      <SC.PlusButton onClick={() => handleAddNewClient(null)}>
         <FaPlus />
-      </PlusButton>
-    </ClientsListContainer>
+      </SC.PlusButton>
+    </SC.ClientsListContainer>
   );
 };
 

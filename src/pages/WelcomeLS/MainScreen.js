@@ -36,13 +36,13 @@ const MainScreen = () => {
         <Link to="/login">
           <LogIn>{t('login')}</LogIn>
         </Link>
-        <Link to="/signup">
+        <Link to="/visitors">
           <SignUp>{t('SignUp')}</SignUp>
         </Link>
         <div>
-        <button onClick={() => changeLanguage('en')}>English</button>
-        <button onClick={() => changeLanguage('hr')}>Hebrew</button>
-        <button onClick={() => changeLanguage('ar')}>Arabic</button>
+          <button onClick={() => changeLanguage('en')}>English</button>
+          <button onClick={() => changeLanguage('hr')}>Hebrew</button>
+          <button onClick={() => changeLanguage('ar')}>Arabic</button>
        </div>
       </ButtonsContainer>
       

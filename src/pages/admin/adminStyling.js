@@ -8,28 +8,45 @@ export const SafeAreaViewS = styled.div`
   width: 100%;
   margin-top:70px;
 `;
+export const Con = styled.div`
+  display: flex;
+`;
+
 
 
 
 export const Temp = styled.h1`
   font-size: 18px; 
   font-weight: bold;
-  color: white; 
+  color: #BF9F00; 
   margin: 0;
 `;
 
 // SmallContainer
 export const SmallContainer = styled.div`
-  height: 100px;
   width: 90%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 50px;
+  gap: 10px;
+  @media (max-width: 768px) {
+    margin-top:70px;
+
+  }
+
 `;
 
-export const FirstSectionTitle = styled.text`
+export const SmallContainer2 = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap:10px;
+  @media (max-width: 768px) {
+
+  }
+`;
+
+export const FirstSectionTitle = styled.span`
     font-size:24px;
     font-weight:bold;
     color: #5a3223;
@@ -57,13 +74,18 @@ export const FirstSectionContainer = styled.div`
 export const MiniBoxContainer = styled.div`
   height: 40px;
   width: 100px;
-  background-color: ${({ bgColor }) => bgColor || '#E6A556'};
+  background-color: ${({ bgcolor }) => bgcolor || '#E6A556'};
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 5px;
+
+  /* Ensure bgColor doesn't appear in the DOM */
+  &[bgcolor] {
+    background-color: ${({ bgcolor }) => bgcolor};
+  }
 `;
 
 // Text inside mini boxes
@@ -72,6 +94,25 @@ export const MiniBoxText = styled.span`
   color: #fff;
   text-align: center;
 `;
+export const FirstSectionText = styled.h2`
+    font-size: 26px;
+    font-weight: bold;
+    color: #1D1D1B;
+    font-family: cursive;
+    margin-top: 20px;
+`;
+
+export const FirstSectionContainer1 = styled.div`
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 0 10px;
+`;
+
 
 // Arrow button at the bottom-right
 export const ArrowButton = styled.button`
@@ -100,6 +141,11 @@ export const SecondSectionContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction:column;
+  @media (max-width: 768px) {
+    margin-top:30px
+
+  }
+
   
 `;
 
@@ -109,6 +155,19 @@ export const SecondSectionContainer2 = styled.div`
   flex-direction:row;
   justify-content: space-evenly;
   width: 100%;
+  
+
+  @media (max-width: 768px) {
+    flex-direction:column;
+    z-index:1000;
+    justify-content: center;
+    gap:0;
+
+  }
+  
+
+
+
 
 `
 
@@ -117,7 +176,7 @@ export const Title = styled.h2`
   font-size: 24px;
   text-align: center;
   margin-top: 0px;
-  color: #5a3223;
+  color: #1D1D1B;
  font-family: cursive;
 `;
 
@@ -132,12 +191,19 @@ export const Container1 = styled.div`
   height: 200px;
   text-align:center;
 
+  @media (max-width: 768px) {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    height:100px;
+
+  }
+
 `;
 
 // Text for the statistics
 export const StatText = styled.p`
   font-size: 18px;
-  color: #333;
+  color: #1D1D1B;
   font-weight: bold;
 `;
 
@@ -145,7 +211,7 @@ export const StatText = styled.p`
 export const ClientsContainer = styled.div`
   height: 100px;
   width: 150px;
-  background-color: #CB8632;
+  background-color: #1D1D1B;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -174,7 +240,7 @@ export const GoodsText = styled.p`
   font-size: 18px;
   font-weight: bold;
   margin: 0;
-  color: white; 
+  color: #BF9F00; 
 
 `;
 
@@ -184,7 +250,7 @@ export const GoodsText = styled.p`
 export const TopBarContainer = styled.div`
   width: 100%;
   height: 60px;
-  background-color: #f5e8cf;
+  background-color: #1D1D1B;
   display: flex;
   align-items: center;
   justify-content: space-between;

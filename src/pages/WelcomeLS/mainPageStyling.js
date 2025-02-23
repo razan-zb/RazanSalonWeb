@@ -36,13 +36,13 @@ export const ButtonsContainer = styled.div`
 `;
 
 export const LogIn = styled.button`
-  background-color: #CB8632; 
+  background-color: #CAB572; 
   padding: 12px 24px;
   border: none;
   border-radius: 8px;
   align-self: center;
   color: #fff;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
@@ -54,14 +54,14 @@ export const LogIn = styled.button`
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 5px #CB8632;
+    box-shadow: 0 0 5px #CAB572;
   }
 `;
 
 export const SignUp = styled(LogIn)`
   background-color: transparent;
-  color: #CB8632;
-  font-size: 16px;
+  color: #CAB572;
+  font-size: 20px;
 
   &:hover {
     background-color: #CB8632;
@@ -72,7 +72,7 @@ export const SignUp = styled(LogIn)`
 
 export const LogInTitle = styled.h1`
   font-size: 2rem;
-  color: #6C400A;
+  color: #AF9202;
 
 `;
 
@@ -82,7 +82,7 @@ export const ContainerForLogIn = styled.div`
   align-items: center;
   height: 100vh;
   flex-direction:column;
-  background-color: #E6A556;
+  background-color: #fff;
 `;
 
 export const SignUpTitle = styled.h1`
@@ -102,7 +102,7 @@ export const ContainerForSignUp = styled.div`
 export const InputBox = styled.input`
   font-size: 16px;
   padding: 10px;
-  border: 1px solid #6C400A;
+  border: 1px solid #AF9202;
   border-radius: 4px;
   margin-top: 10px;
   width:300px;
@@ -110,7 +110,7 @@ export const InputBox = styled.input`
 
 export const LoginButton = styled.button`
   padding: 10px 20px;
-  background-color: #6C400A;
+  background-color: #97883A;
   color: white;
   border: none;
   border-radius: 4px;
@@ -133,13 +133,13 @@ export const Checkbox = styled.div`
   height: 20px;
   border: 1px solid #6C400A;
   border-radius: 4px;
-  background-color: ${(props) => (props.checked ? '#6C400A' : 'white')};
+  background-color: ${(props) => (props.checked ? '#AF9202' : 'white')};
   margin-right: 10px;
 `;
 
 export const ShownPassword = styled.span`
   font-size: 14px;
-  color: #6C400A;
+  color: #AF9202;
   cursor: pointer;
 `;
 
@@ -152,14 +152,14 @@ export const BackArrow = styled.div`
 `;
 
 export const LogInLabels = styled.label`
-  font-size: 16px;
-  color: #6C400A;
+  font-size: 20px;
+  color: #AF9202;
 `;
 
 export const InnerContainer = styled.div`
     display:flex;
     flex-direction:column;
-    background-color:#F6C992;
+    background-color:#F9F0C3;
     width:350px;
     height:300px;
     padding:10px;
@@ -168,7 +168,7 @@ export const InnerContainer = styled.div`
     align-content: center;
     border-radius: 10px;
     border:1px;
-    border: 2px solid #6C400A;
+    border: 2px solid #AF9202;
 
 
 

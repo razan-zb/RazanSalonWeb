@@ -10,7 +10,7 @@ const Clients = () => {
   return (
     <Link to="/clients-list" style={{ textDecoration: 'none' }}>
       <ClientsContainer>
-        <FaUser size={30} color="white" />
+        <FaUser size={30} color="#BF9F00" />
         <Temp>{t('clients')}</Temp>
       </ClientsContainer>
     </Link>

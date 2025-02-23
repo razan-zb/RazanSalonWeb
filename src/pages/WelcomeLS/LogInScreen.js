@@ -10,15 +10,12 @@ const LogInScreen = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-
-
   // Handle password visibility toggle
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
   const handleLoginPress = () => {
-    console.log('Login button clicked');
     navigate('/admin');
   };
 
@@ -26,8 +23,8 @@ const LogInScreen = () => {
 
   return (
     <ContainerForLogIn>
-      <BackArrow onClick={() => window.history.back()}>
-        <span style={{ fontSize: '30px', color: '#6C400A' }}>&lt;</span>
+      <BackArrow onClick={() =>  navigate('/')}>
+         <span style={{ fontSize: '40px', color: '#97883A' }}>←</span>
       </BackArrow>
 
       <LogInTitle>{t('welcome')}</LogInTitle>

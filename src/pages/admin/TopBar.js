@@ -4,7 +4,6 @@ import logoSource from '../../assest/images/Logo.png';
 import {
   TopBarContainer,
   ButtonExit,
-  IconExit,
   LogoContainer,
   LogoImage,
   ButtonSetting,
@@ -15,16 +14,15 @@ const TopBar = ({ onExit, onSettings }) => {
     <TopBarContainer>
       {/* Exit Button */}
       <ButtonExit onClick={onExit}>
-        <IoExitOutline size={30} color="#935B16" />
+        <IoExitOutline size={30} color="#AF9202" />
       </ButtonExit>
 
       <LogoContainer>
         <LogoImage src={logoSource} alt="Logo" />
-        <IconExit>Admin Panel</IconExit>
       </LogoContainer>
 
       <ButtonSetting onClick={onSettings}>
-        <IoSettingsOutline size={30} color="#935B16" />
+        <IoSettingsOutline size={30} color="#AF9202" />
       </ButtonSetting>
     </TopBarContainer>
   );
