@@ -1,16 +1,21 @@
 import React , { useEffect }from 'react';
 import { Link } from 'react-router-dom'; 
-import { WelcomeFrame,LogIn,SignUp,ButtonsContainer } from './mainPageStyling'; 
+import { ButtonText2,WelcomeFrame,LogIn,SignUp,ButtonsContainer } from './mainPageStyling'; 
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 const MainScreen = () => {
   const { i18n,t } = useTranslation();
+  const navigate = useNavigate();
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-    updateRTL(lng);
-    localStorage.setItem('language', lng);
 
+  const handleLogInPress = () => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      navigate('/admin');
+    } else {
+      navigate('/login');
+    }
   };
 
   const updateRTL = (language) => {
@@ -33,17 +38,12 @@ const MainScreen = () => {
   return (
     <WelcomeFrame>
       <ButtonsContainer>
-        <Link to="/login">
-          <LogIn>{t('login')}</LogIn>
-        </Link>
+        <ButtonText2 >
+          <LogIn onClick={handleLogInPress}>{t('login')}</LogIn>
+        </ButtonText2>
         <Link to="/visitors">
           <SignUp>{t('SignUp')}</SignUp>
         </Link>
-        <div>
-          <button onClick={() => changeLanguage('en')}>English</button>
-          <button onClick={() => changeLanguage('hr')}>Hebrew</button>
-          <button onClick={() => changeLanguage('ar')}>Arabic</button>
-       </div>
       </ButtonsContainer>
       
     </WelcomeFrame>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ContainerForLogIn, LogInTitle, InputBox, LoginButton, ButtonText, BackArrow, LogInLabels, Checkbox, ShownPassword,InnerContainer } from './mainPageStyling';
 import { useNavigate } from 'react-router-dom';
+import * as Functions from '../../assest/helpers/api';
 
 const LogInScreen = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -19,7 +20,22 @@ const LogInScreen = () => {
     navigate('/admin');
   };
 
- 
+  const logIn = async () => {
+    if (email === '' || password === '') {
+      alert('Login Failed: Empty inputs. Please try again.');
+    } else {
+      const respond = await Functions.logIn(email, password);
+      if (respond.status) {
+        try {
+          navigate('/admin');
+        } catch (error) {
+          console.error('Error saving user details', error);
+        }
+      } else {
+        alert('Login Failed: Incorrect username or password. Please try again.');
+      }
+    }
+  };
 
   return (
     <ContainerForLogIn>
@@ -59,7 +75,7 @@ const LogInScreen = () => {
 
   
       {/* Login Button */}
-      <LoginButton onClick={handleLoginPress}>
+      <LoginButton onClick={logIn}>
          <ButtonText>{t('login')}</ButtonText>
       </LoginButton>
     </ContainerForLogIn>

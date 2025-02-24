@@ -74,6 +74,10 @@ export const ImageGrid = styled.div`
   grid-template-columns: repeat(2, 1fr); /* Two images per row */
   gap: 10px;
   padding: 10px;
+  @media screen and (min-width: 769px) {
+    grid-template-columns: repeat(3, 1fr); /* Two images per row */
+
+  }
 `;
 
 export const ImageCard = styled.div`
@@ -86,4 +90,9 @@ export const ImageGallery = styled.img`
   height: 220px;
   border-radius: 5px;
   object-fit: cover;
+
+  @media screen and (min-width: 769px) {
+    height: 420px;
+    object-fit: contain;
+  }
 `;

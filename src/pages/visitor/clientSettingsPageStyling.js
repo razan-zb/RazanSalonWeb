@@ -4,7 +4,11 @@ import styled from 'styled-components';
 export const Container = styled.div`
   background-color: #fdfcf4;
   padding: 20px;
-  min-height: 100vh; /* Ensures full height */
+  min-height: 100vh; 
+  @media screen and (min-width: 769px) {
+    justify-content: center;
+    align-self:center;
+  }
 `;
 
 // Back Button
@@ -25,6 +29,10 @@ export const Title = styled.h1`
   color: #bf9f00;
   margin-bottom: 20px;
   text-align: center;
+  @media screen and (min-width: 769px) {
+    margin-bottom: 30px;
+
+  }
 `;
 
 // Section Title
@@ -33,6 +41,10 @@ export const SectionTitle = styled.h2`
   font-weight: bold;
   color: #333;
   margin-bottom: 10px;
+  @media screen and (min-width: 769px) {
+    font-size: 20px;
+
+  }
 `;
 
 // Button Container
@@ -43,7 +55,7 @@ export const ButtonContainer = styled.div`
   padding: 10px;
 `;
 
-export const ButtonText = styled.text`
+export const ButtonText = styled.h1`
   color: #fff;
   font-size: 16px;
   font-weight: bold;
@@ -72,7 +84,7 @@ export const ScrollContainer = styled.div`
   max-height: 100vh; /* Adjust height as needed */
 `;
 // Label
-export const Label = styled.label`
+export const Label = styled.text`
   font-size: 16px;
   font-weight: bold;
   color: #333;

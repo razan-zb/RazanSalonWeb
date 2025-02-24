@@ -19,7 +19,11 @@ export const WelcomeFrame = styled.div`
 
   }
 `;
-
+export const ButtonText2 = styled.span`
+  color: black;
+  font-size: 16px;
+  text-align: center;
+`;
 export const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: column;

@@ -115,7 +115,7 @@ const BookingCalendar = () => {
             <SC.TimeSlot
               key={index}
               onClick={() => handleSlotSelection(slot)}
-              disabled={isSlotBooked(slot)}
+              gray={isSlotBooked(slot)}
               className={isSlotBooked(slot) ? 'booked' : ''}
             >
               {slot}

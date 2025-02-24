@@ -36,6 +36,11 @@ const ClientSettingsPage = () => {
     i18n.changeLanguage(lng);
   };
 
+  const formatTimeSlot = (day) => {
+    return timeSlots[day].start === timeSlots[day].end 
+      ? t('عطله ') 
+      : `${timeSlots[day].start} - ${timeSlots[day].end}`;
+  };
   return (
     <SC.Container>
       {/* Back Button */}
@@ -71,8 +76,8 @@ const ClientSettingsPage = () => {
       <SC.ScrollContainer>
         {Object.keys(timeSlots).map((day) => (
           <SC.TimeSlotContainer key={day}>
-            <SC.Label>{t(`Day ${day}`)}</SC.Label>
-            <SC.Label>{`${timeSlots[day].start} - ${timeSlots[day].end}`}</SC.Label>
+            <SC.Label> {t(`Day ${day}`)} </SC.Label>
+            <SC.Label>{formatTimeSlot(day)}</SC.Label>
           </SC.TimeSlotContainer>
         ))}
       </SC.ScrollContainer>

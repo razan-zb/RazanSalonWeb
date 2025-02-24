@@ -6,6 +6,9 @@ export const Container = styled.div`
   background-color: #fdfcf4;
   padding: 20px;
 
+  @media screen and (min-width: 769px) {
+    text-align:center;
+  }
 `;
 
 // Back Button
@@ -96,7 +99,10 @@ export const InputField = styled.input`
   font-size: 18px;
   border-radius: 10px;
   background-color: #fff;
+  text-align:center;
   margin-bottom: 10px;
+  gap:5
+
 `;
 
 // Generic Button

@@ -29,9 +29,11 @@ export const SmallContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  @media (max-width: 768px) {
-    margin-top:70px;
+  gap: 10px;    
+  margin-top:50px;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 10px;
 
   }
 
@@ -119,7 +121,7 @@ export const ArrowButton = styled.button`
   position: absolute;
   bottom: 10px;
   right: 10px;
-  background-color: #cb8632;
+  background-color: #BF9F00;
   border: none;
   border-radius: 50%;
   width: 50px;

@@ -16,8 +16,7 @@ const MainAdminPage = () => {
 
   const handleExit = () => {
     if (window.confirm("Are you sure you want to exit the application?")) {
-      // Redirect to login page
-      navigate('/Login');
+      navigate('/');
     }
   };
 
@@ -39,7 +38,6 @@ const MainAdminPage = () => {
              <Clients/>
              <Booking/>
           </SmallContainer2>
-      
           <Goods onClick={() =>navigate('/goods-and-suppliers')}>
             <FaBox size={30} color="BF9F00" />
             <GoodsText>{t('goods')}</GoodsText>

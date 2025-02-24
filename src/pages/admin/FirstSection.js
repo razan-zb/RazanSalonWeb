@@ -82,7 +82,8 @@ const FirstSection = () => {
           </SC.MiniBoxContainer>
         ))}
         <SC.ArrowButton onClick={handleArrowClick}>
-         <IoArrowDown size={20} color="#fff" />        </SC.ArrowButton>
+         <IoArrowDown size={20} color="#fff" />    
+        </SC.ArrowButton>
       </SC.FirstSectionContainer1>
     </SC.FirstSectionContainer>
   );

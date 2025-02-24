@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import * as SC from './innerStyle'; // Import your styled components
 import { useTranslation } from 'react-i18next';
-import {  useParams } from 'react-router-dom'; // For navigation
+
 import * as Functions from '../../../assest/helpers/api'; // API functions
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa'; 
+import { useLocation } from 'react-router-dom';
 
 const EditGoods = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { supplier } = useParams(); // Get supplier details from URL params
+  const location = useLocation();
+  const supplier = location.state?.supplier;
 
   // State for editable fields
   const [name, setName] = useState(supplier?.name || '');

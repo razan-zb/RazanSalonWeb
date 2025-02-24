@@ -10,6 +10,9 @@ export const Container = styled.div`
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   min-height: 100vh;
    min-height: 100vh;
+   align-self:flex-end;
+   text-align:right;
+
 `;
 // Main Container
 export const ClientsListContainer = styled.div`
@@ -280,6 +283,7 @@ export const Title2 = styled.h1`
 // Detail Container
 export const DetailContainer = styled.div`
   margin-top: 20px;
+
 `;
 
 // Labels
@@ -296,6 +300,7 @@ export const Label2 = styled.label`
 export const Input2 = styled.input`
   width: 95%;
   font-size: 18px;
+  text-align:right;
 
   padding: 8px;
   border: 1px solid #ccc;
@@ -307,7 +312,7 @@ export const Select = styled.select`
   width: 100%;
   padding: 8px;
   font-size: 18px;
-
+  text-align:right;
   border: 1px solid #ccc;
   border-radius: 5px;
 `;
@@ -332,6 +337,14 @@ export const Container3 = styled.div`
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
    min-height: 100vh;
+   @media screen and (min-width: 769px) {
+    display:flex;
+    flex-direction:column;
+    justify-items: center;
+    align-content: center;
+    max-width: 900px;
+
+  }
 `;
 export const Con = styled.div`
   align-self:flex-start;
@@ -358,6 +371,7 @@ export const CalendarContainer = styled.div`
     color: white !important;
     font-weight: bold;
   }
+
 `;
 
 // Selected Date
@@ -390,18 +404,17 @@ export const TimeSlotsContainer = styled.div`
 
 // Individual Time Slot
 export const TimeSlot = styled.button`
-  background: ${(props) => (props.disabled ? 'gray' : '#bf9f00')};
+  background: ${(props) => (props.gray ? 'gray' : '#bf9f00')};
   color: white;
   border: none;
   padding: 10px;
   border-radius: 5px;
-  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
   font-size: 18px;
   transition: 0.3s;
   width:100px;
   
   &:hover {
-    background: ${(props) => (props.disabled ? 'gray' : '#a07f00')};
+    background: ${(props) => (props.gray ? 'gray' : '#a07f00')};
   }
 `;
 

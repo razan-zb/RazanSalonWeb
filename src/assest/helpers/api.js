@@ -91,7 +91,7 @@ export const logIn = async (name, password) => {
       }
 
       // Store the token in localStorage
-      await localStorage.setItem('authToken', token);
+      localStorage.setItem('authToken', token);
       return { status: true, user };
     }
   } catch (error) {
