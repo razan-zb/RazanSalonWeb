@@ -17,12 +17,6 @@ const MainScreen = () => {
       navigate('/login');
     }
   };
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-    updateRTL(lng);
-    localStorage.setItem('language', lng);
-
-  }
   const updateRTL = (language) => {
     const isRTL = language === 'ar' || language === 'hr';
     document.body.style.direction = isRTL ? 'rtl' : 'ltr';

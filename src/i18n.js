@@ -6,7 +6,7 @@ import hrTranslation from './assest/locales/he/translation.json';
 import arTranslation from './assest/locales/ar/translation.json';
 
 i18n
-  .use(LanguageDetector) // Detects language from browser
+  .use(LanguageDetector) 
   .use(initReactI18next)
   .init({
     resources: {
@@ -14,7 +14,7 @@ i18n
       hr: { translation: hrTranslation },
       ar: { translation: arTranslation },
     },
-    fallbackLng: 'en', // Default language
+    fallbackLng: 'ar', // Default language
     interpolation: {
       escapeValue: false, // React already escapes values
     },
