@@ -158,20 +158,6 @@ const OneClient = () => {
         <SC.Button onClick={handleSave}>{t('Save')}</SC.Button>
       </SC.ButtonContainer>
 
-      {/* Appointments Section */}
-      <SC.Title4>{t('Appointments')}</SC.Title4>
-      <SC.AppointmentsContainer>
-        {appointments.length > 0 ? (
-          appointments.map((item, index) => (
-            <SC.Appointment key={index}>
-              <SC.AppointmentDate>{item.date}</SC.AppointmentDate>
-              <SC.AppointmentNotes>{item.notes}</SC.AppointmentNotes>
-            </SC.Appointment>
-          ))
-        ) : (
-          <SC.NoAppointmentsText>{t('No appointments found')}</SC.NoAppointmentsText>
-        )}
-      </SC.AppointmentsContainer>
     </SC.MainOneCliesntContainer>
   );
 };

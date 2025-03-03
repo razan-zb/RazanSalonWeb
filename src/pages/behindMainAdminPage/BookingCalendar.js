@@ -7,11 +7,14 @@ import 'react-calendar/dist/Calendar.css';
 import { format } from 'date-fns';
 import * as Functions from '../../assest/helpers/api';
 import { FaArrowLeft } from 'react-icons/fa'; 
+import { ar } from 'date-fns/locale'; // Arabic locale
 
 const BookingCalendar = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
+  const { i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
+  console.log(isArabic)
   const [selectedDate, setSelectedDate] = useState(null);
   const [appointments, setAppointments] = useState([]);
   const [user, setUser] = useState(null);
@@ -93,15 +96,19 @@ const BookingCalendar = () => {
 
       {/* Calendar */}
       <SC.CalendarContainer>
-        <Calendar
-          onChange={handleDateChange}
-          value={selectedDate}
-          tileClassName={({ date, view }) =>
-            appointments.some((appointment) => format(new Date(appointment.date), 'yyyy-MM-dd') === format(date, 'yyyy-MM-dd'))
-              ? 'highlighted-date'
-              : ''
-          }
-        />
+      <Calendar
+        locale={isArabic ? 'ar' : 'en'} // Set Arabic when language is Arabic
+        onChange={handleDateChange}
+        value={selectedDate}
+        tileClassName={({ date, view }) =>
+          appointments.some((appointment) =>
+            format(new Date(appointment.date), 'yyyy-MM-dd', { locale: isArabic ? ar : undefined }) === 
+            format(date, 'yyyy-MM-dd', { locale: isArabic ? ar : undefined })
+          )
+            ? 'highlighted-date'
+            : ''
+        }
+      />
       </SC.CalendarContainer>
 
       {/* Selected Date */}

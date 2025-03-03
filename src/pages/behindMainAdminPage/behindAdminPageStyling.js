@@ -370,7 +370,7 @@ export const Title3 = styled.h1`
 
 // Calendar Container
 export const CalendarContainer = styled.div`
-  margin: 10px auto;
+  margin: 0px auto;
   text-align: center;
 
   .highlighted-date {

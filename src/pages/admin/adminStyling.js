@@ -67,7 +67,6 @@ export const FirstSectionContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin: 10px auto;
-  overflow-y: auto; 
   position: relative;
 
 `;
@@ -76,7 +75,7 @@ export const FirstSectionContainer = styled.div`
 export const MiniBoxContainer = styled.div`
   height: 40px;
   width: 100px;
-  background-color: ${({ bgcolor }) => bgcolor || '#E6A556'};
+  background-color:#BF9F00;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -84,10 +83,6 @@ export const MiniBoxContainer = styled.div`
   align-items: center;
   margin: 5px;
 
-  /* Ensure bgColor doesn't appear in the DOM */
-  &[bgcolor] {
-    background-color: ${({ bgcolor }) => bgcolor};
-  }
 `;
 
 // Text inside mini boxes
@@ -119,8 +114,8 @@ export const FirstSectionContainer1 = styled.div`
 // Arrow button at the bottom-right
 export const ArrowButton = styled.button`
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: -20px;
+  right: -10px;
   background-color: #BF9F00;
   border: none;
   border-radius: 50%;

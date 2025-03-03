@@ -75,7 +75,7 @@ const FirstSection = () => {
           <SC.MiniBoxContainer
             key={index}
             bgColor={generateShade(index, sortedAppointments.length)}
-            onPress={() => handlePressAppointment(appointment)}
+            onClick={() => handlePressAppointment(appointment)}
           >
             <SC.MiniBoxText>{getClientName(appointment?.client)}</SC.MiniBoxText>
             <SC.MiniBoxText>{appointment.time}</SC.MiniBoxText>

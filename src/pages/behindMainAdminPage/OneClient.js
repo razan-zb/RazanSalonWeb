@@ -68,6 +68,13 @@ const OneClient = () => {
     }
   };
 
+  const handlePressAppointment = (appointment) => {
+    console.log(appointment)
+    navigate('/first-section-one-box', {
+      appointment: appointment,
+    });
+  };
+
   return (
     <SC.MainOneClientContainer>
       {/* Back Button */}
@@ -106,7 +113,7 @@ const OneClient = () => {
         {isEditing ? (
           <SC.Input type="date" value={clientData.birthday} onChange={(e) => handleUpdate('birthday', e.target.value)} />
         ) : (
-          <SC.Value>{clientData?.birthday}</SC.Value>
+          <SC.Value>  {clientData?.birthday ? new Date(clientData.birthday).toLocaleDateString('en-GB') : ''}          </SC.Value>
         )}
       </SC.ClientDetail>
 
@@ -132,7 +139,7 @@ const OneClient = () => {
       <SC.AppointmentsContainer>
         {appointments.length > 0 ? (
           appointments.map((appointment) => (
-            <SC.AppointmentBox key={appointment._id} onClick={() => navigate(`/appointment/${appointment._id}`)}>
+            <SC.AppointmentBox key={appointment._id} onClick={() => handlePressAppointment(appointment)}>
               {format(new Date(appointment.date), 'yyyy-MM-dd')}
             </SC.AppointmentBox>
           ))
