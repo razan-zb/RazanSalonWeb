@@ -170,10 +170,12 @@ export const Value = styled.p`
   padding: 8px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  width: auto;
+
 `;
 
 export const Input = styled.input`
-  width: 100%;
+  width: 95%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -483,7 +485,7 @@ export const DetailContainer2 = styled.div`
 
 // Text Area
 export const TextArea2 = styled.textarea`
-  width: 100%;
+  width: 93%;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;

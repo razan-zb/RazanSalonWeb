@@ -68,12 +68,12 @@ const OneClient = () => {
     }
   };
 
+
+
   const handlePressAppointment = (appointment) => {
-    console.log(appointment)
-    navigate('/first-section-one-box', {
-      appointment: appointment,
-    });
+    navigate(`/first-section-one-box`, { state: { appointment } }); 
   };
+
 
   return (
     <SC.MainOneClientContainer>

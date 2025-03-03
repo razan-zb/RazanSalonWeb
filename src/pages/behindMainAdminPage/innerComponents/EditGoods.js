@@ -5,7 +5,6 @@ import * as Functions from '../../../assest/helpers/api';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa'; 
-import { constructFromSymbol } from 'date-fns/constants';
 
 const GoodsDetailComponent = () => {
   const { t } = useTranslation();

@@ -23,6 +23,7 @@ const FirstSectionOneBox = () => {
     const fetchData = async () => {
       const clientsData = await Functions.fetchClientsData();
       setClients(clientsData);
+      
     }
 
     fetchData();
@@ -89,7 +90,7 @@ const FirstSectionOneBox = () => {
           <SC.Label>{t('Time')}</SC.Label>
           <SC.Input
             type="text"
-            value={time}
+            value={appointment.time}
             onChange={(e) => setTime(e.target.value)}
             placeholder={t('Enter time')}
           />

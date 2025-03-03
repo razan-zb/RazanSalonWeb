@@ -96,7 +96,7 @@ export const FirstSectionText = styled.h2`
     font-weight: bold;
     color: #1D1D1B;
     font-family: cursive;
-    margin-top: 20px;
+    margin-top: 10px;
 `;
 
 export const FirstSectionContainer1 = styled.div`

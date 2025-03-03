@@ -61,10 +61,9 @@ const FirstSection = () => {
     navigate('/first-section-list');
   };
 
+
   const handlePressAppointment = (appointment) => {
-    navigate('/first-section-one-box', {
-      appointment: appointment,
-    });
+    navigate(`/first-section-one-box`, { state: { appointment } }); 
   };
 
   return (
