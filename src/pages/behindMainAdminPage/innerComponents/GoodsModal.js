@@ -18,7 +18,7 @@ const GoodsPage = () => {
     notes: '',
   });
   const handleBack = () => {
-    navigate(-1)
+    navigate('/goods-and-suppliers');
   };
   useEffect(() => {
     const generatedId = generateUniqueId();
@@ -69,7 +69,7 @@ const GoodsPage = () => {
       </SC.Con>
 
       {/* Page Title */}
-      <SC.Title>{t('Add Goods')}</SC.Title>
+      <SC.ModalTitle>{t('Add Goods')}</SC.ModalTitle>
 
       {/* Form Fields */}
       <SC.InputField

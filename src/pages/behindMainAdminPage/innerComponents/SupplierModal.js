@@ -50,7 +50,7 @@ const SupplierModal = () => {
     }
   };
   const handleBack = () => {
-    navigate(-1)
+    navigate('/goods-and-suppliers');
   };
   return (
     <SC.Container>

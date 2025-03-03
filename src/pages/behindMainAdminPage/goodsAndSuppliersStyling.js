@@ -73,7 +73,7 @@ export const InputField = styled.input`
   margin-bottom: 10px;
   font-size: 18px;
   background-color: #fff;
-  width: 100%; /* Ensures proper sizing */
+  width: 90%; /* Ensures proper sizing */
 `;
 
 // Inner Container
@@ -91,6 +91,7 @@ export const Title = styled.text`
   color: #bf9f00;
   text-align: center;
   margin-bottom:30px;
+  
 `;
 // Modal Buttons Container
 export const ModalButtonsContainer = styled.div`
