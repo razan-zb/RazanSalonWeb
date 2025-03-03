@@ -8,11 +8,12 @@ export const Container = styled.div`
   flex: 1;
   background-color: #fdfcf4;
   padding: 20px;
-   min-height: 100vh;
+  min-height: 100vh;
 `;
 export const Con = styled.div`
   align-self:flex-start;
   text-align: left;
+  
 `;
 // Back Button
 export const BackButton = styled.button`
@@ -42,6 +43,10 @@ export const Label = styled.label`
   color: #444;
   margin-top: 20px;
   margin-bottom: 20px;
+  @media (min-width: 768px) {
+    justify-content: center;
+
+  }
 
 `;
 

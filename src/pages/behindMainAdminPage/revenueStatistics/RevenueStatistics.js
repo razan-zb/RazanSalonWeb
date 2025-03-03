@@ -77,11 +77,13 @@ const RevenueStatistics = () => {
 
       {/* Calendar Picker for Selecting Date */}
       <SC.Label>{t('Select Date')}</SC.Label>
-      <Calendar 
-        onChange={setSelectedDate} 
-        value={selectedDate} 
-      />
-
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+  <Calendar 
+    onChange={setSelectedDate} 
+    value={selectedDate} 
+  />
+</div>
+   
       {/* Revenue Display */}
       <SC.Label>{t('Total Revenue for Selected Day')}</SC.Label>
       <SC.RevenueText>${dailyRevenue.toFixed(2)}</SC.RevenueText>

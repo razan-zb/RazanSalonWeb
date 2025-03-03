@@ -201,6 +201,8 @@ export const Container1 = styled.div`
 
 `;
 
+
+
 // Text for the statistics
 export const StatText = styled.span`
   font-size: 18px;
