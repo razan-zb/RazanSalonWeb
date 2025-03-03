@@ -164,6 +164,7 @@ export const SecondSectionContainer2 = styled.div`
     z-index:1000;
     justify-content: center;
     gap:0;
+    height:330px;
 
   }
   
@@ -192,10 +193,8 @@ export const Container1 = styled.div`
   justify-content: center;
   height: 200px;
   text-align:center;
-
   @media (max-width: 768px) {
     margin-top: 0px;
-    margin-bottom: 10px;
     height:100px;
 
   }
@@ -203,7 +202,7 @@ export const Container1 = styled.div`
 `;
 
 // Text for the statistics
-export const StatText = styled.p`
+export const StatText = styled.span`
   font-size: 18px;
   color: #1D1D1B;
   font-weight: bold;

@@ -57,7 +57,9 @@ const SecondSection = () => {
       <Title>{t('weeklySummary')}</Title>
       <SecondSectionContainer2>
         <Container1>
-          <MdPerson size={70} color="#BF9F00" />
+          <div style={{ display: 'inline-block' }}>
+           <MdPerson size={70} color="#BF9F00" />
+          </div>       
           <StatText>{t('totalClients')}: {clients.length}</StatText>
         </Container1>
 
@@ -69,7 +71,9 @@ const SecondSection = () => {
         </Container1>
 
         <Container1>
-          <GiCash size={70} color="#BF9F00" onClick={() => navigate('/revenue-statistics')}  />
+        <div onClick={() => navigate('/revenue-statistics')} style={{ display: 'inline-block', cursor: 'pointer' }}>
+         <GiCash size={70} color="#BF9F00" onClick={() => navigate('/revenue-statistics')}  />
+          </div>  
           <StatText>{t('totalEarnings')}: {getTotalEarnings()} {t('currency')}</StatText>
         </Container1>
       </SecondSectionContainer2>
