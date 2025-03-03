@@ -23,11 +23,11 @@ const OneClient = () => {
         setClientData(client)
         const appointmentData = await Functions.fetchAppointmentsData();
         const clientAppointments = appointmentData.filter(
-          (appointment) => appointment.client?._id === client._id
+          (appointment) => appointment.client === client._id
         );
         const sortedAppointments = clientAppointments.sort(
           (a, b) => new Date(a.date) - new Date(b.date)
-        );
+        );       
         setAppointments(sortedAppointments);
       } catch (error) {
         alert(t('Error') + ': ' + t('Failed to fetch data.'));
