@@ -5,13 +5,13 @@ import * as Functions from '../../../assest/helpers/api';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa'; 
+import { constructFromSymbol } from 'date-fns/constants';
 
 const GoodsDetailComponent = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const good = location.state?.goods;
-  // State for editable fields
   const [name, setName] = useState(good?.name || '');
   const [quantity, setQuantity] = useState(good?.quantity?.toString() || '');
   const [price, setPrice] = useState(good?.price?.toString() || '');
@@ -26,8 +26,8 @@ const GoodsDetailComponent = () => {
     const updatedGoods = {
       ...good,
       name,
-      quantity,
-      price,
+      quantity: Number(quantity), 
+      price: Number(price), 
       notes,
     };
 
@@ -53,7 +53,7 @@ const GoodsDetailComponent = () => {
       const response = await Functions.fetchDeleteGoods(good._id);
       if (response) {
         window.alert(t('Success') + ': ' + t('Goods have been deleted.'));
-        navigate.goBack(); 
+        navigate(-1)
       } else {
         window.alert(t('Error') + ': ' + t('Failed to delete goods.'));
       }

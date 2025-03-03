@@ -52,7 +52,7 @@ const GoodsPage = () => {
       window.alert(t('Error') + ': ' + t('An error occurred while adding the goods.'));
     }
 
-    navigate.goBack(); 
+    handleBack();
   };
 
   return (

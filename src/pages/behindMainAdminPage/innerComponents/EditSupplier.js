@@ -60,8 +60,8 @@ const EditGoods = () => {
       const response = await Functions.fetchDeleteSupplier(supplier._id);
       if (response) {
         window.alert(t('Success') + ': ' + t('Supplier has been deleted.'));
-        navigate.goBack();
-      } else {
+        navigate(-1)
+            } else {
         window.alert(t('Error') + ': ' + t('Failed to delete supplier.'));
       }
     } catch (error) {

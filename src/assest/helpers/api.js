@@ -309,6 +309,7 @@ export const fetchUpdateAppointment = async (updatedData) => {
 
 export const fetchUpdateGoods = async (updatedData) => {
   try {
+
     const response = await fetch(`${BASE_URL}/goods/${updatedData._id}`, {
       method: 'PUT',
       headers: {
@@ -331,6 +332,8 @@ export const fetchUpdateGoods = async (updatedData) => {
 
 export const fetchUpdateSuppliers = async (updatedData) => {
   try {
+
+    
     const response = await fetch(`${BASE_URL}/suppliers/${updatedData._id}`, {
       method: 'PUT',
       headers: {

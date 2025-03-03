@@ -49,6 +49,7 @@ const SupplierModal = () => {
       window.alert(t('Error') + ': ' + t('An error occurred while saving the supplier.'));
     }
   };
+  
   const handleBack = () => {
     navigate('/goods-and-suppliers');
   };
