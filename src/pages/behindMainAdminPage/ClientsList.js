@@ -82,7 +82,7 @@ const ClientsList = () => {
 
       {/* Plus Button */}
       <SC.PlusButton onClick={() => handleAddNewClient(null)}>
-        <FaPlus color="#fff"  size={24} />
+        <FaPlus size={20} color="fff" />
       </SC.PlusButton>
     </SC.ClientsListContainer>
   );
