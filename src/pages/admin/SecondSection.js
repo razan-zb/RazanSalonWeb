@@ -62,8 +62,10 @@ const SecondSection = () => {
         </Container1>
 
         <Container1>
-          <FaBirthdayCake size={70} color="#BF9F00" onClick={handleBirthdayPress} />
-          <StatText>{t('Birthdays Today')}: {getTodayBirthdayClients().length}</StatText>
+        <div onClick={handleBirthdayPress} style={{ display: 'inline-block', cursor: 'pointer' }}>
+          <FaBirthdayCake size={70} color="#BF9F00" />
+        </div>       
+       <StatText>{t('Birthdays Today')}: {getTodayBirthdayClients().length}</StatText>
         </Container1>
 
         <Container1>
