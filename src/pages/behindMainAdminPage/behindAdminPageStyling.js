@@ -41,10 +41,15 @@ export const SearchInput = styled.input`
   flex: 1;
   margin-left: 10px;
   font-size: 18px;
-  color:#1D1D1B;
+  color:black;
   border: none;
   outline: none;
   background-color: transparent;
+
+  &::placeholder {
+    color: #fff;
+    opacity: 1;
+  }
 
 `;
 

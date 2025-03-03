@@ -25,10 +25,10 @@ const ClientsList = () => {
     };
 
     fetchData();
-  }, [clients.length, t]);
+  }, [t]);
 
-  const handleSearch = (query) => {
-    setSearchQuery(query);
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value || '');
   };
 
   const filteredClients = clients.filter((client) =>
@@ -36,7 +36,6 @@ const ClientsList = () => {
   );
 
   const handleAddClient = (client) => {
-    console.log("client",client)
     navigate('/one-client', { state: { client } });
   };
 
@@ -44,7 +43,7 @@ const ClientsList = () => {
     navigate('/new-one-client', { client });  };
 
   const handleBack = () => {
-    navigate(-1); // Go back
+    navigate(-1);
   };
 
   if (loading) {
@@ -83,7 +82,7 @@ const ClientsList = () => {
 
       {/* Plus Button */}
       <SC.PlusButton onClick={() => handleAddNewClient(null)}>
-        <FaPlus />
+        <FaPlus color="#fff"/>
       </SC.PlusButton>
     </SC.ClientsListContainer>
   );
