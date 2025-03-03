@@ -14,7 +14,6 @@ const images = [
   { id: '8', url: 'https://res.cloudinary.com/dxr9o0iqj/image/upload/v1739984255/a79f735f-dff9-4ccf-bf49-ed570bf945e4_zjcwjj.jpg' },
   { id: '9', url: 'https://res.cloudinary.com/dxr9o0iqj/image/upload/v1739985102/1b71b2dc-e5b3-4531-8c6b-8bdf8d793f13_wi8ylh.jpg' },
   { id: '10', url: 'https://res.cloudinary.com/dxr9o0iqj/image/upload/v1739985196/b4a3259b-32c2-4da3-848c-a89df60f7741_t0pawe.jpg' },
-  { id: '11', url: 'https://res.cloudinary.com/dxr9o0iqj/image/upload/v1739985270/439288e7-1005-4b5c-2b5c2-98541e56cc43_1_pbqbmt.png' },
 ];
 
 const image1 = 'https://res.cloudinary.com/dxr9o0iqj/image/upload/v1739984581/211_irpzkd.png';
