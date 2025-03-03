@@ -57,10 +57,12 @@ export const SearchInput = styled.input`
 export const ClientNameContainer = styled.div`
 background-color: #BF9F00;
 padding: 15px;
-  margin: 5px 0;
-  border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
+margin: 5px 0;
+border-radius: 10px;
+box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+text-align: center;
+  cursor: pointer;
+
 `;
 
 // Client Name Text
@@ -86,7 +88,7 @@ export const PlusButton = styled.button`
   border: none;
   cursor: pointer;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  color: #fff; /* Icon or text color */
+  color: black; 
   font-size: 30px;
   &:hover {
     background-color: #BF9F00;
