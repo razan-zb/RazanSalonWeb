@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as SC from './behindAdminPageStyling';
 import { useTranslation } from 'react-i18next';
 import * as Functions from '../../assest/helpers/api';
-import { FaPlus, FaArrowLeft, FaSearch } from 'react-icons/fa'; // React Icons for web
+import { FaArrowLeft, FaSearch } from 'react-icons/fa'; // React Icons for web
 
 const ClientsList = () => {
   const { t } = useTranslation();

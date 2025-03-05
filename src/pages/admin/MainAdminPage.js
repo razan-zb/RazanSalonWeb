@@ -16,14 +16,7 @@ const MainAdminPage = () => {
 
 
   const handleExit = () => {
-    alert(
-      "Exit Confirmation",
-      "Are you sure you want to exit the application?",
-      [
-        { text: "Cancel", style: "cancel" },
-        { text: "OK", onClick: () =>  navigate('/')} 
-      ]
-    );
+    navigate('/')
   };
   const handleSettings = () => {
     navigate('/admin-settings');
