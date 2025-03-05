@@ -18,7 +18,7 @@ const GoodsDetailComponent = () => {
 
   const handleSave = async () => {
     if (!name) {
-      window.alert(t('Error') + ': ' + t('Please fill in all required fields.'));
+      alert(t('Error') + ': ' + t('Please fill in all required fields.'));
       return;
     }
 
@@ -34,14 +34,14 @@ const GoodsDetailComponent = () => {
       const response = await Functions.fetchUpdateGoods(updatedGoods);
       if (response) {
         setTimeout(() => {
-          window.alert(t('Success') + ': ' + t('Goods details have been updated.'));
+          alert(t('Success') + ': ' + t('Goods details have been updated.'));
         }, 100);
       } else {
-        window.alert(t('Error') + ': ' + t('Failed to update goods. Please try again.'));
+        alert(t('Error') + ': ' + t('Failed to update goods. Please try again.'));
       }
     } catch (error) {
       console.error('Error updating goods:', error);
-      window.alert(t('Error') + ': ' + t('An error occurred while updating the goods.'));
+      alert(t('Error') + ': ' + t('An error occurred while updating the goods.'));
     }
   };
   const handleBack = () => {
@@ -51,14 +51,14 @@ const GoodsDetailComponent = () => {
     try {
       const response = await Functions.fetchDeleteGoods(good._id);
       if (response) {
-        window.alert(t('Success') + ': ' + t('Goods have been deleted.'));
+        alert(t('Success') + ': ' + t('Goods have been deleted.'));
         navigate(-1)
       } else {
-        window.alert(t('Error') + ': ' + t('Failed to delete goods.'));
+        alert(t('Error') + ': ' + t('Failed to delete goods.'));
       }
     } catch (error) {
       console.error('Error deleting goods:', error);
-      window.alert(t('Error') + ': ' + t('An error occurred while deleting the goods.'));
+      alert(t('Error') + ': ' + t('An error occurred while deleting the goods.'));
     }
   };
 

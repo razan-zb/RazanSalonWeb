@@ -32,24 +32,24 @@ const SupplierModal = () => {
 
   const handleSave = async () => {
     if (!supplierData.name || !supplierData.phoneNumber) {
-      window.alert(t('Error') + ': ' + t('All fields are required.'));
+      alert(t('Error') + ': ' + t('All fields are required.'));
       return;
     }
 
     try {
       const response = await Functions.featchCreateSupplier(supplierData);
       if (response) {
-        window.alert(t('Success') + ': ' + t('New supplier added!'));
+        alert(t('Success') + ': ' + t('New supplier added!'));
         setSupplierData({ _id: '', name: '', phoneNumber: '', email: '', notes: '', address: '' });
       } else {
-        window.alert(t('Error') + ': ' + t('Failed to save supplier. Please try again.'));
+        alert(t('Error') + ': ' + t('Failed to save supplier. Please try again.'));
       }
     } catch (error) {
       console.error('Error saving supplier:', error);
-      window.alert(t('Error') + ': ' + t('An error occurred while saving the supplier.'));
+      alert(t('Error') + ': ' + t('An error occurred while saving the supplier.'));
     }
   };
-  
+
   const handleBack = () => {
     navigate('/goods-and-suppliers');
   };

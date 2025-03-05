@@ -69,7 +69,7 @@ const VisitorsPage = ({ navigation }) => {
       const url = `https://wa.me/${phoneNumber}?text=${message}`;
       window.open(url, '_blank');
     } else {
-      window.alert(t('Error'), t('Phone number not available.'));
+      alert(t('Error'), t('Phone number not available.'));
     }
   };
 

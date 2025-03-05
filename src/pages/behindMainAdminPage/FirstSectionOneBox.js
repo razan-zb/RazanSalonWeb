@@ -54,14 +54,14 @@ const FirstSectionOneBox = () => {
     try {
       const response = await Functions.fetchUpdateAppointment(updatedAppointment);
       if (response) {
-        window.alert(t('Appointment details have been updated.'));
+       alert(t('Appointment details have been updated.'));
         navigate(-1); // Navigate back
       } else {
-        window.alert(t('Failed to update appointment. Please try again.'));
+        alert(t('Failed to update appointment. Please try again.'));
       }
     } catch (error) {
       console.error('Error updating appointment:', error);
-      window.alert(t('An error occurred while updating the appointment.'));
+      alert(t('An error occurred while updating the appointment.'));
     }
   };
 

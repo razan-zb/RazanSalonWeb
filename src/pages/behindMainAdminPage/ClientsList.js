@@ -18,7 +18,7 @@ const ClientsList = () => {
         const clientsData = await Functions.fetchClientsData();
         setClients(clientsData);
       } catch (error) {
-        window.alert(t('Error') + ': ' + t('Failed to fetch data.'));
+        alert(t('Error') + ': ' + t('Failed to fetch data.'));
       } finally {
         setLoading(false);
       }

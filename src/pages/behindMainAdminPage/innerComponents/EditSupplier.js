@@ -26,7 +26,7 @@ const EditGoods = () => {
   // Handle Save
   const handleSave = async () => {
     if (!name) {
-      window.alert(t('Error') + ': ' + t('All fields are required.'));
+      alert(t('Error') + ': ' + t('All fields are required.'));
       return;
     }
 
@@ -43,14 +43,14 @@ const EditGoods = () => {
       const response = await Functions.fetchUpdateSuppliers(updatedSupplier);
       if (response) {
         setTimeout(() => {
-          window.alert(t('Success') + ': ' + t('Supplier details have been updated.'));
+          alert(t('Success') + ': ' + t('Supplier details have been updated.'));
         }, 100);
       } else {
-        window.alert(t('Error') + ': ' + t('Failed to update supplier. Please try again.'));
+        alert(t('Error') + ': ' + t('Failed to update supplier. Please try again.'));
       }
     } catch (error) {
       console.error('Error updating supplier:', error);
-      window.alert(t('Error') + ': ' + t('An error occurred while updating the supplier.'));
+      alert(t('Error') + ': ' + t('An error occurred while updating the supplier.'));
     }
   };
 
@@ -59,14 +59,14 @@ const EditGoods = () => {
     try {
       const response = await Functions.fetchDeleteSupplier(supplier._id);
       if (response) {
-        window.alert(t('Success') + ': ' + t('Supplier has been deleted.'));
+        alert(t('Success') + ': ' + t('Supplier has been deleted.'));
         navigate(-1)
             } else {
-        window.alert(t('Error') + ': ' + t('Failed to delete supplier.'));
+        alert(t('Error') + ': ' + t('Failed to delete supplier.'));
       }
     } catch (error) {
       console.error('Error deleting supplier:', error);
-      window.alert(t('Error') + ': ' + t('An error occurred while deleting the supplier.'));
+      alert(t('Error') + ': ' + t('An error occurred while deleting the supplier.'));
     }
   };
 

@@ -35,7 +35,7 @@ const GoodsPage = () => {
 
   const handleSave = async () => {
     if (!goodsData.name || !goodsData.quantity) {
-      window.alert(t('Please fill in all required fields.'));
+      alert(t('Please fill in all required fields.'));
       return;
     }
 
@@ -43,13 +43,13 @@ const GoodsPage = () => {
       const response = await Functions.featchCreateGoods(goodsData);
       if (response) {
         setGoodsData({ _id: '', name: '', quantity: '', price: '', notes: '' });
-        window.alert(t('Success') + ': ' + t('New goods added!'));
+        alert(t('Success') + ': ' + t('New goods added!'));
       } else {
-        window.alert(t('Error') + ': ' + t('Failed to add goods. Please try again.'));
+        alert(t('Error') + ': ' + t('Failed to add goods. Please try again.'));
       }
     } catch (error) {
       console.error('Error adding goods:', error);
-      window.alert(t('Error') + ': ' + t('An error occurred while adding the goods.'));
+      alert(t('Error') + ': ' + t('An error occurred while adding the goods.'));
     }
 
     handleBack();
