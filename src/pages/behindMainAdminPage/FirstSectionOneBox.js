@@ -23,9 +23,13 @@ const FirstSectionOneBox = () => {
     const fetchData = async () => {
       const clientsData = await Functions.fetchClientsData();
       setClients(clientsData);
+      setTime(appointment.time)
+      setService(appointment.service);
+      setNotes(appointment.notes);
+      setPrice(appointment.price);
+      setStatus(appointment.status);
       
     }
-
     fetchData();
   }, []);
 
@@ -34,17 +38,19 @@ const FirstSectionOneBox = () => {
       window.alert(t('Please fill in all required fields.'));
       return;
     }
-
+  
+  
     const updatedAppointment = {
       ...appointment,
       status,
-      price,
+      price: Number(price),
       notes,
       time,
       service,
       updatedAt: new Date().toISOString(),
     };
 
+   
     try {
       const response = await Functions.fetchUpdateAppointment(updatedAppointment);
       if (response) {

@@ -20,7 +20,7 @@ const BookingForOne = () => {
     service: '',
     client: '',
     stylist: '',
-    price: '',
+    price:0,
     status: 'pending',
     notes: '',
     createdAt: new Date(),
