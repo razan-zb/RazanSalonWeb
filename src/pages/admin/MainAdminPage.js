@@ -8,19 +8,20 @@ import { SafeAreaViewS, SmallContainer, Goods, GoodsText,Con,SmallContainer2 } f
 import { FaBox } from 'react-icons/fa'; // Import a box icon
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Alert } from "react-native";
 
 const MainAdminPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
+
+
   const handleExit = () => {
-    Alert.alert(
+    alert(
       "Exit Confirmation",
       "Are you sure you want to exit the application?",
       [
         { text: "Cancel", style: "cancel" },
-        { text: "OK", onClick: () => navigate('/')}
+        { text: "OK", onClick: () =>  navigate('/')} 
       ]
     );
   };

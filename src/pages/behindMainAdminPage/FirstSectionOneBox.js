@@ -35,7 +35,7 @@ const FirstSectionOneBox = () => {
 
   const handleSave = async () => {
     if (!status || !price) {
-      window.alert(t('Please fill in all required fields.'));
+      alert(t('Please fill in all required fields.'));
       return;
     }
   
