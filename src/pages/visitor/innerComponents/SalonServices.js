@@ -8,7 +8,6 @@ import extention from '../../../assest/icons/extention.png';
 import hairDye from '../../../assest/icons/hair-dye.png';
 import makeover from '../../../assest/icons/makeover.png';
 import hairstyle from '../../../assest/icons/makeover.png';
-import {  FaArrowLeft } from 'react-icons/fa'; 
 
 const SalonServices = () => {
     const { t } = useTranslation();

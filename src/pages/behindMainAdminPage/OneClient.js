@@ -126,6 +126,16 @@ const OneClient = () => {
         )}
       </SC.ClientDetail>
 
+      <SC.ClientDetail>
+        <SC.Label>{t('Notes')}</SC.Label>
+        {isEditing ? (
+          <SC.Input type="text" value={clientData.problemsOrNotes} onChange={(e) => handleUpdate('problemsOrNotes', e.target.value)} />
+        ) : (
+          <SC.Value>{clientData?.problemsOrNotes}</SC.Value>
+        )}
+      </SC.ClientDetail>
+
+
       <SC.ButtonContainer>
         <SC.Button onClick={() => setIsEditing(!isEditing)}>
           {isEditing ? t('Cancel') : t('Edit')}
