@@ -85,10 +85,15 @@ const AdminSettingsPage = ({ history }) => {
     }
   };
 
-  // Logout function
+
+
   const handleLogout = () => {
-    localStorage.removeItem('authToken'); // Remove authentication token
-    history.push('/login'); // Navigate to login page
+    const confirmLogout = window.confirm("Are you sure you want to log out?");
+  
+    if (confirmLogout) {
+      localStorage.removeItem('authToken'); // Remove authentication token
+      history.push('/login'); // Navigate to login page
+    }
   };
 
   return (
