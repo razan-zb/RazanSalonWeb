@@ -155,7 +155,11 @@
   "Logout": "Logout",
   "Are you sure you want to log out?": "Are you sure you want to log out?",
   "Yes, Logout": "Yes, Logout",
-  "Failed to log out. Please try again.": "Failed to log out. Please try again."
+  "Failed to log out. Please try again.": "Failed to log out. Please try again.",
+  "Login Failed": "Login Failed",
+  "Empty inputs. Please try again.": "Empty inputs. Please try again.",
+  "Incorrect username or password. Please try again.": "Incorrect username or password. Please try again.",
+  "An error occurred. Please try again.": "An error occurred. Please try again."
 
 
 

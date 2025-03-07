@@ -157,7 +157,11 @@
   "Logout": "התנתקות",
   "Are you sure you want to log out?": "האם אתה בטוח שברצונך להתנתק?",
   "Yes, Logout": "כן, התנתקות",
-  "Failed to log out. Please try again.": "נכשל ביציאה, אנא נסה שוב."
+  "Failed to log out. Please try again.": "נכשל ביציאה, אנא נסה שוב.",
+  "Login Failed": "התחברות נכשלה",
+  "Empty inputs. Please try again.": "השדות ריקים. אנא נסה שוב.",
+  "Incorrect username or password. Please try again.": "שם משתמש או סיסמה שגויים. אנא נסה שוב.",
+  "An error occurred. Please try again.": "אירעה שגיאה. אנא נסה שוב."
 
 
 
