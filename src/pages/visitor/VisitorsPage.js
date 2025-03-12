@@ -3,11 +3,11 @@ import * as SC from './visitorsPageStyling'; // Import styled components
 import { useTranslation } from 'react-i18next';
 import TopBar from './TopBar';
 import SalonServices from './innerComponents/SalonServices';
-import mario2 from '../../assest/images/mario2.jpeg';
-import { FaInstagram, FaPhone, FaMapMarkerAlt, FaClock, FaArrowRight, FaArrowLeft } from 'react-icons/fa'; // Import icons
+import mario2 from '../../assest/images/mario2.png';
+import { FaInstagram, FaPhone, FaMapMarkerAlt, FaClock, FaArrowLeft } from 'react-icons/fa'; // Import icons
 import { useNavigate } from 'react-router-dom';
 
-const VisitorsPage = ({ navigation }) => {
+const VisitorsPage = () => {
   const { t } = useTranslation();
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -88,8 +88,7 @@ const VisitorsPage = ({ navigation }) => {
   };
 
   const handleInstagram = () => {
-    const instagramUsername = 'your_instagram'; // Replace with actual username
-    const url = `https://www.instagram.com/${instagramUsername}`;
+    const url = `https://www.instagram.com/munabathishsp?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==`;
     window.open(url, '_blank');
   };
 

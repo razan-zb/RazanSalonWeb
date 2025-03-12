@@ -8,19 +8,22 @@ import extention from '../../../assest/icons/extention.png';
 import hairDye from '../../../assest/icons/hair-dye.png';
 import makeover from '../../../assest/icons/makeover.png';
 import hairstyle from '../../../assest/icons/makeover.png';
+import teach from '../../../assest/icons/teach.png';
 
 const SalonServices = () => {
     const { t } = useTranslation();
     
     // Define services with appropriate icons (SVG or Images)
     const services = [
-        { id: 1, name: t('Haircut & Blow Dry'), icon: <FaCut size={35} color="#BF9F00" />, type: 'vector' },
+        { id: 1, name: t('Teaching'), icon: teach, type: 'image' },
+        { id: 8, name: t('Haircut & Blow Dry'), icon: <FaCut size={35} color="#BF9F00" />, type: 'vector' },
         { id: 2, name: t('Hair Straightening'), icon: straightner, type: 'image' },
         { id: 3, name: t('Hair Extensions'), icon: extention, type: 'image' },
         { id: 4, name: t('Hair Coloring'), icon: hairDye, type: 'image' },
         { id: 5, name: t('Makeup'), icon: makeover, type: 'image' },
         { id: 6, name: t('Hair Styling'), icon: hairstyle, type: 'image' },
         { id: 7, name: t('Eyebrows'), icon: eyebrow, type: 'image' },
+
     ];
 
     return (

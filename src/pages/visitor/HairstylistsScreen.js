@@ -19,6 +19,7 @@ const HairstylistsScreen = () => {
           style={{ cursor: 'pointer', marginBottom: '10px'}}
         />
       </SC.Con>
+      <SC.StylistName>{t('Description')}</SC.StylistName>
 
       {/* Stylist Info */}
       <SC.StylistContainer>
@@ -26,30 +27,31 @@ const HairstylistsScreen = () => {
           <SC.Images
             src="https://res.cloudinary.com/dxr9o0iqj/image/upload/v1740049194/Black_and_White_Clean_Simple_Photo_Collage_Fashion_Facebook_Cover_bg0f06.png"
             alt="Hairstylist Image"
-            style={{ width: 390, height: 230, borderRadius: 5 }}
+            style={{ width: 350, height: 200, borderRadius: 5 }}
           />
-          <SC.StylistName>{t('Description')}</SC.StylistName>
-          <SC.StylistInfo>{t('Info1')}</SC.StylistInfo>
+          <SC.StylistInfo>{t('P1')}</SC.StylistInfo>
         </SC.FrameSection>
+
+        <SC.FrameSection2>
+        <SC.VideoContainer>
+          <video 
+            src="https://res.cloudinary.com/dxr9o0iqj/video/upload/v1741802939/Black_and_White_Clean_Simple_Photo_Collage_Fashion_Facebook_Cover_inphaj.mp4" 
+            controls 
+            autoPlay 
+            muted
+            loop
+          />
+        </SC.VideoContainer>
+          <SC.StylistInfo>{t('P2')}</SC.StylistInfo>
+        </SC.FrameSection2>
 
         <SC.FrameSection>
           <SC.Images
-            src="https://res.cloudinary.com/dxr9o0iqj/image/upload/v1740049194/Black_and_White_Clean_Simple_Photo_Collage_Fashion_Facebook_Cover_bg0f06.png"
+            src="https://res.cloudinary.com/dxr9o0iqj/image/upload/v1741801105/2_xlekv4.png"
             alt="Mario Hairstylist"
             style={{ width: 350, height: 200, borderRadius: 5 }}
           />
-          <SC.StylistName>Mario</SC.StylistName>
-          <SC.StylistInfo>Expert in hair coloring and styling.</SC.StylistInfo>
-        </SC.FrameSection>
-
-        <SC.FrameSection>
-          <SC.Images
-            src="https://res.cloudinary.com/dxr9o0iqj/image/upload/v1740049194/Black_and_White_Clean_Simple_Photo_Collage_Fashion_Facebook_Cover_bg0f06.png"
-            alt="Mario Hairstylist"
-            style={{ width: 350, height: 200, borderRadius: 5 }}
-          />
-          <SC.StylistName>Mario</SC.StylistName>
-          <SC.StylistInfo>Expert in hair coloring and styling.</SC.StylistInfo>
+          <SC.StylistInfo>{t('P3')}</SC.StylistInfo>
         </SC.FrameSection>
       </SC.StylistContainer>
     </SC.Container>

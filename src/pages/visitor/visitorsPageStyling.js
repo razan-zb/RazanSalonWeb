@@ -4,6 +4,9 @@ import styled from 'styled-components';
 export const Container = styled.div`
   background-color: #f9f9f9;
   padding: 20px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Container1 = styled.div`
@@ -189,7 +192,6 @@ export const Con = styled.div`
 `;
 export const StylistContainer = styled.div`
   text-align: center;
-  padding: 10px;
   background-color: #fff;
   border-radius: 10px;
 `;
@@ -202,11 +204,14 @@ export const StylistName = styled.h3`
 `;
 
 export const StylistInfo = styled.p`
-  font-size: 16px;
+  font-size: 18px;
   color: #666;
   text-align: center;
   margin-top: 5px;
-  padding: 0 15px;
+  line-height: 1.8;
+  color: #333;
+  text-align: center;
+  padding: 10px 15px;
 `;
 
 export const TopBarContainer = styled.div`
@@ -246,7 +251,38 @@ export const ButtonSetting = styled.button`
 
 export const FrameSection = styled.div`
   text-align: center;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap:20px;
+
 `;
+export const VideoContainer = styled.div`
+  width: 100%;
+  max-width: 600px; /* Adjust width */
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+`;
+export const FrameSection2 = styled.div`
+  display:flex;
+  flex-direction:column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  gap:20px;
+
+`;
+
 
 
 export const Images = styled.img`
