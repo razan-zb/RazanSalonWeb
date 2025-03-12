@@ -14,7 +14,7 @@ const BookingCalendar = () => {
   const navigate = useNavigate();
   const { i18n } = useTranslation();
   const isArabic = i18n.language === 'ar';
-  console.log(isArabic)
+
   const [selectedDate, setSelectedDate] = useState(null);
   const [appointments, setAppointments] = useState([]);
   const [user, setUser] = useState(null);
