@@ -73,11 +73,22 @@ const VisitorsPage = () => {
     }
   };
 
-  const openAddressInMaps = (address) => {
-    const encodedAddress = encodeURIComponent(address);
-    const url = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
-    window.open(url, '_blank');
-  };
+
+
+  const openAddressInMaps = () => {
+    const latitude = 32.69390;
+    const longitude = 35.29622;
+    const address = encodeURIComponent("רחי מספר 3042, Nazareth, Israel");
+
+    const appleMapsUrl = `https://maps.apple.com/?address=${address}&ll=${latitude},${longitude}&q=${address}&t=m`;
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+
+    // Detect if the user is on an iPhone/iPad and open the appropriate map
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    window.open(isIOS ? appleMapsUrl : googleMapsUrl, '_blank');
+};
+
+// Example Usage:
 
   const handleSettings = () => {
     navigate('/client-settings');
