@@ -36,7 +36,6 @@ const HairstylistsScreen = () => {
         <SC.VideoContainer>
           <video 
             src="https://res.cloudinary.com/dxr9o0iqj/video/upload/v1741961315/Black_and_White_Clean_Simple_Photo_Collage_Fashion_Facebook_Cover_kkec35.mp4" 
-            controls 
             autoPlay 
             muted
             loop
