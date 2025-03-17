@@ -49,7 +49,7 @@ const HairstylistsScreen = () => {
           <SC.Images
             src="https://res.cloudinary.com/dxr9o0iqj/image/upload/v1741801105/2_xlekv4.png"
             alt="Mario Hairstylist"
-            style={{ width: 350, height: 200, borderRadius: 5 }}
+            style={{ width: 350, height: 220, borderRadius: 5 }}
           />
           <SC.StylistInfo>{t('P3')}</SC.StylistInfo>
         </SC.FrameSection>
