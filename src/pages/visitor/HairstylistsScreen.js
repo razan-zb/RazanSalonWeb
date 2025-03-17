@@ -34,13 +34,15 @@ const HairstylistsScreen = () => {
 
         <SC.FrameSection2>
         <SC.VideoContainer>
-          <video 
-            src="https://res.cloudinary.com/dxr9o0iqj/video/upload/v1741961315/Black_and_White_Clean_Simple_Photo_Collage_Fashion_Facebook_Cover_kkec35.mp4" 
-            autoPlay 
-            muted
-            loop
-          />
-        </SC.VideoContainer>
+        <video 
+          src="https://res.cloudinary.com/dxr9o0iqj/video/upload/v1741961315/Black_and_White_Clean_Simple_Photo_Collage_Fashion_Facebook_Cover_kkec35.mp4" 
+          autoPlay 
+          muted
+          loop
+          controls
+          controlsList="nofullscreen"  // Prevents fullscreen option
+        />
+      </SC.VideoContainer>
           <SC.StylistInfo>{t('P2')}</SC.StylistInfo>
         </SC.FrameSection2>
 
