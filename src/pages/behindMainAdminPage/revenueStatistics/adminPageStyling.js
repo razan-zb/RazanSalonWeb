@@ -9,6 +9,12 @@ export const Container = styled.div`
   background-color: #fdfcf4;
   padding: 20px;
   min-height: 100vh;
+  text-align: center;
+  align-contents:center;
+  align-items:center;
+  justify-content:center;
+
+
 `;
 export const Con = styled.div`
   align-self:flex-start;
@@ -36,17 +42,22 @@ export const Title = styled.h1`
 `;
 
 // Section Label
-export const Label = styled.label`
+export const Label = styled.p`
   display:flex;   
   font-size: 18px;
   font-weight: bold;
   color: #444;
   margin-top: 20px;
+  text-align: center;
   margin-bottom: 20px;
   @media (min-width: 768px) {
     justify-content: center;
+    text-align: center;
 
   }
+  text-align: center;
+  align-self:center;
+
 
 `;
 

@@ -32,10 +32,14 @@ const ClientSettingsPage = () => {
     fetchTimeSlots();
   }, [t]);
 
-  const changeLanguage = async (lng) => {
-    i18n.changeLanguage(lng);
-  };
 
+    // Change language function
+    const changeLanguage = async (lng) => {
+      i18n.changeLanguage(lng);
+      localStorage.setItem('language', lng);
+      window.location.reload(); // Refresh to apply RTL/LTR changes
+    };
+  
   const formatTimeSlot = (day) => {
     return timeSlots[day].start === timeSlots[day].end 
       ? t('عطله ') 

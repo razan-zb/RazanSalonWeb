@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom'; // Web navigation
 import * as Functions from '../../../assest/helpers/api';
 import * as SC from './adminPageStyling';
-import {  FaArrowLeft, FaSearch } from 'react-icons/fa'; // React Icons for web
+import {  FaArrowLeft } from 'react-icons/fa'; // React Icons for web
 
 const RevenueStatistics = () => {
   const { t } = useTranslation();
@@ -86,13 +86,13 @@ const RevenueStatistics = () => {
    
       {/* Revenue Display */}
       <SC.Label>{t('Total Revenue for Selected Day')}</SC.Label>
-      <SC.RevenueText>${dailyRevenue.toFixed(2)}</SC.RevenueText>
+      <SC.RevenueText>₪{dailyRevenue.toFixed(2)}</SC.RevenueText>
 
       <SC.Label>{t('Total Revenue for Month')}</SC.Label>
-      <SC.RevenueText>${monthlyRevenue.toFixed(2)}</SC.RevenueText>
+      <SC.RevenueText>₪{monthlyRevenue.toFixed(2)}</SC.RevenueText>
 
       <SC.Label>{t('Total Revenue for Year')}</SC.Label>
-      <SC.RevenueText>${yearlyRevenue.toFixed(2)}</SC.RevenueText>
+      <SC.RevenueText>₪{yearlyRevenue.toFixed(2)}</SC.RevenueText>
     </SC.Container>
   );
 };

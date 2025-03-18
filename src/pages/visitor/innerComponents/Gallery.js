@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 
 const images = [
-  { id: '1', url: 'https://res.cloudinary.com/dxr9o0iqj/image/upload/v1739983201/hair1_rxaw1f.jpg' },
   { id: '2', url: 'https://res.cloudinary.com/dxr9o0iqj/image/upload/v1739983885/5cb95df4-1ed4-409f-90db-4d79e765e67c_ezgjx3.jpg' },
   { id: '3', url: 'https://res.cloudinary.com/dxr9o0iqj/image/upload/v1739983941/7a2a9645-fe86-4239-9c1f-1dc09f7c6ab3_lrrhjd.jpg' },
   { id: '4', url: 'https://res.cloudinary.com/dxr9o0iqj/image/upload/v1739983982/32bb537c-2f9c-440d-98f0-f4f6a5193c0a_zoyd5e.jpg' },
