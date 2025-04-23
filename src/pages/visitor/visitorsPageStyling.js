@@ -216,7 +216,7 @@ export const StylistInfo = styled.p`
 
 export const TopBarContainer = styled.div`
   height: 60px;
-  background-color: #1D1D1B;
+  background-color: #F8F8F8;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -240,6 +240,8 @@ export const LogoImage = styled.img`
   width: 50px;
   height: 50px;
   margin-right: 8px;
+    margin-top:5px;
+
 `;
 
 export const ButtonSetting = styled.button`

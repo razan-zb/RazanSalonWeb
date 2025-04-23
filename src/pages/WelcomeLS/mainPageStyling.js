@@ -40,7 +40,7 @@ export const ButtonsContainer = styled.div`
 `;
 
 export const LogIn = styled.button`
-  background-color: #CAB572; 
+  background-color: #4EA667; 
   padding: 12px 24px;
   border: none;
   border-radius: 8px;
@@ -64,7 +64,7 @@ export const LogIn = styled.button`
 
 export const SignUp = styled(LogIn)`
   background-color: transparent;
-  color: #CAB572;
+  color: #4EA667;
   font-size: 20px;
 
   &:hover {

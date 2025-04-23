@@ -8,7 +8,7 @@ const TopBar = ({ onExit, onSettings }) => {
     <SC.TopBarContainer>
       {/* Settings Button */}
       <SC.ButtonSetting onClick={onSettings}>
-        <FaCog size={24} color="#AF9202" />
+        <FaCog size={24} color="#227439" />
       </SC.ButtonSetting>
 
       {/* Logo */}
@@ -18,7 +18,7 @@ const TopBar = ({ onExit, onSettings }) => {
 
       {/* Exit Button */}
       <SC.ButtonExit onClick={onExit}>
-        <FaSignOutAlt size={24} color="#AF9202" />
+        <FaSignOutAlt size={24} color="#227439" />
       </SC.ButtonExit>
     </SC.TopBarContainer>
   );

@@ -37,7 +37,7 @@ const MainAdminPage = () => {
              <Booking/>
           </SmallContainer2>
           <Goods onClick={() =>navigate('/goods-and-suppliers')}>
-            <FaBox size={30} color="BF9F00" />
+            <FaBox size={30} color="227439" />
             <GoodsText>{t('goods')}</GoodsText>
           </Goods>
         </SmallContainer>

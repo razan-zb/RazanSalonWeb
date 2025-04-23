@@ -18,7 +18,7 @@ export const Con = styled.div`
 export const Temp = styled.h1`
   font-size: 18px; 
   font-weight: bold;
-  color: #BF9F00; 
+  color: #227439; 
   margin: 0;
 `;
 
@@ -61,7 +61,7 @@ export const FirstSectionTitle = styled.span`
 export const FirstSectionContainer = styled.div`
   height: 150px;
   width: 90%;
-  background-color: #FDF5E6; 
+  background-color: #F8F8F8; 
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -116,7 +116,7 @@ export const ArrowButton = styled.button`
   position: absolute;
   bottom: -20px;
   right: -10px;
-  background-color: #BF9F00;
+  background-color: #227439;
   border: none;
   border-radius: 50%;
   width: 50px;
@@ -209,7 +209,7 @@ export const StatText = styled.span`
 export const ClientsContainer = styled.div`
   height: 100px;
   width: 150px;
-  background-color: #1D1D1B;
+  background-color: #F8F8F8;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -238,7 +238,7 @@ export const GoodsText = styled.p`
   font-size: 18px;
   font-weight: bold;
   margin: 0;
-  color: #BF9F00; 
+  color: #227439; 
 
 `;
 
@@ -248,7 +248,7 @@ export const GoodsText = styled.p`
 export const TopBarContainer = styled.div`
   width: 100%;
   height: 60px;
-  background-color: #1D1D1B;
+  background-color: #F8F8F8;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -269,6 +269,7 @@ export const LogoContainer = styled.div`
 export const LogoImage = styled.img`
   width: 50px;
   height: 50px;
+  margin-top:5px;
   margin-right: 10px;
 `;
 

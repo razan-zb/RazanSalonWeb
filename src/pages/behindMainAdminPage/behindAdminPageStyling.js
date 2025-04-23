@@ -5,7 +5,7 @@ export const Container = styled.div`
   max-width: 600px;
   margin: auto;
   padding: 20px;
-  background: #fdfcf4;
+  background: #F8F8F8;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   min-height: 100vh;
@@ -130,7 +130,7 @@ export const ButtonRow = styled.div`
   margin-bottom: 15px;
 `;
 export const FilterButton = styled.button`
-  background: ${(props) => (props.isActive ? '#bf9f00' : '#ddd')};
+  background: ${(props) => (props.isActive ? '#227439' : '#ddd')};
   color: ${(props) => (props.isActive ? 'white' : '#333')};
   border: none;
   padding: 10px 15px;
@@ -140,7 +140,7 @@ export const FilterButton = styled.button`
   transition: 0.3s;
 
   &:hover {
-    background: ${(props) => (props.isActive ? '#a07f00' : '#bbb')};
+    background: ${(props) => (props.isActive ? '#227439' : '#bbb')};
   }
 `;
 // Title

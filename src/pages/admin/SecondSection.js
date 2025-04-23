@@ -58,21 +58,21 @@ const SecondSection = () => {
       <SecondSectionContainer2>
         <Container1>
           <div style={{ display: 'inline-block' }}>
-           <MdPerson size={70} color="#BF9F00" />
+           <MdPerson size={70} color="#227439" />
           </div>       
           <StatText>{t('totalClients')}: {clients.length}</StatText>
         </Container1>
 
         <Container1>
         <div onClick={handleBirthdayPress} style={{ display: 'inline-block', cursor: 'pointer' }}>
-          <FaBirthdayCake size={70} color="#BF9F00" />
+          <FaBirthdayCake size={70} color="#227439" />
         </div>       
        <StatText>{t('Birthdays Today')}: {getTodayBirthdayClients().length}</StatText>
         </Container1>
 
         <Container1>
         <div onClick={() => navigate('/revenue-statistics')} style={{ display: 'inline-block', cursor: 'pointer' }}>
-         <GiCash size={70} color="#BF9F00" onClick={() => navigate('/revenue-statistics')}  />
+         <GiCash size={70} color="#227439" onClick={() => navigate('/revenue-statistics')}  />
           </div>  
           <StatText>{t('totalEarnings')}: {getTotalEarnings()} {t('currency')}</StatText>
         </Container1>

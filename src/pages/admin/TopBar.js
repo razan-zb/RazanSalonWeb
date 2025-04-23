@@ -14,7 +14,7 @@ const TopBar = ({ onExit, onSettings }) => {
     <TopBarContainer>
       {/* Exit Button */}
       <ButtonExit onClick={onExit}>
-        <IoExitOutline size={30} color="#AF9202" />
+        <IoExitOutline size={30} color="#227439" />
       </ButtonExit>
 
       <LogoContainer>
@@ -22,7 +22,7 @@ const TopBar = ({ onExit, onSettings }) => {
       </LogoContainer>
 
       <ButtonSetting onClick={onSettings}>
-        <IoSettingsOutline size={30} color="#AF9202" />
+        <IoSettingsOutline size={30} color="#227439" />
       </ButtonSetting>
     </TopBarContainer>
   );

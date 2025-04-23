@@ -10,7 +10,7 @@ const Booking = () => {
 
   return (
     <BookingContainer onClick={() => navigate('/booking-calendar')} >
-      <FaCalendarAlt size={30} color="#BF9F00" />
+      <FaCalendarAlt size={30} color="#227439" />
       <Temp>{t('booking')}</Temp>
     </BookingContainer>
   );
