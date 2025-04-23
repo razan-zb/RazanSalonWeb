@@ -46,7 +46,7 @@ const App = () => {
       const appointments = await Functions.fetchAppointmentsData();
       console.log('Appointments:', appointments.length);
 
-      const user = await Functions.fetchUserData('munabathesh@gmail.com');
+      const user = await Functions.fetchUserData('razanSalon@gmail.com');
       localStorage.setItem('user', JSON.stringify(user)); // Replace AsyncStorage with localStorage
       console.log('User:', user.name);
 

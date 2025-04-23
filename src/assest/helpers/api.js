@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://salonserver2025.onrender.com/api';
+const BASE_URL = 'https://razanserversalon.onrender.com/api';
 // const BASE_URL = "http://10.0.2.2:3000/api";
 
 
