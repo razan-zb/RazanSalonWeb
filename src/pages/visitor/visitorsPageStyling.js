@@ -24,14 +24,14 @@ export const Section = styled.div`
 
 export const Section1 = styled.div`
   padding: 15px;
-  background-color: #1D1D1B;
+  background-color: #227439;
   border-radius: 15px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #bf9f00;
+  border: 1px solid #227439;
   margin: 10px;
 `;
 
@@ -39,7 +39,7 @@ export const Section1 = styled.div`
 export const Title = styled.h2`
   font-size: 24px;
   font-weight: bold;
-  color: #bf9f00;
+  color: #227439;
   margin-bottom: 10px;
   text-align: center;
 `;

@@ -42,7 +42,7 @@ const GoodsAndSuppliers = () => {
       <SC.Con>
         <FaArrowLeft
           size={30}
-          color="#1D1D1B"
+          color="#227439"
           onClick={handleBack}
           style={{ cursor: 'pointer', marginBottom: '10px'}}
         />

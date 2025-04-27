@@ -6,7 +6,7 @@ const screenWidth = window.innerWidth; // for web, use window.innerWidth
 // Main Container
 export const Container = styled.div`
   flex: 1;
-  background-color: #fdfcf4;
+  background-color: #F8F8F8;
   padding: 20px;
   min-height: 100vh;
   text-align: center;

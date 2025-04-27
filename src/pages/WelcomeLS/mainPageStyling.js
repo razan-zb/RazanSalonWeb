@@ -76,7 +76,7 @@ export const SignUp = styled(LogIn)`
 
 export const LogInTitle = styled.h1`
   font-size: 2rem;
-  color: #AF9202;
+  color: #227439;
 
 `;
 
@@ -86,7 +86,7 @@ export const ContainerForLogIn = styled.div`
   align-items: center;
   height: 100vh;
   flex-direction:column;
-  background-color: #fff;
+  background-color: #F8F8F8;
 `;
 
 export const SignUpTitle = styled.h1`
@@ -106,7 +106,7 @@ export const ContainerForSignUp = styled.div`
 export const InputBox = styled.input`
   font-size: 16px;
   padding: 10px;
-  border: 1px solid #AF9202;
+  border: 1px solid #227439;
   border-radius: 4px;
   margin-top: 10px;
   width:300px;
@@ -114,14 +114,14 @@ export const InputBox = styled.input`
 
 export const LoginButton = styled.button`
   padding: 10px 20px;
-  background-color: #97883A;
+  background-color: #227439;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   margin-top: 20px;
   &:hover {
-    background-color: #5A3409;
+    background-color: #4EA667;
   }
 `;
 
@@ -135,15 +135,15 @@ export const ButtonText = styled.span`
 export const Checkbox = styled.div`
   width: 20px;
   height: 20px;
-  border: 1px solid #6C400A;
+  border: 1px solid #227439;
   border-radius: 4px;
-  background-color: ${(props) => (props.checked ? '#AF9202' : 'white')};
+  background-color: ${(props) => (props.checked ? '#227439' : 'white')};
   margin-right: 10px;
 `;
 
 export const ShownPassword = styled.span`
   font-size: 14px;
-  color: #AF9202;
+  color: #227439;
   cursor: pointer;
 `;
 
@@ -157,13 +157,13 @@ export const BackArrow = styled.div`
 
 export const LogInLabels = styled.label`
   font-size: 20px;
-  color: #AF9202;
+  color: #227439;
 `;
 
 export const InnerContainer = styled.div`
     display:flex;
     flex-direction:column;
-    background-color:#F9F0C3;
+    background-color:#9BC8A7;
     width:350px;
     height:300px;
     padding:10px;
@@ -172,7 +172,7 @@ export const InnerContainer = styled.div`
     align-content: center;
     border-radius: 10px;
     border:1px;
-    border: 2px solid #AF9202;
+    border: 2px solid #46A55F;
 
 
 

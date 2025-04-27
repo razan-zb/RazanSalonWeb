@@ -110,29 +110,29 @@ const VisitorsPage = () => {
       <SC.Container>
         <SC.Section>
           <SC.Title>{t('Welcome to Our Salon')}</SC.Title>
-          <SC.Description>{t('Description')}</SC.Description>
+          <SC.Description>{t('Razan')}</SC.Description>
           <SC.Image src={mario2} alt="Salon" />
 
           <SC.InfoRow>
-            <FaMapMarkerAlt size={20} color="#BF9F00" />
+            <FaMapMarkerAlt size={20} color="#227439" />
             <SC.InfoText onClick={() => openAddressInMaps(user?.address)}>
-              {t('Salon Muna Bathesh')}
+              {t('Salon Razan')}
             </SC.InfoText>
           </SC.InfoRow>
 
           <SC.InfoRow>
-            <FaPhone size={20} color="#BF9F00" />
+            <FaPhone size={20} color="#227439" />
             <SC.InfoText onClick={handleWhatsApp}>{user?.phone || t('No phone number')}</SC.InfoText>
           </SC.InfoRow>
 
           <SC.InfoRow>
-            <FaClock size={20} color="#BF9F00" />
+            <FaClock size={20} color="#227439" />
             <SC.InfoText>{t('Opening Hours')}: {todayHours}</SC.InfoText>
           </SC.InfoRow>
 
           <SC.InfoRow>
-            <FaInstagram size={25} color="#BF9F00" onClick={handleInstagram} />
-            <SC.InfoText>Muna Bathish Ispanioly</SC.InfoText>
+            <FaInstagram size={25} color="#227439" onClick={handleInstagram} />
+            <SC.InfoText>Razan Zbedy</SC.InfoText>
           </SC.InfoRow>
         </SC.Section>
 

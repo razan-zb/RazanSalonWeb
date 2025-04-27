@@ -40,7 +40,7 @@ const LogInScreen = () => {
   return (
     <ContainerForLogIn>
       <BackArrow onClick={() =>  navigate('/')}>
-         <span style={{ fontSize: '40px', color: '#97883A' }}>←</span>
+         <span style={{ fontSize: '40px', color: '#227439' }}>←</span>
       </BackArrow>
 
       <LogInTitle>{t('welcome')}</LogInTitle>

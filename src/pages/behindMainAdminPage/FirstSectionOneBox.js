@@ -79,7 +79,7 @@ const FirstSectionOneBox = () => {
       <div style={{ overflow: 'auto', paddingBottom: '20px' }}>
         {/* Back Button */}
         <SC.BackButton onClick={() => navigate(-1)}>
-          <IoChevronBack size={30} color="#BF9F00" />
+          <IoChevronBack size={30} color="#227439" />
         </SC.BackButton>
 
         {/* Title */}

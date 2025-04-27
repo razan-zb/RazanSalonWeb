@@ -3,7 +3,7 @@ import styled from 'styled-components';
 // Main Container
 export const Container = styled.div`
   min-height: 100vh;
-  background-color: #fdfcf4;
+  background-color: #F8F8F8;
   padding: 20px;
 
   @media screen and (min-width: 769px) {
@@ -29,7 +29,7 @@ export const Con = styled.div`
 export const Title = styled.h1`
   font-size: 24px;
   font-weight: bold;
-  color: #bf9f00;
+  color: #227439;
   margin-bottom: 20px;
   text-align: center;
 `;
@@ -52,7 +52,7 @@ export const ButtonContainer = styled.div`
 
 // Language Button
 export const LanguageButton = styled.button`
-  background-color: #bf9f00;
+  background-color: #227439;
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
@@ -94,7 +94,7 @@ font-weight: bold;
 
 // Input Field
 export const InputField = styled.input`
-  border: 1px solid #ddd;
+  border: 1px solid #227439;
   padding: 10px;
   font-size: 18px;
   border-radius: 10px;
@@ -107,7 +107,7 @@ export const InputField = styled.input`
 
 // Generic Button
 export const Button = styled.button`
-  background-color: #bf9f00;
+  background-color: #227439;
   padding: 15px;
   border-radius: 10px;
   margin: 5px 0;

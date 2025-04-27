@@ -5,7 +5,7 @@ export const Container = styled.div`
   max-width: 600px;
   margin: auto;
   padding: 20px;
-  background-color: #fdfcf4;
+  background-color: #F8F8F8;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -32,7 +32,7 @@ export const BackButton = styled.button`
 export const Title = styled.h1`
   font-size: 24px;
   font-weight: bold;
-  color: #bf9f00;
+  color: #227439;
   text-align: center;
   margin-bottom: 20px;
 `;
@@ -94,7 +94,7 @@ export const ButtonContainer = styled.div`
 
 // Save Button
 export const Button = styled.button`
-  background-color: #bf9f00;
+  background-color: #227439;
   padding: 10px 20px;
   border-radius: 5px;
   color: white;
@@ -107,7 +107,7 @@ export const Button = styled.button`
   margin-right: 10px;
 
   &:hover {
-    background-color: #a07f00;
+    background-color: #9BC8A7;
   }
 `;
 

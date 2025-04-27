@@ -5,7 +5,7 @@ export const Container = styled.div`
   max-width: 800px;
   margin: auto;
   padding: 20px;
-  background: #fdfcf4;
+  background: #F8F8F8;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -62,7 +62,7 @@ export const ModalTitle = styled.h2`
   margin-bottom: 15px;
   margin-top: 15px;
   text-align: center;
-  color: #bf9f00;
+  color: #227439;
 `;
 
 // Input Field
@@ -107,7 +107,7 @@ export const ModalButtonsContainer = styled.div`
 
 // Save Button
 export const SaveButton = styled.button`
-  background-color: #BF9F00;
+  background-color: #227439;
   padding: 10px;
   border-radius: 5px;
   font-size: 16px;
@@ -118,7 +118,7 @@ export const SaveButton = styled.button`
   width: 100%;
   
   &:hover {
-    background-color: #a07f00;
+    background-color: #9BC8A7;
   }
 `;
 
@@ -180,7 +180,7 @@ export const AddButton = styled.button`
   padding: 12px;
   font-size: 16px;
   color: white;
-  background: #bf9f00;
+  background: #227439;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -189,6 +189,6 @@ export const AddButton = styled.button`
   margin-top: 10px;
 
   &:hover {
-    background: #a07f00;
+    background: #9BC8;
   }
 `;

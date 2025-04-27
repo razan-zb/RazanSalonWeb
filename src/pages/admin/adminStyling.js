@@ -127,7 +127,7 @@ export const ArrowButton = styled.button`
   cursor: pointer;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   &:hover {
-    background-color: #a75d22;
+    background-color: #9BC8A7;
   }
 `;
 
@@ -218,7 +218,7 @@ export const ClientsContainer = styled.div`
   gap: 5px; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   &:hover {
-    background-color: #a75d22; 
+    background-color: #9BC8A7; 
   }
 `;
 

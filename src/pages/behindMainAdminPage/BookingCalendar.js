@@ -24,7 +24,7 @@ const BookingCalendar = () => {
     const fetchAppointments = async () => {
       const appointmentsData = await Functions.fetchAppointmentsData();
       setAppointments(appointmentsData);
-      const userData = await Functions.fetchUserData('munabathesh@gmail.com');
+      const userData = await Functions.fetchUserData('razanSalon@gmail.com');
       setUser(userData);
     };
     fetchAppointments();
@@ -85,7 +85,7 @@ const BookingCalendar = () => {
       <SC.Con>
         <FaArrowLeft
           size={30}
-          color="#BF9F00"
+          color="#227439"
           onClick={handleBack}
           style={{ cursor: 'pointer', marginBottom: '10px'}}
         />

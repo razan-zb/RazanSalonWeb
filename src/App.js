@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState} from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
+import { useTranslation } from 'react-i18next';
 
 // Import Pages
 import MainScreen from './pages/WelcomeLS/MainScreen';
@@ -31,13 +32,15 @@ import Gallery from './pages/visitor/innerComponents/Gallery';
 import * as Functions from './assest/helpers/api';
 
 const App = () => {
-  
+
+  const [isLoading, setIsLoading] = useState(true);
+  const { t } = useTranslation();
+
   useEffect(() => {
     fetchData();
     loadLanguage();
   }, []);
 
-  // Fetch Data (Simulating AsyncStorage in Web)
   const fetchData = async () => {
     try {
       const clients = await Functions.fetchClientsData();
@@ -47,7 +50,7 @@ const App = () => {
       console.log('Appointments:', appointments.length);
 
       const user = await Functions.fetchUserData('razanSalon@gmail.com');
-      localStorage.setItem('user', JSON.stringify(user)); // Replace AsyncStorage with localStorage
+      localStorage.setItem('user', JSON.stringify(user));
       console.log('User:', user.name);
 
       const suppliers = await Functions.fetchSuppliersData();
@@ -55,9 +58,11 @@ const App = () => {
 
       const goods = await Functions.fetchGoodsData();
       console.log('Goods:', goods.length);
-      
+
     } catch (error) {
       console.error('Error fetching data:', error);
+    } finally {
+      setIsLoading(false); // لما تخلص تحميل كل البيانات
     }
   };
 
@@ -82,6 +87,15 @@ const App = () => {
       console.error('Error loading language:', error);
     }
   };
+  if (isLoading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <div style={{ fontSize: '24px', color: '#227439' }}>
+          {t('Loading...')}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <I18nextProvider i18n={i18n}>

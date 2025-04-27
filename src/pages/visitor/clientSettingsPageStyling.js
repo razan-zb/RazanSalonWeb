@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 // Main Container
 export const Container = styled.div`
-  background-color: #fdfcf4;
+  background-color: #F8F8F8;
   padding: 20px;
   min-height: 100vh; 
   @media screen and (min-width: 769px) {
     justify-content: center;
     align-self:center;
   }
+
 `;
 
 // Back Button
@@ -26,7 +27,7 @@ export const Con = styled.div`
 export const Title = styled.h1`
   font-size: 24px;
   font-weight: bold;
-  color: #bf9f00;
+  color: #227439;
   margin-bottom: 20px;
   text-align: center;
   @media screen and (min-width: 769px) {
@@ -63,7 +64,7 @@ export const ButtonText = styled.h1`
 
 // Language Button
 export const LanguageButton = styled.button`
-  background-color: #bf9f00;
+  background-color: #227439;
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
@@ -76,12 +77,15 @@ export const LanguageButton = styled.button`
 // Time Slot Container
 export const TimeSlotContainer = styled.div`
   margin-bottom: 20px;
+  
 `;
 
 export const ScrollContainer = styled.div`
   overflow-y: auto; /* Enables vertical scrolling */
   padding: 10px;
-  max-height: 100vh; /* Adjust height as needed */
+  max-height: 100vh;
+
+
 `;
 // Label
 export const Label = styled.text`

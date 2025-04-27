@@ -24,11 +24,12 @@ const AdminSettingsPage = ({ history }) => {
   useEffect(() => {
     const fetchTimeSlots = async () => {
       try {
-        const userData = await Functions.fetchUserData('munabathesh@gmail.com');
+        const userData = await Functions.fetchUserData('razanSalon@gmail.com');
         setUser(userData);
         if (userData?.timeSlots) {
           const formattedSlots = formatTimeSlots(userData.timeSlots);
           setTimeSlots((prev) => ({ ...prev, ...formattedSlots }));
+
         }
       } catch (error) {
         console.error('Error fetching time slots:', error);
@@ -102,7 +103,7 @@ const AdminSettingsPage = ({ history }) => {
       <SC.Con>
         <FaArrowLeft
           size={30}
-          color="#BF9F00"
+          color="#227439"
           onClick={handleBack}
           style={{ cursor: 'pointer', marginBottom: '10px'}}
         />

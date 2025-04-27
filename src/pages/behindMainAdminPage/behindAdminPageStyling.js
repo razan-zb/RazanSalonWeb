@@ -29,7 +29,7 @@ export const SearchBarContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #BF9F00;
+  background-color: #227439;
   border-radius: 10px;
   margin: 15px 0;
   padding: 10px;
@@ -55,7 +55,7 @@ export const SearchInput = styled.input`
 
 // Client Name Container
 export const ClientNameContainer = styled.div`
-background-color: #BF9F00;
+background-color: #9BC8A7;
 padding: 15px;
 margin: 5px 0;
 border-radius: 10px;
@@ -78,7 +78,7 @@ export const PlusButton = styled.button`
   position: fixed; /* Fixed at the bottom-right of the page */
   bottom: 20px;
   right: 20px;
-  background-color: #BF9F00;
+  background-color: #227439;
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -91,7 +91,7 @@ export const PlusButton = styled.button`
   color: black; 
   font-size: 30px;
   &:hover {
-    background-color: #BF9F00;
+    background-color: #9BC8A7;
   }
 `;
 
@@ -99,7 +99,7 @@ export const MainOneClientContainer = styled.div`
   max-width: 600px;
   margin: auto;
   padding: 20px;
-  background: #fdfcf4;
+  background: #F8F8F8;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
    min-height: 100vh;
@@ -147,7 +147,7 @@ export const FilterButton = styled.button`
 export const Title = styled.h1`
   font-size: 22px;
   font-weight: bold;
-  color: #333;
+  color: #227439;
   text-align: center;
   margin-bottom: 15px;
 `;
@@ -186,7 +186,7 @@ export const Input = styled.input`
 export const TextArea = styled.textarea`
   width: 100%;
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #227439;
   border-radius: 5px;
   height: 80px;
 `;
@@ -201,7 +201,7 @@ export const ButtonContainer = styled.div`
 export const Button = styled.button`
   flex: 1;
   padding: 10px;
-  background: #bf9f00;
+  background: #227439;
   color: white;
   border: none;
   border-radius: 5px;
@@ -210,7 +210,7 @@ export const Button = styled.button`
   font-size: 22px;
 
   &:hover {
-    background: #a07f00;
+    background: #9BC8A7;
   }
 `;
 
@@ -245,7 +245,7 @@ export const AppointmentBox = styled.div`
 
 export const MainOneCliesntContainer = styled.div`
   padding: 30px;
-  background: #fdfcf4;
+  background: #F8F8F8;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
    min-height: 100vh;
@@ -255,7 +255,7 @@ export const MainOneCliesntContainer = styled.div`
 export const Title4 = styled.h1`
   font-size: 22px;
   font-weight: bold;
-  color: #333;
+  color: #227439;
   text-align: center;
   margin-bottom: 15px;
 `;
@@ -331,7 +331,7 @@ export const Value2 = styled.p`
   font-size: 18px;
   font-weight: bold;
   color: #333;
-  background: #ebd87f;
+  background: #9BC8A7;
   padding: 5px 10px;
   border-radius: 5px;
   text-align: center;
@@ -341,7 +341,7 @@ export const Container3 = styled.div`
   max-width: 600px;
   margin: auto;
   padding: 20px;
-  background: #fdfcf4;
+  background: #F8F8F8;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -413,7 +413,7 @@ export const TimeSlotsContainer = styled.div`
 
 // Individual Time Slot
 export const TimeSlot = styled.button`
-  background: ${(props) => (props.gray ? 'gray' : '#bf9f00')};
+  background: ${(props) => (props.gray ? 'gray' : '#227439')};
   color: white;
   border: none;
   padding: 10px;
@@ -423,7 +423,7 @@ export const TimeSlot = styled.button`
   width:100px;
   
   &:hover {
-    background: ${(props) => (props.gray ? 'gray' : '#a07f00')};
+    background: ${(props) => (props.gray ? 'gray' : '#9BC8A7')};
   }
 `;
 
@@ -473,7 +473,7 @@ export const DateTime = styled.p`
 // Icon Container
 export const IconContainer = styled.span`
   font-size: 20px;
-  color: #bf9f00;
+  color: #9BC8A7;
   font-weight: bold;
 `;
 
@@ -535,7 +535,7 @@ export const Button4 = styled.button`
   padding: 10px;
   font-size: 16px;
   color: white;
-  background: #bf9f00;
+  background: #227439;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -543,6 +543,6 @@ export const Button4 = styled.button`
   transition: 0.3s;
 
   &:hover {
-    background: #a07f00;
+    background: #9BC8A7;
   }
 `;

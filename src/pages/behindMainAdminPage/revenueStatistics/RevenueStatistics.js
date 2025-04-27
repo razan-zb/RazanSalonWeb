@@ -67,7 +67,7 @@ const RevenueStatistics = () => {
       <SC.Con>
         <FaArrowLeft
           size={30}
-          color="#BF9F00"
+          color="#227439"
           onClick={handleBack}
           style={{ cursor: 'pointer', marginBottom: '10px'}}
         />
