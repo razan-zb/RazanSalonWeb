@@ -38,9 +38,11 @@ export const Title = styled.h1`
 
 // Section Title
 export const SectionTitle = styled.h2`
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
   color: #333;
+  text-align: center;
+
   margin-bottom: 10px;
   @media screen and (min-width: 769px) {
     font-size: 20px;
@@ -76,23 +78,34 @@ export const LanguageButton = styled.button`
 
 // Time Slot Container
 export const TimeSlotContainer = styled.div`
+  display:flex;
   margin-bottom: 20px;
+  text-align: center;
+  flex-direction:row;
   
+  gap:20px;
 `;
 
 export const ScrollContainer = styled.div`
-  overflow-y: auto; /* Enables vertical scrolling */
+  overflow-y: auto;
   padding: 10px;
   max-height: 100vh;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  justify-items: center;
+  align-items: center;
+
 
 
 `;
 // Label
 export const Label = styled.text`
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   color: #333;
   margin-bottom: 5px;
+  text-align: center;
 `;
 
 // Input Field

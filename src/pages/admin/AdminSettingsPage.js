@@ -126,11 +126,22 @@ const AdminSettingsPage = ({ history }) => {
         </SC.LanguageButton>
       </SC.ButtonContainer>
 
-      {/* Time Slots Configuration */}
-      <SC.SectionTitle>{t('Set Working Hours')}</SC.SectionTitle>
+      <SC.SectionTitle    style={{
+          marginBottom: '15px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }} >{t('Set Working Hours')}
+      
+      </SC.SectionTitle>
       <SC.TimeSlotContainer>
         {Object.keys(timeSlots).map((day) => (
-          <div key={day} style={{ marginBottom: '15px' }}>
+          <div  key={day}   style={{
+            marginBottom: '15px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}>
             <SC.Label>{t(`Day ${day}`)}</SC.Label>
             <SC.InputField
               type="text"

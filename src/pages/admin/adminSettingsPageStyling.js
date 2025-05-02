@@ -40,6 +40,8 @@ export const SectionTitle = styled.h2`
   font-weight: bold;
   color: #333;
   margin-bottom: 15px;
+  text-align: center;
+
 `;
 
 // Button Container
@@ -72,6 +74,8 @@ export const ButtonText = styled.span`
 // Time Slot Container
 export const TimeSlotContainer = styled.div`
   margin-bottom: 20px;
+
+
 `;
 
 export const ButtonsContainer = styled.div`
@@ -90,6 +94,8 @@ font-weight: bold;
   color: #333;
   margin-bottom: 5px;
   display: block;
+
+  
 `;
 
 // Input Field
@@ -102,6 +108,8 @@ export const InputField = styled.input`
   text-align:center;
   margin-bottom: 10px;
   gap:5
+
+  
 
 `;
 

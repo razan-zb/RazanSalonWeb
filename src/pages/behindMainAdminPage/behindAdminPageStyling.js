@@ -387,7 +387,7 @@ export const CalendarContainer = styled.div`
   text-align: center;
 
   .highlighted-date {
-    background-color: #bf9f00 !important;
+    background-color: #9BC8A7 !important;
     color: white !important;
     font-weight: bold;
   }
