@@ -75,7 +75,7 @@ export const FirstSectionContainer = styled.div`
 export const MiniBoxContainer = styled.div`
   height: 40px;
   width: 100px;
-  background-color:#BF9F00;
+  background-color:#46A55F;
   border-radius: 10px;
   display: flex;
   flex-direction: column;

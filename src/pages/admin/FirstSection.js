@@ -54,7 +54,7 @@ const FirstSection = () => {
 
   const generateShade = (index, total) => {
     const lightenFactor = (total - index) / total;
-    return `rgba(191, 159, 50, ${lightenFactor})`;
+    return `rgba(70, 165, 95, ${lightenFactor})`;
   };
 
   const handleArrowClick = () => {

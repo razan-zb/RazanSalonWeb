@@ -19,12 +19,17 @@ const RevenueStatistics = () => {
   const [dailyRevenue, setDailyRevenue] = useState(0);
   const [monthlyRevenue, setMonthlyRevenue] = useState(0);
   const [yearlyRevenue, setYearlyRevenue] = useState(0);
+  const [totalRevenue, setTotalRevenue] = useState(0);
 
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
         const data = await Functions.fetchAppointmentsData();
         setAppointments(data);
+
+        const total = data.reduce((sum, app) => sum + parseFloat(app.price || 0), 0);
+        setTotalRevenue(total);
+
       } catch (error) {
         alert(t('Error') + ': ' + t('Failed to fetch data.'));
       }
@@ -93,6 +98,8 @@ const RevenueStatistics = () => {
 
       <SC.Label>{t('Total Revenue for Year')}</SC.Label>
       <SC.RevenueText>₪{yearlyRevenue.toFixed(2)}</SC.RevenueText>
+      <SC.Label>{t('Total Revenue')}</SC.Label>
+      <SC.RevenueText>₪{totalRevenue.toFixed(2)}</SC.RevenueText>
     </SC.Container>
   );
 };
