@@ -14,7 +14,7 @@ const FirstSectionList = () => {
   const [sortedAppointments, setSortedAppointments] = useState([]);
   const [statusFilter, setStatusFilter] = useState('pending');
   const [clients, setClients] = useState([]);
-
+  const [sortOrder, setSortOrder] = useState('asc');
   useEffect(() => {
     const fetchAppointments = async () => {
       const appointmentsData = await Functions.fetchAppointmentsData();
@@ -32,22 +32,42 @@ const FirstSectionList = () => {
     return client ? client.name : 'Unknown'; 
   };
 
+
+
   useEffect(() => {
     const filtered = appointments.filter((appointment) => appointment.status === statusFilter);
-    setSortedAppointments(filtered);
-  }, [statusFilter, appointments]);
+    const sorted = sortAppointmentsByDateTime(filtered);
+    setSortedAppointments(sorted);
+  }, [statusFilter, appointments, sortOrder]);
 
-  const sortAppointmentsByDateTime = (appointmentsData) => {
-    return [...appointmentsData].sort((a, b) => {
+
+  const sortAppointmentsByDateTime = (appointmentsData, order = sortOrder) => {
+    const sorted = [...appointmentsData].sort((a, b) => {
       const dateComparison = new Date(a.date) - new Date(b.date);
       return dateComparison === 0 ? a.time.localeCompare(b.time) : dateComparison;
     });
+  
+    return order === 'asc' ? sorted : sorted.reverse();
   };
+
+  const toggleSortOrder = () => {
+    const newOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+    setSortOrder(newOrder);
+  
+    const sorted = sortAppointmentsByDateTime(
+      appointments.filter((appointment) => appointment.status === statusFilter),
+      newOrder
+    );
+    setSortedAppointments(sorted);
+  };
+
+
 
   const handleStatusChange = (status) => {
     setStatusFilter(status);
   };
 
+  
   const handlePressAppointment = (appointment) => {
     navigate(`/first-section-one-box`, { state: { appointment } }); 
   };
@@ -66,7 +86,6 @@ const FirstSectionList = () => {
       </SC.Con>
       {/* Title */}
       <SC.Title>{t('Review Appointments')}</SC.Title>
-
       {/* Filter Buttons */}
       <SC.ButtonRow>
         <SC.FilterButton isActive={statusFilter === 'pending'} onClick={() => handleStatusChange('pending')}>
@@ -79,6 +98,14 @@ const FirstSectionList = () => {
           {t('Done')}
         </SC.FilterButton>
       </SC.ButtonRow>
+      
+      <SC.CountText>
+        {t('Total Appointments')}: {sortedAppointments.length}
+      </SC.CountText>
+
+      <SC.FilterButton2 onClick={toggleSortOrder}>
+        {sortOrder === 'asc' ? t('Show Newest First') : t('Show Oldest First')}
+      </SC.FilterButton2>
 
       {/* Appointments List */}
       <SC.ListContainer>
@@ -89,9 +116,9 @@ const FirstSectionList = () => {
               <SC.DateTime>{`${format(new Date(item.date), 'yyyy-MM-dd')}, ${item.time}`}</SC.DateTime>
             </SC.CardContent>
             <SC.IconContainer> 
-              <FaArrowLeft
-              size={30}
-              onClick={() => handlePressAppointment(item)}
+              <FaArrowRight
+                size={30}
+                onClick={() => handlePressAppointment(item)}
               /></SC.IconContainer>
           </SC.Card>
         ))}

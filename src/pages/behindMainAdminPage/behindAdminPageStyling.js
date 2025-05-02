@@ -129,6 +129,14 @@ export const ButtonRow = styled.div`
   justify-content: space-around;
   margin-bottom: 15px;
 `;
+
+export const CountText = styled.div`
+  font-size: 16px;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 10px;
+`;
+
 export const FilterButton = styled.button`
   background: ${(props) => (props.isActive ? '#227439' : '#ddd')};
   color: ${(props) => (props.isActive ? 'white' : '#333')};
@@ -142,6 +150,9 @@ export const FilterButton = styled.button`
   &:hover {
     background: ${(props) => (props.isActive ? '#227439' : '#bbb')};
   }
+`;
+
+export const FilterButton2 = styled(FilterButton)`
 `;
 // Title
 export const Title = styled.h1`
