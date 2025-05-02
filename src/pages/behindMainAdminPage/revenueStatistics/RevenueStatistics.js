@@ -64,11 +64,10 @@ const RevenueStatistics = () => {
   }, [appointments, selectedDate]);
 
   const handleBack = () => {
-    navigate(-1); // Go back
+    navigate(-1); 
   };
   return (
-    <SC.Container>
-      {/* Back Button */}
+    <SC.Container  >
       <SC.Con>
         <FaArrowLeft
           size={30}
@@ -77,7 +76,6 @@ const RevenueStatistics = () => {
           style={{ cursor: 'pointer', marginBottom: '10px'}}
         />
       </SC.Con>
-      {/* Page Title */}
       <SC.Title>{t('Revenue Statistics')}</SC.Title>
 
       {/* Calendar Picker for Selecting Date */}

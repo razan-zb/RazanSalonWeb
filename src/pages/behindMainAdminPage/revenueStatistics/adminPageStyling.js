@@ -6,6 +6,8 @@ const screenWidth = window.innerWidth; // for web, use window.innerWidth
 // Main Container
 export const Container = styled.div`
   flex: 1;
+  display:flex;
+  flex-direction:column;
   background-color: #F8F8F8;
   padding: 20px;
   min-height: 100vh;
@@ -13,8 +15,6 @@ export const Container = styled.div`
   align-contents:center;
   align-items:center;
   justify-content:center;
-
-
 `;
 export const Con = styled.div`
   align-self:flex-start;
@@ -38,7 +38,6 @@ export const Title = styled.h1`
   font-weight: bold;
   color: #333;
   text-align: center;
-  margin-bottom: 30px;
 `;
 
 // Section Label
@@ -47,9 +46,7 @@ export const Label = styled.p`
   font-size: 18px;
   font-weight: bold;
   color: #444;
-  margin-top: 20px;
   text-align: center;
-  margin-bottom: 20px;
   @media (min-width: 768px) {
     justify-content: center;
     text-align: center;
@@ -57,7 +54,7 @@ export const Label = styled.p`
   }
   text-align: center;
   align-self:center;
-
+  justify-items: center;
 
 `;
 
