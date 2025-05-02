@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import TopBar from './TopBar';
 import SalonServices from './innerComponents/SalonServices';
 import mario2 from '../../assest/images/mario2.png';
-import { FaInstagram, FaPhone, FaMapMarkerAlt, FaClock, FaArrowLeft } from 'react-icons/fa'; // Import icons
+import { FaInstagram, FaPhone, FaMapMarkerAlt, FaClock, FaArrowLeft,FaArrowRight } from 'react-icons/fa'; // Import icons
 import { useNavigate } from 'react-router-dom';
 
 const VisitorsPage = () => {
@@ -140,7 +140,7 @@ const VisitorsPage = () => {
           <SC.SubTitle onClick={() => navigate('/hairstylists')}>
             {t('Meet Our Hairstylists')}
           </SC.SubTitle>
-          <FaArrowLeft size={25} color="#BF9F00" onClick={() => navigate('/hairstylists')} />
+          <FaArrowRight size={25} color="#BF9F00" onClick={() => navigate('/hairstylists')} />
         </SC.Section1>
 
         {/* Services Section */}
@@ -152,7 +152,7 @@ const VisitorsPage = () => {
         {/* Gallery Section */}
         <SC.Section1>
           <SC.SubTitle onClick={() => navigate('/gallery')}>{t('Gallery')}</SC.SubTitle>
-          <FaArrowLeft size={25} color="#BF9F00" onClick={() => navigate('/gallery')} />
+          <FaArrowRight size={25} color="#BF9F00" onClick={() => navigate('/gallery')} />
         </SC.Section1>
       </SC.Container>
     </SC.Container1>
