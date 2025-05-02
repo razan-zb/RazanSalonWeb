@@ -50,8 +50,18 @@ export const SubTitle = styled.h3`
   font-weight: bold;
   color: #bf9f00;
   justify-content: center;
-  align-items: center;
+  align-items: center;  
   margin-right: 15px;
+`;
+
+export const SubTitleBooking = styled.h3`
+  font-size: 18px;
+  font-weight: bold;
+  color: #bf9f00;
+  text-align: center;
+  margin: 0 auto;
+  display: table;
+
 `;
 
 // Description Text

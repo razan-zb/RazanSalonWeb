@@ -27,6 +27,8 @@ import RevenueStatistics from './pages/behindMainAdminPage/revenueStatistics/Rev
 import HairstylistsScreen from './pages/visitor/HairstylistsScreen';
 import ClientSettingsPage from './pages/visitor/ClientSettingsPage';
 import Gallery from './pages/visitor/innerComponents/Gallery';
+import BookingCalendarVisitor from './pages/visitor/innerComponents/BookingCalendarVisitor';
+import VisitorBooking from './pages/visitor/innerComponents/VisitorBooking';
 
 // Import Helper Functions
 import * as Functions from './assest/helpers/api';
@@ -124,6 +126,9 @@ const App = () => {
           <Route path="/hairstylists" element={<HairstylistsScreen />} />
           <Route path="/client-settings" element={<ClientSettingsPage />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/booking-calendar-visitor" element={<BookingCalendarVisitor />} />
+          <Route path="/visitor-booking" element={<VisitorBooking/>} />
+
           
           {/* Redirect unknown routes to home */}
           <Route path="*" element={<Navigate to="/" />} />

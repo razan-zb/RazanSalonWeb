@@ -136,6 +136,10 @@ const VisitorsPage = () => {
           </SC.InfoRow>
         </SC.Section>
 
+        <SC.Section1 onClick={() => navigate('/booking-calendar-visitor')}>
+          <SC.SubTitleBooking>{t('Booking')}</SC.SubTitleBooking>
+        </SC.Section1>
+
         <SC.Section1>
           <SC.SubTitle onClick={() => navigate('/hairstylists')}>
             {t('Meet Our Hairstylists')}
