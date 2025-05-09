@@ -7,16 +7,33 @@ import {  FaArrowLeft } from 'react-icons/fa';
 
 const ClientSettingsPage = () => {
   const { t, i18n } = useTranslation();
-  const [user, setUser] = useState(null);
   const [timeSlots, setTimeSlots] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTimeSlots = async () => {
       try {
-        const userData = await Functions.fetchUserData('razanSalon@gmail.com');
-        setUser(userData);
-        if (userData?.timeSlots) {
+        // Check if the time slots are already cached
+        const cachedUser = localStorage.getItem('user');
+        let userData;
+
+        if (cachedUser) {
+          userData = JSON.parse(cachedUser);
+
+          if (userData.timeSlots) {
+            const formattedSlots = userData.timeSlots.reduce((acc, slot) => {
+              acc[slot.day] = { start: slot.startTime, end: slot.endTime };
+              return acc;
+            }, {});
+            setTimeSlots(formattedSlots);
+          }
+        }
+
+        // Fetch fresh data to ensure it's up to date
+        userData = await Functions.fetchUserData('razanSalon@gmail.com');
+        localStorage.setItem('user', JSON.stringify(userData));
+
+        if (userData.timeSlots) {
           const formattedSlots = userData.timeSlots.reduce((acc, slot) => {
             acc[slot.day] = { start: slot.startTime, end: slot.endTime };
             return acc;

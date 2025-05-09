@@ -23,19 +23,32 @@ const RevenueStatistics = () => {
 
   useEffect(() => {
     const fetchAppointments = async () => {
-      try {
-        const data = await Functions.fetchAppointmentsData();
-        setAppointments(data);
+        try {
+            // Check for cached appointments
+            const cachedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+            if (cachedAppointments.length > 0) {
+                setAppointments(cachedAppointments);
+                const totalFromCache = cachedAppointments.reduce((sum, app) => sum + parseFloat(app.price || 0), 0);
+                setTotalRevenue(totalFromCache);
+            }
 
-        const total = data.reduce((sum, app) => sum + parseFloat(app.price || 0), 0);
-        setTotalRevenue(total);
+            // Fetch fresh data in the background to keep the cache updated
+            const data = await Functions.fetchAppointmentsData();
+            setAppointments(data);
 
-      } catch (error) {
-        alert(t('Error') + ': ' + t('Failed to fetch data.'));
-      }
+            const total = data.reduce((sum, app) => sum + parseFloat(app.price || 0), 0);
+            setTotalRevenue(total);
+
+            // Update the local cache
+            localStorage.setItem('appointments', JSON.stringify(data));
+
+        } catch (error) {
+            alert(t('Error') + ': ' + t('Failed to fetch data.'));
+        }
     };
+
     fetchAppointments();
-  }, [t]);
+}, [t]);
 
   useEffect(() => {
     const calculateRevenue = () => {

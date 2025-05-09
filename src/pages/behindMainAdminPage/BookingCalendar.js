@@ -21,14 +21,38 @@ const BookingCalendar = () => {
   const [filteredTimeSlots, setFilteredTimeSlots] = useState([]);
 
   useEffect(() => {
-    const fetchAppointments = async () => {
-      const appointmentsData = await Functions.fetchAppointmentsData();
-      setAppointments(appointmentsData);
-      const userData = await Functions.fetchUserData('razanSalon@gmail.com');
-      setUser(userData);
+    const fetchData = async () => {
+        try {
+            // Load appointments from cache if available
+            const cachedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+            const cachedUser = JSON.parse(localStorage.getItem('user'));
+
+            if (cachedAppointments.length > 0) {
+                setAppointments(cachedAppointments);
+            }
+
+            if (cachedUser) {
+                setUser(cachedUser);
+            }
+
+            // Fetch fresh appointments data
+            const freshAppointments = await Functions.fetchAppointmentsData();
+            setAppointments(freshAppointments);
+            localStorage.setItem('appointments', JSON.stringify(freshAppointments));
+
+            // Fetch fresh user data
+            const freshUser = await Functions.fetchUserData('razanSalon@gmail.com');
+            setUser(freshUser);
+            localStorage.setItem('user', JSON.stringify(freshUser));
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            alert('Error: Failed to fetch data. Please try again.');
+        }
     };
-    fetchAppointments();
-  }, []);
+
+    fetchData();
+}, []);
 
   useEffect(() => {
     if (selectedDate && user) {

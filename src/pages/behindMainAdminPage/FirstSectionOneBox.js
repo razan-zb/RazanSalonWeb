@@ -21,17 +21,36 @@ const FirstSectionOneBox = () => {
   
   useEffect(() => {
     const fetchData = async () => {
-      const clientsData = await Functions.fetchClientsData();
-      setClients(clientsData);
-      setTime(appointment.time)
-      setService(appointment.service);
-      setNotes(appointment.notes);
-      setPrice(appointment.price);
-      setStatus(appointment.status);
-      
-    }
+        try {
+            // Load cached clients first
+            const cachedClients = JSON.parse(localStorage.getItem('clients')) || [];
+
+            if (cachedClients.length > 0) {
+                setClients(cachedClients);
+            }
+
+            // Fetch fresh clients data
+            const clientsData = await Functions.fetchClientsData();
+            setClients(clientsData);
+
+            // Update the cache
+            localStorage.setItem('clients', JSON.stringify(clientsData));
+
+            // Set appointment details
+            setTime(appointment.time);
+            setService(appointment.service);
+            setNotes(appointment.notes);
+            setPrice(appointment.price);
+            setStatus(appointment.status);
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            alert(t('Error') + ': ' + t('Failed to fetch data.'));
+        }
+    };
+
     fetchData();
-  }, []);
+}, []);
 
   const handleSave = async () => {
     if (!status || !price) {
@@ -53,15 +72,27 @@ const FirstSectionOneBox = () => {
    
     try {
       const response = await Functions.fetchUpdateAppointment(updatedAppointment);
+      
       if (response) {
-       alert(t('Appointment details have been updated.'));
-        navigate(-1); // Navigate back
+          // Update the cached appointments
+          const cachedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+          
+          // Find and update the specific appointment in the cache
+          const updatedAppointments = cachedAppointments.map((app) => 
+              app._id === updatedAppointment._id ? updatedAppointment : app
+          );
+
+          // Save the updated appointments back to cache
+          localStorage.setItem('appointments', JSON.stringify(updatedAppointments));
+
+          alert(t('Appointment details have been updated.'));
+          navigate(-1); // Navigate back
       } else {
-        alert(t('Failed to update appointment. Please try again.'));
+          alert(t('Failed to update appointment. Please try again.'));
       }
     } catch (error) {
-      console.error('Error updating appointment:', error);
-      alert(t('An error occurred while updating the appointment.'));
+        console.error('Error updating appointment:', error);
+        alert(t('An error occurred while updating the appointment.'));
     }
   };
 

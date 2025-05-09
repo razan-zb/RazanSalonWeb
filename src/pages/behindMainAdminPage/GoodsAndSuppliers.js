@@ -15,20 +15,36 @@ const GoodsAndSuppliers = () => {
   
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const goodsData = await Functions.fetchGoodsData();
-        setGoods(goodsData);
+        try {
+            // Fetch goods from cache or server
+            const cachedGoods = JSON.parse(localStorage.getItem('goods')) || [];
+            if (cachedGoods.length > 0) {
+                setGoods(cachedGoods);
+            }
 
-        const suppliersData = await Functions.fetchSuppliersData();
-        setSuppliers(suppliersData);
-      } catch (error) {
-        alert(t('Failed to fetch data.'));
-      } finally {
-        setLoading(false);
-      }
+            const goodsData = await Functions.fetchGoodsData();
+            setGoods(goodsData);
+            localStorage.setItem('goods', JSON.stringify(goodsData)); // Update cache
+
+            // Fetch suppliers from cache or server
+            const cachedSuppliers = JSON.parse(localStorage.getItem('suppliers')) || [];
+            if (cachedSuppliers.length > 0) {
+                setSuppliers(cachedSuppliers);
+            }
+
+            const suppliersData = await Functions.fetchSuppliersData();
+            setSuppliers(suppliersData);
+            localStorage.setItem('suppliers', JSON.stringify(suppliersData)); // Update cache
+            
+        } catch (error) {
+            alert(t('Failed to fetch data.'));
+        } finally {
+            setLoading(false);
+        }
     };
+
     fetchData();
-  }, []);
+}, []);
 
   if (loading) {
     return <p>{t('Loading...')}</p>;

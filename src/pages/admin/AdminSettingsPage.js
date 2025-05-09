@@ -22,15 +22,27 @@ const AdminSettingsPage = ({ history }) => {
 
   // Fetch user data and time slots
   useEffect(() => {
+    
     const fetchTimeSlots = async () => {
       try {
-        const userData = await Functions.fetchUserData('razanSalon@gmail.com');
-        setUser(userData);
-        if (userData?.timeSlots) {
-          const formattedSlots = formatTimeSlots(userData.timeSlots);
+        const cachedUser = JSON.parse(localStorage.getItem('user'));
+
+        // Use cached data if available
+        if (cachedUser) {
+            setUser(cachedUser);
+        }
+        if (cachedUser?.timeSlots) {
+          const formattedSlots = formatTimeSlots(cachedUser.timeSlots);
           setTimeSlots((prev) => ({ ...prev, ...formattedSlots }));
 
         }
+        // Fetch fresh data from the server
+        const freshUserData = await Functions.fetchUserData('razanSalon@gmail.com');
+
+        // Update local cache with fresh data
+        localStorage.setItem('user', JSON.stringify(freshUserData));
+        setUser(freshUserData);
+
       } catch (error) {
         console.error('Error fetching time slots:', error);
         alert(t('Error: Failed to fetch time slots.'));
@@ -75,14 +87,25 @@ const AdminSettingsPage = ({ history }) => {
     setUser(updatedUser);
     try {
       const response = await Functions.fetchUpdateUser(updatedUser);
+      
       if (response) {
-        alert(t('Success: Time slots updated successfully.'));
+          // Update the cached user data
+          const cachedUser = JSON.parse(localStorage.getItem('user')) || {};
+          const updatedUserData = { ...cachedUser, ...updatedUser };
+  
+          // Save the updated data to localStorage
+          localStorage.setItem('user', JSON.stringify(updatedUserData));
+  
+          // Update the user state if you have it
+          setUser(updatedUserData);
+  
+          alert(t('Success: Time slots updated successfully.'));
       } else {
-        alert(t('Error: Failed to update time slots.'));
+          alert(t('Error: Failed to update time slots.'));
       }
     } catch (error) {
-      console.error('Error updating time slots:', error);
-      alert(t('Error: An error occurred while updating time slots.'));
+        console.error('Error updating time slots:', error);
+        alert(t('Error: An error occurred while updating time slots.'));
     }
   };
 

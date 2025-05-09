@@ -15,8 +15,15 @@ const ClientsList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const clientsData = await Functions.fetchClientsData();
-        setClients(clientsData);
+
+        const cachedClients = JSON.parse(localStorage.getItem('clients')) || [];
+         if (cachedClients.length) {
+               setClients(cachedClients);
+         }
+
+         const freshClients = await Functions.fetchClientsData();
+         localStorage.setItem('clients', JSON.stringify(freshClients));
+         setClients(freshClients);
       } catch (error) {
         alert(t('Error') + ': ' + t('Failed to fetch data.'));
       } finally {

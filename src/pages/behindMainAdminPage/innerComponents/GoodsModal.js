@@ -42,15 +42,27 @@ const GoodsPage = () => {
     try {
       const response = await Functions.featchCreateGoods(goodsData);
       if (response) {
-        setGoodsData({ _id: '', name: '', quantity: '', price: '', notes: '' });
-        alert(t('Success') + ': ' + t('New goods added!'));
+          // Update local cache
+          const cachedGoods = JSON.parse(localStorage.getItem('goods')) || [];
+  
+          // Add the new goods to the cache
+          const updatedGoodsList = [...cachedGoods, goodsData];
+  
+          // Update the cache
+          localStorage.setItem('goods', JSON.stringify(updatedGoodsList));
+  
+          // Reset the form
+          setGoodsData({ _id: '', name: '', quantity: '', price: '', notes: '' });
+  
+          // Show success message
+          alert(t('Success') + ': ' + t('New goods added!'));
       } else {
-        alert(t('Error') + ': ' + t('Failed to add goods. Please try again.'));
+          alert(t('Error') + ': ' + t('Failed to add goods. Please try again.'));
       }
-    } catch (error) {
+  } catch (error) {
       console.error('Error adding goods:', error);
       alert(t('Error') + ': ' + t('An error occurred while adding the goods.'));
-    }
+  }
 
     handleBack();
   };

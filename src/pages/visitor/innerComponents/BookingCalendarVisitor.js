@@ -22,13 +22,41 @@ const BookingCalendarVisitor = () => {
 
   useEffect(() => {
     const fetchAppointments = async () => {
-      const appointmentsData = await Functions.fetchAppointmentsData();
-      setAppointments(appointmentsData);
-      const userData = await Functions.fetchUserData('razanSalon@gmail.com');
-      setUser(userData);
+        try {
+            // Check for cached appointments
+            const cachedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+            const cachedUser = JSON.parse(localStorage.getItem('user')) || null;
+
+            // Set the cached data first to make the UI responsive
+            if (cachedAppointments.length > 0) {
+                setAppointments(cachedAppointments);
+            }
+            if (cachedUser) {
+                setUser(cachedUser);
+            }
+
+            // Fetch fresh data from the server
+            const [appointmentsData, userData] = await Promise.all([
+                Functions.fetchAppointmentsData(),
+                Functions.fetchUserData('razanSalon@gmail.com'),
+            ]);
+
+            // Update state and cache with fresh data
+            setAppointments(appointmentsData);
+            setUser(userData);
+
+            // Cache the fresh data
+            localStorage.setItem('appointments', JSON.stringify(appointmentsData));
+            localStorage.setItem('user', JSON.stringify(userData));
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            alert(t('Error') + ': ' + t('Failed to fetch data.'));
+        }
     };
+
     fetchAppointments();
-  }, []);
+}, [t]);
 
   useEffect(() => {
     if (selectedDate && user) {

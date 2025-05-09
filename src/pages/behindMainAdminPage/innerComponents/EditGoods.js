@@ -32,10 +32,19 @@ const GoodsDetailComponent = () => {
 
     try {
       const response = await Functions.fetchUpdateGoods(updatedGoods);
+
       if (response) {
-        setTimeout(() => {
-          alert(t('Success') + ': ' + t('Goods details have been updated.'));
-        }, 100);
+          // Update local cache
+          const cachedGoods = JSON.parse(localStorage.getItem('goods')) || [];
+          const updatedGoodsList = cachedGoods.map((item) => 
+              item._id === updatedGoods._id ? updatedGoods : item
+          );
+          localStorage.setItem('goods', JSON.stringify(updatedGoodsList));
+  
+          // Show success message
+          setTimeout(() => {
+              alert(t('Success') + ': ' + t('Goods details have been updated.'));
+          }, 100);
       } else {
         alert(t('Error') + ': ' + t('Failed to update goods. Please try again.'));
       }
@@ -49,18 +58,28 @@ const GoodsDetailComponent = () => {
   };
   const handleDelete = async () => {
     try {
-      const response = await Functions.fetchDeleteGoods(good._id);
-      if (response) {
-        alert(t('Success') + ': ' + t('Goods have been deleted.'));
-        navigate(-1)
-      } else {
-        alert(t('Error') + ': ' + t('Failed to delete goods.'));
-      }
+        // Delete the goods from the server
+        const response = await Functions.fetchDeleteGoods(good._id);
+        
+        if (response) {
+            // Update local cache
+            const cachedGoods = JSON.parse(localStorage.getItem('goods')) || [];
+            const updatedGoodsList = cachedGoods.filter((item) => item._id !== good._id);
+            localStorage.setItem('goods', JSON.stringify(updatedGoodsList));
+
+            // Show success message
+            alert(t('Success') + ': ' + t('Goods have been deleted.'));
+            
+            // Navigate back
+            navigate(-1);
+        } else {
+            alert(t('Error') + ': ' + t('Failed to delete goods.'));
+        }
     } catch (error) {
-      console.error('Error deleting goods:', error);
-      alert(t('Error') + ': ' + t('An error occurred while deleting the goods.'));
+        console.error('Error deleting goods:', error);
+        alert(t('Error') + ': ' + t('An error occurred while deleting the goods.'));
     }
-  };
+};
 
   return (
     <SC.Container>

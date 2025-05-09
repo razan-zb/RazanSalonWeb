@@ -33,16 +33,21 @@ const VisitorBooking = () => {
 
     try {
       const response = await Functions.featchCreateAppointment(bookingDetails);
+      
       if (response) {
-        alert(t('Success') + ': ' + t('Saved!'));
-        navigate(-1);
-      } else {
-        alert(t('Error') + ': ' + t('Failed to save the appointment.'));
-      }
-    } catch (error) {
+          // Update the local cache
+          const cachedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+          localStorage.setItem('appointments', JSON.stringify([...cachedAppointments, bookingDetails]));
+  
+          alert(t('Success') + ': ' + t('Saved!'));
+          navigate(-1); // Navigate back
+        } else {
+          alert(t('Error') + ': ' + t('Failed to save the appointment.'));
+        }
+  } catch (error) {
       console.error('Error saving appointment:', error);
       alert(t('Error') + ': ' + t('An error occurred while saving the appointment.'));
-    }
+  }
   };
 
   return (

@@ -16,14 +16,38 @@ const SecondSection = () => {
 
 
   useEffect(() => {
-    const fetchClients = async () => {
-      const clientsData = await Functions.fetchClientsData();
-      setClients(clientsData);
-      const appointmentsData = await Functions.fetchAppointmentsData();
-      setAppointments(appointmentsData);
+    const fetchData = async () => {
+        try {
+            // Load cached data if available
+            const cachedClients = JSON.parse(localStorage.getItem('clients')) || [];
+            const cachedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+            
+            // Set state with cached data immediately if available
+            if (cachedClients.length > 0) {
+                setClients(cachedClients);
+            }
+            if (cachedAppointments.length > 0) {
+                setAppointments(cachedAppointments);
+            }
+
+            // Fetch fresh data in the background
+            const freshClients = await Functions.fetchClientsData();
+            const freshAppointments = await Functions.fetchAppointmentsData();
+
+            // Update state with fresh data
+            setClients(freshClients);
+            setAppointments(freshAppointments);
+
+            // Update cache
+            localStorage.setItem('clients', JSON.stringify(freshClients));
+            localStorage.setItem('appointments', JSON.stringify(freshAppointments));
+        } catch (error) {
+            console.error('Error fetching clients or appointments:', error);
+        }
     };
-    fetchClients();
-  }, []);
+
+    fetchData();
+}, []);
 
   const handleBirthdayPress = () => {
     const birthdaysToday = getTodayBirthdayClients();

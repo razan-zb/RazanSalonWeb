@@ -28,68 +28,108 @@ const BookingForOne = () => {
   });
 
   useEffect(() => {
-    const fetchClients = async () => {
-      const clientsData = await Functions.fetchClientsData();
-      if (clientsData) {
-        setDropdownItems(clientsData.map(client => ({
-          label: client.name,
-          value: client._id,
-        })));
-      }
-    };
+    const fetchClientsAndAppointments = async () => {
+        try {
+            // Load clients from cache
+            const cachedClients = JSON.parse(localStorage.getItem('clients')) || [];
+            if (cachedClients.length > 0) {
+                setDropdownItems(cachedClients.map(client => ({
+                    label: client.name,
+                    value: client._id,
+                })));
+            }
 
-    const fetchAppointments = async () => {
-      const appointmentData = await Functions.fetchAppointmentsData();
-      if (appointmentData) {
-        const temp = appointmentData.filter(
-          (appointment) =>
-            format(new Date(appointment.date), 'yyyy-MM-dd') === format(new Date(date), 'yyyy-MM-dd')
-        );
-        const appointmentForTime = temp.find((appointment) => appointment.time === time);
+            // Load appointments from cache
+            const cachedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+            if (cachedAppointments.length > 0) {
+                const temp = cachedAppointments.filter(
+                    (appointment) =>
+                        format(new Date(appointment.date), 'yyyy-MM-dd') === format(new Date(date), 'yyyy-MM-dd')
+                );
+                const appointmentForTime = temp.find((appointment) => appointment.time === time);
 
-        if (appointmentForTime) {
-          setBookingDetails(prev => ({
-            ...prev,
-            service: appointmentForTime.service || '',
-          }));
-          setSelectedClient(appointmentForTime.client);  
+                if (appointmentForTime) {
+                    setBookingDetails(prev => ({
+                        ...prev,
+                        service: appointmentForTime.service || '',
+                    }));
+                    setSelectedClient(appointmentForTime.client);
+                }
+            }
+
+            // Fetch fresh clients data
+            const freshClients = await Functions.fetchClientsData();
+            if (freshClients) {
+                setDropdownItems(freshClients.map(client => ({
+                    label: client.name,
+                    value: client._id,
+                })));
+                localStorage.setItem('clients', JSON.stringify(freshClients));
+            }
+
+            // Fetch fresh appointments data
+            const freshAppointments = await Functions.fetchAppointmentsData();
+            if (freshAppointments) {
+                const temp = freshAppointments.filter(
+                    (appointment) =>
+                        format(new Date(appointment.date), 'yyyy-MM-dd') === format(new Date(date), 'yyyy-MM-dd')
+                );
+                const appointmentForTime = temp.find((appointment) => appointment.time === time);
+
+                if (appointmentForTime) {
+                    setBookingDetails(prev => ({
+                        ...prev,
+                        service: appointmentForTime.service || '',
+                    }));
+                    setSelectedClient(appointmentForTime.client);
+                }
+                
+                localStorage.setItem('appointments', JSON.stringify(freshAppointments));
+            }
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            alert('Error: Failed to fetch data. Please try again.');
         }
-      }
     };
 
-    fetchAppointments();
-    fetchClients();
-  }, [date, time]);
+    fetchClientsAndAppointments();
+}, [date, time]);
 
-  const handleSave = async () => {
-    if (!selectedClient || !bookingDetails.service) {
+const handleSave = async () => {
+  if (!selectedClient || !bookingDetails.service) {
       alert(t('Error') + ': ' + t('Please select a client and enter a service.'));
       return;
-    }
+  }
 
-    setBookingDetails(prev => ({
-      ...prev,
-      client: selectedClient,
-    }));
+  try {
+      // Prepare the new booking details
+      const newBooking = {
+          ...bookingDetails,
+          client: selectedClient,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+      };
 
-    try {
-      const response = await Functions.featchCreateAppointment({
-        ...bookingDetails,
-        client: selectedClient,
-      });
+      // Send to server
+      const response = await Functions.featchCreateAppointment(newBooking);
 
       if (response) {
-        alert(t('Success') + ': ' + t('Saved!'));
-        navigate(-1); // Go back to the previous page
+          // Update local cache
+          const cachedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+          cachedAppointments.push(newBooking);
+          localStorage.setItem('appointments', JSON.stringify(cachedAppointments));
+
+          alert(t('Success') + ': ' + t('Saved!'));
+          navigate(-1); // Go back to the previous page
       } else {
-        alert(t('Error') + ': ' + t('Failed to save the appointment.'));
+          alert(t('Error') + ': ' + t('Failed to save the appointment.'));
       }
-    } catch (error) {
+  } catch (error) {
       console.error('Error saving appointment:', error);
       alert(t('Error') + ': ' + t('An error occurred while saving the appointment.'));
-    }
-  };
-
+  }
+};
   const handleBack = () => {
     navigate(-1)
   };

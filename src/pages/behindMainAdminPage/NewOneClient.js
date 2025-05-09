@@ -10,7 +10,6 @@ const OneClient = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const [appointments, setAppointments] = useState([]);
   const [clientData, setClientData] = useState({
     _id: '',
     name: '',
@@ -54,16 +53,32 @@ const OneClient = () => {
     }
 
     try {
+      // Update the client on the server
       const response = await Functions.featchsaveClient(clientData);
       if (response) {
-        alert(t('Success') + ': ' + t('Client details have been updated successfully.'));
+          alert(t('Success') + ': ' + t('Client details have been updated successfully.'));
+  
+          // Update local cache
+          const cachedClients = JSON.parse(localStorage.getItem('clients')) || [];
+          const updatedClients = cachedClients.map((client) =>
+              client._id === clientData._id ? clientData : client
+          );
+          
+          // If the client is new, add it to the cache
+          if (!cachedClients.some(client => client._id === clientData._id)) {
+              updatedClients.push(clientData);
+          }
+  
+          // Save the updated cache
+          localStorage.setItem('clients', JSON.stringify(updatedClients));
+  
       } else {
-        alert(t('Error') + ': ' + t('Failed to update client. Please try again.'));
+          alert(t('Error') + ': ' + t('Failed to update client. Please try again.'));
       }
-    } catch (error) {
+  } catch (error) {
       console.error('Error updating client:', error);
       alert(t('Error') + ': ' + t('An error occurred while updating the client.'));
-    }
+  }
   };
 
   return (

@@ -20,15 +20,34 @@ const OneClient = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setClientData(client)
-        const appointmentData = await Functions.fetchAppointmentsData();
-        const clientAppointments = appointmentData.filter(
+        // Set the initial client data
+        setClientData(client);
+
+        // Try to get appointments from cache
+        const cachedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+        const clientAppointments = cachedAppointments.filter(
           (appointment) => appointment.client === client._id
         );
-        const sortedAppointments = clientAppointments.sort(
-          (a, b) => new Date(a.date) - new Date(b.date)
-        );       
+
+        if (clientAppointments.length > 0) {
+          // Use cached appointments if available
+          setAppointments(clientAppointments);
+        }
+
+        // Fetch fresh appointments from server
+        const appointmentData = await Functions.fetchAppointmentsData();
+        
+        // Update cache
+        localStorage.setItem('appointments', JSON.stringify(appointmentData));
+
+        // Filter and sort client-specific appointments
+        const sortedAppointments = appointmentData
+          .filter((appointment) => appointment.client === client._id)
+          .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+        // Update state
         setAppointments(sortedAppointments);
+
       } catch (error) {
         alert(t('Error') + ': ' + t('Failed to fetch data.'));
       } finally {
@@ -37,7 +56,7 @@ const OneClient = () => {
     };
 
     fetchData();
-  }, [t]);
+}, [client, t]);
 
   if (loading) {
     return <p>{t('Loading...')}</p>;
@@ -56,16 +75,27 @@ const OneClient = () => {
 
     try {
       const response = await Functions.fetchUpdateClient(clientData);
+      
       if (response) {
-        setIsEditing(false);
-        alert(t('Success') + ': ' + t('Client details have been updated successfully.'));
+          setIsEditing(false);
+          
+          // Update the cache
+          const cachedClients = JSON.parse(localStorage.getItem('clients')) || [];
+          const updatedClients = cachedClients.map((client) =>
+            client._id === clientData._id ? clientData : client
+          );
+          
+          // Save the updated clients list to local storage
+          localStorage.setItem('clients', JSON.stringify(updatedClients));
+  
+          alert(t('Success') + ': ' + t('Client details have been updated successfully.'));
       } else {
-        alert(t('Error') + ': ' + t('Failed to add client. Please try again.'));
+          alert(t('Error') + ': ' + t('Failed to update client. Please try again.'));
       }
-    } catch (error) {
+  } catch (error) {
       console.error('Error updating client:', error);
       alert(t('Error') + ': ' + t('An error occurred while updating the client.'));
-    }
+  }
   };
 
 

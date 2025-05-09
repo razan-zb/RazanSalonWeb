@@ -39,15 +39,27 @@ const SupplierModal = () => {
     try {
       const response = await Functions.featchCreateSupplier(supplierData);
       if (response) {
-        alert(t('Success') + ': ' + t('New supplier added!'));
-        setSupplierData({ _id: '', name: '', phoneNumber: '', email: '', notes: '', address: '' });
+          // Update local cache
+          const cachedSuppliers = JSON.parse(localStorage.getItem('suppliers')) || [];
+  
+          // Add the new supplier to the cache
+          const updatedSuppliersList = [...cachedSuppliers, supplierData];
+  
+          // Update the cache
+          localStorage.setItem('suppliers', JSON.stringify(updatedSuppliersList));
+  
+          // Reset the form
+          setSupplierData({ _id: '', name: '', phoneNumber: '', email: '', notes: '', address: '' });
+  
+          // Show success message
+          alert(t('Success') + ': ' + t('New supplier added!'));
       } else {
-        alert(t('Error') + ': ' + t('Failed to save supplier. Please try again.'));
+          alert(t('Error') + ': ' + t('Failed to save supplier. Please try again.'));
       }
-    } catch (error) {
+  } catch (error) {
       console.error('Error saving supplier:', error);
       alert(t('Error') + ': ' + t('An error occurred while saving the supplier.'));
-    }
+  }
   };
 
   const handleBack = () => {

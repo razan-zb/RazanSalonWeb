@@ -16,16 +16,43 @@ const FirstSectionList = () => {
   const [clients, setClients] = useState([]);
   const [sortOrder, setSortOrder] = useState('asc');
   useEffect(() => {
-    const fetchAppointments = async () => {
-      const appointmentsData = await Functions.fetchAppointmentsData();
-      setAppointments(appointmentsData);
-      setSortedAppointments(sortAppointmentsByDateTime(appointmentsData));
+    const fetchAppointmentsAndClients = async () => {
+        try {
+            // Load cached data first
+            const cachedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+            const cachedClients = JSON.parse(localStorage.getItem('clients')) || [];
 
-      const clientsData = await Functions.fetchClientsData();
-      setClients(clientsData);
+            if (cachedAppointments.length > 0) {
+                setAppointments(cachedAppointments);
+                setSortedAppointments(sortAppointmentsByDateTime(cachedAppointments));
+            }
+
+            if (cachedClients.length > 0) {
+                setClients(cachedClients);
+            }
+
+            // Fetch latest data from server
+            const [appointmentsData, clientsData] = await Promise.all([
+                Functions.fetchAppointmentsData(),
+                Functions.fetchClientsData(),
+            ]);
+
+            setAppointments(appointmentsData);
+            setSortedAppointments(sortAppointmentsByDateTime(appointmentsData));
+            setClients(clientsData);
+
+            // Update the cache
+            localStorage.setItem('appointments', JSON.stringify(appointmentsData));
+            localStorage.setItem('clients', JSON.stringify(clientsData));
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            alert(t('Error') + ': ' + t('Failed to fetch data.'));
+        }
     };
-    fetchAppointments();
-  }, []);
+
+    fetchAppointmentsAndClients();
+}, []);
 
   const getClientName = (clientId) => {
     const client = clients.find((client) => client._id === clientId);

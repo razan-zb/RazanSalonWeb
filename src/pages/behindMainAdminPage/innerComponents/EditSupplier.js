@@ -42,33 +42,53 @@ const EditGoods = () => {
     try {
       const response = await Functions.fetchUpdateSuppliers(updatedSupplier);
       if (response) {
-        setTimeout(() => {
+          // Update local cache
+          const cachedSuppliers = JSON.parse(localStorage.getItem('suppliers')) || [];
+          
+          // Find the index of the updated supplier
+          const updatedSuppliersList = cachedSuppliers.map((supplier) =>
+              supplier._id === updatedSupplier._id ? updatedSupplier : supplier
+          );
+          
+          // Update the cache
+          localStorage.setItem('suppliers', JSON.stringify(updatedSuppliersList));
+  
+          // Show success message
           alert(t('Success') + ': ' + t('Supplier details have been updated.'));
-        }, 100);
       } else {
-        alert(t('Error') + ': ' + t('Failed to update supplier. Please try again.'));
+          alert(t('Error') + ': ' + t('Failed to update supplier. Please try again.'));
       }
-    } catch (error) {
+  } catch (error) {
       console.error('Error updating supplier:', error);
       alert(t('Error') + ': ' + t('An error occurred while updating the supplier.'));
-    }
+  }
   };
 
   // Handle Delete
   const handleDelete = async () => {
     try {
-      const response = await Functions.fetchDeleteSupplier(supplier._id);
-      if (response) {
-        alert(t('Success') + ': ' + t('Supplier has been deleted.'));
-        navigate(-1)
-            } else {
-        alert(t('Error') + ': ' + t('Failed to delete supplier.'));
-      }
+        const response = await Functions.fetchDeleteSupplier(supplier._id);
+        if (response) {
+            // Update local cache
+            const cachedSuppliers = JSON.parse(localStorage.getItem('suppliers')) || [];
+            
+            // Remove the deleted supplier from the cache
+            const updatedSuppliersList = cachedSuppliers.filter((item) => item._id !== supplier._id);
+            
+            // Update the cache
+            localStorage.setItem('suppliers', JSON.stringify(updatedSuppliersList));
+            
+            // Navigate back to the previous screen
+            alert(t('Success') + ': ' + t('Supplier has been deleted.'));
+            navigate(-1);
+        } else {
+            alert(t('Error') + ': ' + t('Failed to delete supplier.'));
+        }
     } catch (error) {
-      console.error('Error deleting supplier:', error);
-      alert(t('Error') + ': ' + t('An error occurred while deleting the supplier.'));
+        console.error('Error deleting supplier:', error);
+        alert(t('Error') + ': ' + t('An error occurred while deleting the supplier.'));
     }
-  };
+};
 
   return (
     <SC.Container>

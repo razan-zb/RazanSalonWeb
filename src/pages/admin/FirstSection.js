@@ -9,26 +9,52 @@ import { IoArrowDown } from 'react-icons/io5';
 const FirstSection = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [appointments, setAppointments] = useState([]);
   const today = format(new Date(), 'yyyy-MM-dd');
   const [filteredAppointments, setFilteredAppointments] = useState([]);
   const [clients, setClients] = useState([]);
 
   useEffect(() => {
     const fetchAppointments = async () => {
-      const appointmentsData = await Functions.fetchAppointmentsData();
-      setAppointments(appointmentsData);
-      const filter = appointmentsData.filter(
-        (appointment) =>
-          appointment.status === 'pending' && today === format(appointment.date, 'yyyy-MM-dd')
-      );
-      setFilteredAppointments(filter);
-      const clientsData = await Functions.fetchClientsData();
-      setClients(clientsData);
+        try {
+            // Get cached appointments
+            const cachedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+            const cachedClients = JSON.parse(localStorage.getItem('clients')) || [];
+
+            // Filter the cached appointments for today
+            const todayAppointments = cachedAppointments.filter(
+                (appointment) =>
+                    appointment.status === 'pending' && today === format(new Date(appointment.date), 'yyyy-MM-dd')
+            );
+            setFilteredAppointments(todayAppointments);
+
+            // If the cache is not empty, continue without blocking
+            if (cachedAppointments.length > 0 && cachedClients.length > 0) {
+                setClients(cachedClients);
+            }
+
+            // Fetch fresh data in the background to update the cache
+            const freshAppointments = await Functions.fetchAppointmentsData();
+            const freshClients = await Functions.fetchClientsData();
+
+            // Update the cache
+            localStorage.setItem('appointments', JSON.stringify(freshAppointments));
+            localStorage.setItem('clients', JSON.stringify(freshClients));
+
+            // Update the state with the latest data
+            setFilteredAppointments(
+                freshAppointments.filter(
+                    (appointment) =>
+                        appointment.status === 'pending' && today === format(new Date(appointment.date), 'yyyy-MM-dd')
+                )
+            );
+            setClients(freshClients);
+        } catch (error) {
+            console.error('Error fetching appointments or clients:', error);
+        }
     };
 
     fetchAppointments();
-  }, [today]);
+}, [today]);
 
   const getClientName = (clientId) => {
     const client = clients.find((client) => client._id === clientId);

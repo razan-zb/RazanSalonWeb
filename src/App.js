@@ -45,28 +45,48 @@ const App = () => {
 
   const fetchData = async () => {
     try {
-      const clients = await Functions.fetchClientsData();
-      console.log('Clients:', clients.length);
+        // Check for cached data
+        const cachedClients = JSON.parse(localStorage.getItem('clients')) || [];
+        const cachedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+        const cachedUser = JSON.parse(localStorage.getItem('user')) || null;
+        const cachedSuppliers = JSON.parse(localStorage.getItem('suppliers')) || [];
+        const cachedGoods = JSON.parse(localStorage.getItem('goods')) || [];
 
-      const appointments = await Functions.fetchAppointmentsData();
-      console.log('Appointments:', appointments.length);
+        // If all caches are filled, stop loading immediately
+        if (cachedClients.length && cachedAppointments.length && cachedUser && cachedSuppliers.length && cachedGoods.length) {
+            setIsLoading(false);
+        }
 
-      const user = await Functions.fetchUserData('razanSalon@gmail.com');
-      localStorage.setItem('user', JSON.stringify(user));
-      console.log('User:', user.name);
+        // Fetch fresh data in the background
+        const [freshClients, freshAppointments, freshUser, freshSuppliers, freshGoods] = await Promise.all([
+            Functions.fetchClientsData(),
+            Functions.fetchAppointmentsData(),
+            Functions.fetchUserData('razanSalon@gmail.com'),
+            Functions.fetchSuppliersData(),
+            Functions.fetchGoodsData(),
+        ]);
 
-      const suppliers = await Functions.fetchSuppliersData();
-      console.log('Suppliers:', suppliers.length);
+        // Update the caches
+        localStorage.setItem('clients', JSON.stringify(freshClients));
+        localStorage.setItem('appointments', JSON.stringify(freshAppointments));
+        localStorage.setItem('user', JSON.stringify(freshUser));
+        localStorage.setItem('suppliers', JSON.stringify(freshSuppliers));
+        localStorage.setItem('goods', JSON.stringify(freshGoods));
 
-      const goods = await Functions.fetchGoodsData();
-      console.log('Goods:', goods.length);
+        // Log the updated counts
+        console.log('Clients:', freshClients.length);
+        console.log('Appointments:', freshAppointments.length);
+        console.log('User:', freshUser.name);
+        console.log('Suppliers:', freshSuppliers.length);
+        console.log('Goods:', freshGoods.length);
 
     } catch (error) {
-      console.error('Error fetching data:', error);
+        console.error('Error fetching data:', error);
     } finally {
-      setIsLoading(false); // لما تخلص تحميل كل البيانات
+        // Ensure loading stops if it was still active
+        setIsLoading(false);
     }
-  };
+};
 
   // Change Language Function (Replacing AsyncStorage with localStorage)
   const changeLanguage = async (lng) => {
