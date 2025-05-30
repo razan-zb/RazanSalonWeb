@@ -52,6 +52,7 @@ const BookingForOne = () => {
                     setBookingDetails(prev => ({
                         ...prev,
                         service: appointmentForTime.service || '',
+                        _id:appointmentForTime._id || ''
                     }));
                     setSelectedClient(appointmentForTime.client);
                 }
@@ -95,6 +96,30 @@ const BookingForOne = () => {
 
     fetchClientsAndAppointments();
 }, [date, time]);
+
+const handleDelete = async () => {
+  const confirmDelete = window.confirm(t('Are you sure you want to delete this appointment?'));
+  if (!confirmDelete) return;
+
+  try {
+    const response = await Functions.fetchDeleteAppointment(bookingDetails._id);
+    if (response) {
+
+      const cachedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+      const updatedAppointments = cachedAppointments.filter(app => app._id !== bookingDetails._id);
+      localStorage.setItem('appointments', JSON.stringify(updatedAppointments));
+
+      alert(t('Appointment has been deleted.'));
+      navigate(-1);
+    } else {
+      alert(t('Failed to delete appointment.'));
+    }
+  } catch (error) {
+    console.error('Error deleting appointment:', error);
+    alert(t('An error occurred while deleting the appointment.'));
+  }
+};
+
 
 const handleSave = async () => {
   if (!selectedClient || !bookingDetails.service) {
@@ -178,6 +203,9 @@ const handleSave = async () => {
 
         <SC.ButtonContainer>
           <SC.Button onClick={handleSave}>{t('Save')}</SC.Button>
+        </SC.ButtonContainer>
+        <SC.ButtonContainer onClick={handleDelete} style={{ backgroundColor: '#e74c3c', marginTop: '10px' }}>
+          <SC.Button>{t('Delete Appointment')}</SC.Button>
         </SC.ButtonContainer>
       </SC.DetailContainer>
     </SC.Container>

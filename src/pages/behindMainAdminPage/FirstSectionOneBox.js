@@ -52,6 +52,29 @@ const FirstSectionOneBox = () => {
     fetchData();
 }, []);
 
+const handleDelete = async () => {
+  const confirmDelete = window.confirm(t('Are you sure you want to delete this appointment?'));
+  if (!confirmDelete) return;
+
+  try {
+    const response = await Functions.fetchDeleteAppointment(appointment._id);
+    if (response) {
+      // עדכון הזיכרון המקומי
+      const cachedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
+      const updatedAppointments = cachedAppointments.filter(app => app._id !== appointment._id);
+      localStorage.setItem('appointments', JSON.stringify(updatedAppointments));
+
+      alert(t('Appointment has been deleted.'));
+      navigate(-1); // חזרה לעמוד הקודם
+    } else {
+      alert(t('Failed to delete appointment.'));
+    }
+  } catch (error) {
+    console.error('Error deleting appointment:', error);
+    alert(t('An error occurred while deleting the appointment.'));
+  }
+};
+
   const handleSave = async () => {
     if (!status || !price) {
       alert(t('Please fill in all required fields.'));
@@ -175,6 +198,9 @@ const FirstSectionOneBox = () => {
         {/* Save Button */}
         <SC.Button4 onClick={handleSave}>
           <SC.ButtonText>{t('Save')}</SC.ButtonText>
+        </SC.Button4>
+        <SC.Button4 onClick={handleDelete} style={{ backgroundColor: '#e74c3c', marginTop: '10px' }}>
+          <SC.ButtonText>{t('Delete Appointment')}</SC.ButtonText>
         </SC.Button4>
       </div>
     </SC.Container>

@@ -104,7 +104,10 @@ const BookingCalendarVisitor = () => {
   };
 
   const handleSlotSelection = (time) => {
-    navigate(`/visitor-booking`, { state: { date:selectedDate, time }});
+    if(!isSlotBooked(time)){
+          navigate(`/visitor-booking`, { state: { date:selectedDate, time }});
+
+    }
   };
 
   return (

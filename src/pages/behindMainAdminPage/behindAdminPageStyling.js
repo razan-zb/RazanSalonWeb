@@ -224,7 +224,15 @@ export const Button = styled.button`
     background: #9BC8A7;
   }
 `;
+export const DeleteButton = styled(Button)`
+  background-color: #b32424;
+  color: white;
+  margin-left: 10px;
 
+  &:hover {
+    background-color: #8a1a1a;
+  }
+`;
 // Appointments Section
 export const AppointmentsContainer = styled.div`
   margin-top: 20px;

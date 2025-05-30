@@ -130,7 +130,7 @@ export const featchsaveClient = async (clientData) => {
 
 // Create appointment
 export const featchCreateAppointment = async (appointment) => {
-
+console.log(appointment);
   try {
     const response = await fetch(`${BASE_URL}/appointments/create`, {
       method: 'POST',

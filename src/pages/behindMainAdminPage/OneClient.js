@@ -62,6 +62,28 @@ const OneClient = () => {
     return <p>{t('Loading...')}</p>;
   }
 
+  const handleDelete = async () => {
+    if (!window.confirm(t('Are you sure you want to delete this client?'))) return;
+  
+    try {
+      const response = await Functions.fetchDeleteClient(clientData.phoneNumber);
+      if (response) {
+
+        const cachedClients = JSON.parse(localStorage.getItem('clients')) || [];
+        const updatedClients = cachedClients.filter(c => c._id !== clientData._id);
+        localStorage.setItem('clients', JSON.stringify(updatedClients));
+  
+        alert(t('Success') + ': ' + t('Client has been deleted.'));
+        navigate(-1); 
+      } else {
+        alert(t('Error') + ': ' + t('Failed to delete client.'));
+      }
+    } catch (error) {
+      console.error('Error deleting client:', error);
+      alert(t('Error') + ': ' + t('An error occurred while deleting the client.'));
+    }
+  };
+
   const handleUpdate = (field, value) => {
     setIsEditing(true);
     setClientData({ ...clientData, [field]: value });
@@ -170,7 +192,14 @@ const OneClient = () => {
         <SC.Button onClick={() => setIsEditing(!isEditing)}>
           {isEditing ? t('Cancel') : t('Edit')}
         </SC.Button>
+
         {isEditing && <SC.Button onClick={handleSave}>{t('Save')}</SC.Button>}
+
+        {!isEditing && (
+          <SC.DeleteButton onClick={handleDelete}>
+            {t('Delete')}
+          </SC.DeleteButton>
+        )}
       </SC.ButtonContainer>
 
       <SC.Title>{t('Appointments')}</SC.Title>
