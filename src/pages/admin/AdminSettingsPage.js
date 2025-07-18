@@ -11,15 +11,14 @@ const AdminSettingsPage = ({ history }) => {
   const navigate = useNavigate();
 
   const [timeSlots, setTimeSlots] = useState({
-    0: { start: '', end: '' },  // Sunday
-    1: { start: '', end: '' },  // Monday
-    2: { start: '', end: '' },  // Tuesday
-    3: { start: '', end: '' },  // Wednesday
-    4: { start: '', end: '' },  // Thursday
-    5: { start: '', end: '' },  // Friday
-    6: { start: '', end: '' },  // Saturday
+    0: { start: '', end: '', blocked: [] },  // Sunday
+    1: { start: '', end: '', blocked: [] },  // Monday
+    2: { start: '', end: '', blocked: [] },  // Tuesday
+    3: { start: '', end: '', blocked: [] },  // Wednesday
+    4: { start: '', end: '', blocked: [] },  // Thursday
+    5: { start: '', end: '', blocked: [] },  // Friday
+    6: { start: '', end: '', blocked: [] },  // Saturday
   });
-
   // Fetch user data and time slots
   useEffect(() => {
     
@@ -56,7 +55,7 @@ const AdminSettingsPage = ({ history }) => {
   const formatTimeSlots = (slotsArray) => {
     const formattedSlots = {};
     slotsArray.forEach((slot) => {
-      formattedSlots[slot.day] = { start: slot.startTime, end: slot.endTime };
+      formattedSlots[slot.day] = { start: slot.startTime, end: slot.endTime,blocked: slot.blockedSlots || [],  };
     });
     return formattedSlots;
   };
@@ -77,6 +76,7 @@ const AdminSettingsPage = ({ history }) => {
       day: parseInt(day),
       startTime: slot.start,
       endTime: slot.end,
+      blockedSlots: slot.blocked || [],
     }));
 
     const updatedUser = {

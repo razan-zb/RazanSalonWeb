@@ -19,6 +19,47 @@ const BookingCalendarVisitor = () => {
   const [appointments, setAppointments] = useState([]);
   const [user, setUser] = useState(null);
   const [filteredTimeSlots, setFilteredTimeSlots] = useState([]);
+  const [isBlockingMode, setIsBlockingMode] = useState(false);
+  const [blockedSlots, setBlockedSlots] = useState([]);
+  const isAdmin = localStorage.getItem('authToken');
+  const isSlotBlocked = (time) => blockedSlots.includes(time);
+
+  const handleSaveBlockedSlots = async () => {
+    try {
+      const dayOfWeek = new Date(selectedDate).getDay();
+      const updatedTimeSlots = user.timeSlots.map(slot => {
+        if (slot.day === dayOfWeek) {
+          return {
+            ...slot,
+            blockedSlots: blockedSlots, // update only for the current day
+          };
+        }
+        return slot;
+      });
+  
+      const updatedUser = {
+        ...user,
+        timeSlots: updatedTimeSlots,
+      };
+  
+      const response = await Functions.fetchUpdateUser(updatedUser);
+  
+      if (response) {
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+        setUser(updatedUser);
+        alert(t('Success: Blocked slots saved.'));
+        setIsBlockingMode(false);
+      } else {
+        alert(t('Error: Failed to save blocked slots.'));
+      }
+    } catch (error) {
+      console.error('Error saving blocked slots:', error);
+      alert(t('Error: An error occurred while saving blocked slots.'));
+    }
+  };
+ 
+
+
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -58,18 +99,21 @@ const BookingCalendarVisitor = () => {
     fetchAppointments();
 }, [t]);
 
-  useEffect(() => {
-    if (selectedDate && user) {
-      const dayOfWeek = new Date(selectedDate).getDay();
-      const slotsForDay = user.timeSlots.find((slot) => slot.day === dayOfWeek);
-      if (slotsForDay) {
-        const generatedSlots = generateTimeSlots(slotsForDay.startTime, slotsForDay.endTime);
-        setFilteredTimeSlots(generatedSlots);
-      } else {
-        setFilteredTimeSlots([]); 
-      }
+useEffect(() => {
+  if (selectedDate && user) {
+    const dayOfWeek = new Date(selectedDate).getDay();
+    const slotsForDay = user.timeSlots.find((slot) => slot.day === dayOfWeek);
+
+    if (slotsForDay) {
+      const generatedSlots = generateTimeSlots(slotsForDay.startTime, slotsForDay.endTime);
+      setFilteredTimeSlots(generatedSlots);
+      setBlockedSlots(slotsForDay.blockedSlots || []);
+    } else {
+      setFilteredTimeSlots([]);
+      setBlockedSlots([]);
     }
-  }, [selectedDate, user]);
+  }
+}, [selectedDate, user]);
 
   const handleBack = () => {
     navigate(-1)
@@ -104,12 +148,19 @@ const BookingCalendarVisitor = () => {
   };
 
   const handleSlotSelection = (time) => {
-    if(!isSlotBooked(time)){
-          navigate(`/visitor-booking`, { state: { date:selectedDate, time }});
-
+    if (!isAdmin || !isBlockingMode) {
+      if (!isSlotBooked(time) && !isSlotBlocked(time)) {
+        navigate(`/visitor-booking`, { state: { date: selectedDate, time } });
+      }
+    } else {
+      // In blocking mode, toggle blocked slot
+      setBlockedSlots((prev) =>
+        prev.includes(time)
+          ? prev.filter((t) => t !== time)
+          : [...prev, time]
+      );
     }
   };
-
   return (
     <SC.Container3>
       {/* Back Button */}
@@ -153,8 +204,12 @@ const BookingCalendarVisitor = () => {
             <SC.TimeSlot
               key={index}
               onClick={() => handleSlotSelection(slot)}
-              gray={isSlotBooked(slot)}
-              className={isSlotBooked(slot) ? 'booked' : ''}
+              gray={isSlotBooked(slot) || isSlotBlocked(slot)}
+              className={
+                isSlotBooked(slot) ? 'booked'
+                : isSlotBlocked(slot) ? 'blocked'
+                : ''
+              }
             >
               {slot}
             </SC.TimeSlot>
@@ -163,6 +218,16 @@ const BookingCalendarVisitor = () => {
           <SC.NoSlotsMessage>{t('No available slots for this date.')}</SC.NoSlotsMessage>
         )}
       </SC.TimeSlotsContainer>
+      {isAdmin && (
+  <SC.BlockIcon onClick={() => setIsBlockingMode(!isBlockingMode)}>
+    {isBlockingMode ? t('Exit Blocking Mode') : t('Enter Blocking Mode')}
+  </SC.BlockIcon>
+)}
+{isAdmin && isBlockingMode && (
+  <SC.BlockIcon onClick={handleSaveBlockedSlots}>
+    {t('Save Blocked Slots')}
+  </SC.BlockIcon>
+)}
     </SC.Container3>
   );
 };

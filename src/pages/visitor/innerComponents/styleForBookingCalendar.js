@@ -437,7 +437,17 @@ export const TimeSlot = styled.button`
     background: ${(props) => (props.gray ? 'gray' : '#9BC8A7')};
   }
 `;
-
+export const BlockIcon = styled.button`
+  margin: 10px auto;
+  display: block;
+  padding: 8px 16px;
+  background-color: #bf0000;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+`;
 
 export const NoSlotsMessage = styled.p`
   font-size: 16px;
