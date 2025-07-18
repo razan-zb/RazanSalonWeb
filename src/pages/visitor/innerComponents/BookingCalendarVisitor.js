@@ -24,6 +24,21 @@ const BookingCalendarVisitor = () => {
   const isAdmin = localStorage.getItem('authToken');
   const isSlotBlocked = (time) => blockedSlots.includes(time);
 
+
+  const isPastTimeSlot = (slot) => {
+    if (!selectedDate) return false;
+  
+    const today = format(new Date(), 'yyyy-MM-dd');
+    if (selectedDate !== today) return false;
+  
+    const [slotHour, slotMinute] = slot.split(':').map(Number);
+    const now = new Date();
+    const slotTime = new Date();
+    slotTime.setHours(slotHour, slotMinute, 0, 0);
+  
+    return slotTime < now;
+  };
+
   const handleSaveBlockedSlots = async () => {
     try {
       const dayOfWeek = new Date(selectedDate).getDay();
@@ -182,6 +197,7 @@ useEffect(() => {
         locale={isArabic ? 'ar' : 'en'} // Set Arabic when language is Arabic
         onChange={handleDateChange}
         value={selectedDate}
+        minDate={new Date()} 
         tileClassName={({ date, view }) =>
           appointments.some((appointment) =>
             format(new Date(appointment.date), 'yyyy-MM-dd', { locale: isArabic ? ar : undefined }) === 
@@ -203,8 +219,12 @@ useEffect(() => {
           filteredTimeSlots.map((slot, index) => (
             <SC.TimeSlot
               key={index}
-              onClick={() => handleSlotSelection(slot)}
-              gray={isSlotBooked(slot) || isSlotBlocked(slot)}
+              onClick={() => {
+                if (!isSlotBooked(slot) && !isPastTimeSlot(slot)) {
+                  handleSlotSelection(slot);
+                }
+              }}
+              gray={isSlotBooked(slot) || isSlotBlocked(slot) || isPastTimeSlot(slot)}
               className={
                 isSlotBooked(slot) ? 'booked'
                 : isSlotBlocked(slot) ? 'blocked'
