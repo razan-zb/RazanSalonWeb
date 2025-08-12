@@ -136,7 +136,7 @@ const VisitorsPage = () => {
           </SC.InfoRow>
         </SC.Section>
 
-        <SC.Section1 onClick={() => navigate('/booking-calendar-visitor')}>
+        <SC.Section1 onClick={() => navigate('/mainVisitorScreen')}>
           <SC.SubTitleBooking>{t('Booking')}</SC.SubTitleBooking>
         </SC.Section1>
 

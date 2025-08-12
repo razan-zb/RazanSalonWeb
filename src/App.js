@@ -29,6 +29,9 @@ import ClientSettingsPage from './pages/visitor/ClientSettingsPage';
 import Gallery from './pages/visitor/innerComponents/Gallery';
 import BookingCalendarVisitor from './pages/visitor/innerComponents/BookingCalendarVisitor';
 import VisitorBooking from './pages/visitor/innerComponents/VisitorBooking';
+import VisitorMainPage from './pages/visitor/visitorScreens/VisitorMainPage';
+import PreviousBookingsPage from  './pages/visitor/visitorScreens/PreviousBookingsPage';
+import CancelBookingPage from  './pages/visitor/visitorScreens/CancelBookingPage';
 
 // Import Helper Functions
 import * as Functions from './assest/helpers/api';
@@ -148,7 +151,11 @@ const App = () => {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/booking-calendar-visitor" element={<BookingCalendarVisitor />} />
           <Route path="/visitor-booking" element={<VisitorBooking/>} />
+          <Route path="/mainVisitorScreen" element={<VisitorMainPage/>} />
+          <Route path="/previous-booking" element={<PreviousBookingsPage/>} />
+          <Route path="/cancel-booking" element={<CancelBookingPage/>} />
 
+          
           
           {/* Redirect unknown routes to home */}
           <Route path="*" element={<Navigate to="/" />} />
