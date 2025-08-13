@@ -172,7 +172,6 @@
   "Total Appointments": "عدد المواعيد",
   "Booking": "الحجز",
   "Enter your name": "أدخل اسمك",
-  "Enter your phone number": "رقم الهاتف",
   "Back": "رجوع",
   "Welcome to Razan Salon": "مرحبًا بك في صالون رزان",
   "How can we help you today?": "كيف يمكننا مساعدتك اليوم؟",
@@ -183,8 +182,14 @@
   "Cancel Booking": "إلغاء الحجز",
   "Cancel with phone & code": "الإلغاء برقم الهاتف والكود",
   "Need help?": "هل تحتاج مساعدة؟",
-  "Contact us": "اتصل بنا"
-
+  "Contact us": "اتصل بنا",
+  "Register to continue": "سجّل للمتابعة",
+  "Continue": "متابعة",
+  "Register": "التسجيل",
+  "Enter your phone number": "ادخل/ي رقم الهاتف للتحقق",
+  "Register & Continue": "تسجيل الدخول",
+  "Admin Login": "دخول المسؤول",
+  "Enter a valid phone number": "أدخل رقم هاتف صالح"
+}
 
   
-}

@@ -32,6 +32,8 @@ import VisitorBooking from './pages/visitor/innerComponents/VisitorBooking';
 import VisitorMainPage from './pages/visitor/visitorScreens/VisitorMainPage';
 import PreviousBookingsPage from  './pages/visitor/visitorScreens/PreviousBookingsPage';
 import CancelBookingPage from  './pages/visitor/visitorScreens/CancelBookingPage';
+import VisitorRegisterPage from  './pages/visitor/visitorScreens/VisitorRegisterPage';
+
 
 // Import Helper Functions
 import * as Functions from './assest/helpers/api';
@@ -52,6 +54,7 @@ const App = () => {
         const cachedClients = JSON.parse(localStorage.getItem('clients')) || [];
         const cachedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
         const cachedUser = JSON.parse(localStorage.getItem('user')) || null;
+        const cachedClient = JSON.parse(localStorage.getItem('client')) || null;
         const cachedSuppliers = JSON.parse(localStorage.getItem('suppliers')) || [];
         const cachedGoods = JSON.parse(localStorage.getItem('goods')) || [];
 
@@ -82,6 +85,8 @@ const App = () => {
         console.log('User:', freshUser.name);
         console.log('Suppliers:', freshSuppliers.length);
         console.log('Goods:', freshGoods.length);
+        console.log('Client:', cachedClient);
+
 
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -154,6 +159,7 @@ const App = () => {
           <Route path="/mainVisitorScreen" element={<VisitorMainPage/>} />
           <Route path="/previous-booking" element={<PreviousBookingsPage/>} />
           <Route path="/cancel-booking" element={<CancelBookingPage/>} />
+          <Route path="/visitor-register" element={<VisitorRegisterPage/>} />
 
           
           

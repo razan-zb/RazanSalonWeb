@@ -177,15 +177,11 @@
   "Cancel Booking": "Cancel Booking",
   "Cancel with phone & code": "Cancel with phone & code",
   "Need help?": "Need help?",
-  "Contact us": "Contact us"
-
-
-  
-
-
-  
-
-  
-
-
+  "Contact us": "Contact us",
+  "Register to continue": "Register to continue",
+  "Continue": "Continue",
+  "Register": "Register",
+  "Register & Continue": "Register & Continue",
+  "Admin Login": "Admin Login",
+  "Enter a valid phone number": "Enter a valid phone number"
 }
