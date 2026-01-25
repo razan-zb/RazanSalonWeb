@@ -12,9 +12,10 @@ const FirstSectionList = () => {
   
   const [appointments, setAppointments] = useState([]);
   const [sortedAppointments, setSortedAppointments] = useState([]);
-  const [statusFilter, setStatusFilter] = useState('pending');
+  const [statusFilter, setStatusFilter] = useState('done');
   const [clients, setClients] = useState([]);
   const [sortOrder, setSortOrder] = useState('asc');
+  const [searchTerm, setSearchTerm] = useState('');
   useEffect(() => {
     const fetchAppointmentsAndClients = async () => {
         try {
@@ -60,12 +61,24 @@ const FirstSectionList = () => {
   };
 
 
-
   useEffect(() => {
-    const filtered = appointments.filter((appointment) => appointment.status === statusFilter);
+    const term = searchTerm.trim().toLowerCase();
+  
+    const filtered = appointments.filter((appointment) => {
+      const matchesStatus = appointment.status === statusFilter;
+  
+      const clientName = getClientName(appointment?.client).toLowerCase();
+      const service = (appointment?.service || '').toLowerCase();
+  
+      const matchesSearch =
+        term === '' || clientName.includes(term) || service.includes(term);
+  
+      return matchesStatus && matchesSearch;
+    });
+  
     const sorted = sortAppointmentsByDateTime(filtered);
     setSortedAppointments(sorted);
-  }, [statusFilter, appointments, sortOrder]);
+  }, [statusFilter, appointments, sortOrder, searchTerm, clients]);
 
 
   const sortAppointmentsByDateTime = (appointmentsData, order = sortOrder) => {
@@ -74,7 +87,7 @@ const FirstSectionList = () => {
       return dateComparison === 0 ? a.time.localeCompare(b.time) : dateComparison;
     });
   
-    return order === 'asc' ? sorted : sorted.reverse();
+    return order === 'desc' ? sorted : sorted.reverse();
   };
 
   const toggleSortOrder = () => {
@@ -130,8 +143,15 @@ const FirstSectionList = () => {
         {t('Total Appointments')}: {sortedAppointments.length}
       </SC.CountText>
 
+
+      <SC.SearchInput2
+        type="text"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder={t('Search by client or service')}
+      />
       <SC.FilterButton2 onClick={toggleSortOrder}>
-        {sortOrder === 'asc' ? t('Show Newest First') : t('Show Oldest First')}
+        {sortOrder === 'desc' ? t('Show Newest First') : t('Show Oldest First')}
       </SC.FilterButton2>
 
       {/* Appointments List */}
@@ -140,6 +160,7 @@ const FirstSectionList = () => {
           <SC.Card key={item._id} onClick={() => handlePressAppointment(item)}>
             <SC.CardContent>
               <SC.ClientName3>{getClientName(item?.client)}</SC.ClientName3>
+              <SC.ClientName3>{item?.service}</SC.ClientName3>
               <SC.DateTime>{`${format(new Date(item.date), 'yyyy-MM-dd')}, ${item.time}`}</SC.DateTime>
             </SC.CardContent>
             <SC.IconContainer> 

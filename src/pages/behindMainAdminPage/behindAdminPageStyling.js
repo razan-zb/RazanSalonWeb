@@ -53,6 +53,20 @@ export const SearchInput = styled.input`
 
 `;
 
+export const SearchInput2 = styled.input`
+  width: 70%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #d7d7d7;
+  outline: none;
+  margin: 12px 0;
+  font-size: 16px;
+
+  &:focus {
+    border-color: #227439;
+  }
+`;
+
 // Client Name Container
 export const ClientNameContainer = styled.div`
 background-color: #9BC8A7;
