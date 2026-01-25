@@ -31,7 +31,6 @@ const GoodsAndSuppliers = () => {
             const goodsData = await Functions.fetchGoodsData();
             setGoods(goodsData);
             localStorage.setItem('goods', JSON.stringify(goodsData)); // Update cache
-
             // Fetch suppliers from cache or server
             const cachedSuppliers = JSON.parse(localStorage.getItem('suppliers')) || [];
             if (cachedSuppliers.length > 0) {
