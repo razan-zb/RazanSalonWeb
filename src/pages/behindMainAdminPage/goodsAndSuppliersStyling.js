@@ -136,6 +136,22 @@ export const ButtonContainer = styled.div`
   padding: 10px;
 `;
 // Card Container
+
+export const SearchInput = styled.input`
+  width: 70%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #d7d7d7;
+  outline: none;
+  margin: 10px 0 16px;
+  font-size: 16px;
+
+  &:focus {
+    border-color: #227439;
+  }
+`;
+
+
 export const Card = styled.div`
   background: #fff;
   padding: 15px;

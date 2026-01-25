@@ -12,7 +12,13 @@ const GoodsAndSuppliers = () => {
   const [goods, setGoods] = useState([]);
   const [suppliers, setSuppliers] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+  const [goodsSearch, setGoodsSearch] = useState('');//search by good name
+
+  const filteredGoods = goods.filter((good) =>
+    good?.name
+      ?.toLowerCase()
+      .includes(goodsSearch.trim().toLowerCase())
+  );
   useEffect(() => {
     const fetchData = async () => {
         try {
@@ -94,9 +100,15 @@ const GoodsAndSuppliers = () => {
 
       {/* Goods List */}
       <SC.SectionTitle>{t('Goods List')}</SC.SectionTitle>
+      <SC.SearchInput
+        type="text"
+        value={goodsSearch}
+        onChange={(e) => setGoodsSearch(e.target.value)}
+        placeholder={t('Search goods by name')}
+      />
       <SC.ScrollContainer>
-        {goods.length > 0 ? (
-          goods.map((good) => (
+      {filteredGoods.length > 0 ? (
+        filteredGoods.map((good) => (
             <SC.Card key={good._id} onClick={() => navigate(`/edit-goods`, { state: { goods: good } })}>
               <SC.CardContent>
                 <SC.CardText>{t('Name')}: {good.name}</SC.CardText>
