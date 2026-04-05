@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaCalendarAlt } from 'react-icons/fa';
 import * as Functions from '../../../assest/helpers/api';
+import { format } from 'date-fns';
 
 const PreviousBookingsPage = () => {
   const { t, i18n } = useTranslation();
@@ -26,8 +27,6 @@ const PreviousBookingsPage = () => {
         );
         const currentClientId = currentClient?._id;
 
-        console.log(currentClient)
-
         if (!currentClientId) {
           setAppointments([]);
           return;
@@ -48,7 +47,7 @@ const PreviousBookingsPage = () => {
 
         const freshForClient = appointmentData
           .filter((a) => a?.client === currentClientId)
-          .sort((a, b) => new Date(a.date) - new Date(b.date));
+          .sort((a, b) => new Date(b.date) - new Date(a.date));
 
         // Only overwrite if we actually have fresh data (optional)
         setAppointments(freshForClient.length ? freshForClient : cachedForClient);
@@ -83,8 +82,13 @@ const PreviousBookingsPage = () => {
       <SC.List>
         {appointments.map((b) => (
           <SC.ListItem key={b._id || b.id}>
-            {t('Date')}: {b.date}
+           <SC.Row>
+            <span>{format(new Date(b.date), 'dd.MM.yy')}</span>
+            <span>{b.service || '-'}</span>
+            <span>{b.price ? `${b.price} ₪` : '-'}</span>
+          </SC.Row>
           </SC.ListItem>
+          
         ))}
       </SC.List>
     </SC.Container2>

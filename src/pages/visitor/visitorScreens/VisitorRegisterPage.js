@@ -15,11 +15,10 @@ const VisitorRegisterPage = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     const clean = phone.replace(/[^\d+]/g, '');
-    if (!clean || clean.length < 7) {
+    if (!clean ) {
       setError(t('Enter a valid phone number'));
       return;
     }
-    console.log(clean);
     localStorage.setItem('client', JSON.stringify(clean)); // save
 
         navigate('/mainVisitorScreen'); // go to main visitor page

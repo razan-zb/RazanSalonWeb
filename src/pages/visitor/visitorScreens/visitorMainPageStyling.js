@@ -123,6 +123,12 @@ export const List = styled.ul`
   gap: 10px;
 `;
 
+
+export const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+`;
 export const ListItem = styled.li`
   background: #ffffff;
   border: 1px solid #e5e7eb;

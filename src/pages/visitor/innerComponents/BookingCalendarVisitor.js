@@ -149,7 +149,10 @@ useEffect(() => {
   };
 
   const isSlotBooked = (time) => {
-    return getAppointmentsForSelectedDate().some((appointment) => appointment.time === time);
+    return getAppointmentsForSelectedDate().some(
+      (appointment) =>
+        appointment.time === time && appointment.status !== 'canceled'
+    );
   };
 
   const getAppointmentsForSelectedDate = () => {

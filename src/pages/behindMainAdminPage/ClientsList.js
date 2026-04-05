@@ -16,7 +16,7 @@ const ClientsList = () => {
     const fetchData = async () => {
       try {
 
-        const cachedClients = JSON.parse(localStorage.getItem('clients')) || [];
+        const cachedClients = JSON.parse(localStorage.getItem('clients')) || [] ; 
          if (cachedClients.length) {
                setClients(cachedClients);
          }

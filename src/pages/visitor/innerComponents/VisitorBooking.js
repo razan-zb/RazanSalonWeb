@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as SC from './styleForBookingCalendar';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation } from 'react-router-dom';
 import * as Functions from '../../../assest/helpers/api';
-import { FaArrowLeft } from 'react-icons/fa'; 
+import { FaArrowLeft } from 'react-icons/fa';
 
 const VisitorBooking = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const { date, time } = location.state || {};
+  const [loading, setLoading] = useState(true);
+
   const [bookingDetails, setBookingDetails] = useState({
     date: date,
     time: time,
+    name: '',
+    phoneNumber: '',
     service: '',
     client: '',
     stylist: '',
@@ -23,101 +27,117 @@ const VisitorBooking = () => {
     updatedAt: new Date(),
   });
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const storedClient = localStorage.getItem('client');
+        const clientPhone = storedClient ? JSON.parse(storedClient) : '';
+        const cachedClients = JSON.parse(localStorage.getItem('clients') || '[]');
 
+        const currentClient = cachedClients.find(
+          (c) => c?.phoneNumber === clientPhone
+        );
 
+        if (currentClient) {
+          setBookingDetails((prev) => ({
+            ...prev,
+            name: currentClient.name || '',
+            phoneNumber: currentClient.phoneNumber || '',
+            client: currentClient._id || '',
+          }));
+        }
+      } catch (e) {
+        console.error(e);
+        alert(t('Error') + ': ' + t('Failed to fetch data.'));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [t]);
 
   const handleSaveClient = async () => {
-  
     const newClient = {
-      _id: `client_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      name: bookingDetails.client,
+      _id: `client_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`,
+      name: bookingDetails.name,
       phoneNumber: bookingDetails.phoneNumber,
       fileOpeningDate: new Date().toISOString(),
-      address: 'a',
-      birthday: '1/1/2000',
-      naturalHairColor: 'a',
-      hairType: 'a',
-      problemsOrNotes: 'a',
+      address: '',
+      birthday: '',
+      naturalHairColor: '',
+      hairType: '',
+      problemsOrNotes: '',
     };
+
     try {
-      // Update the client on the server
       const createdClient = await Functions.featchsaveClient(newClient);
+
       if (createdClient) {
-  
-          // Update local cache
-          const cachedClients = JSON.parse(localStorage.getItem('clients')) || [];
-          const updatedClients = cachedClients.map((client) =>
-              client._id === newClient._id ? newClient : client
-          );
-          
-          // If the client is new, add it to the cache
-          if (!cachedClients.some(client => client._id === newClient._id)) {
-              updatedClients.push(newClient);
-          }
-  
-          // Save the updated cache
-          localStorage.setItem('clients', JSON.stringify(updatedClients));
-          return newClient;
-  
+        const cachedClients = JSON.parse(localStorage.getItem('clients') || '[]');
+        const updatedClients = [...cachedClients, newClient];
+        localStorage.setItem('clients', JSON.stringify(updatedClients));
+        return newClient;
       } else {
-          alert(t('Error') + ': ' + t('Failed to update client. Please try again.'));
-          return null;
+        alert(t('Error') + ': ' + t('Failed to save client.'));
+        return null;
       }
-  } catch (error) {
-      console.error('Error updating client:', error);
-      alert(t('Error') + ': ' + t('An error occurred while updating the client.'));
-  }
-  };
-
-  const handleSaveAppointment = async (selectedClient) => {
-
-    try {
-        // Prepare the new booking details
-        const newBooking = {
-            ...bookingDetails,
-            client: selectedClient,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-        };
-  
-        // Send to server
-        const response = await Functions.featchCreateAppointment(newBooking);
-  
-        if (response) {
-            // Update local cache
-            const cachedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
-            cachedAppointments.push(newBooking);
-            localStorage.setItem('appointments', JSON.stringify(cachedAppointments));
-  
-            alert(t('Success') + ': ' + t('Saved!'));
-            navigate(-1); // Go back to the previous page
-        } else {
-            alert(t('Error') + ': ' + t('Failed to save the appointment.'));
-        }
     } catch (error) {
-        console.error('Error saving appointment:', error);
-        alert(t('Error') + ': ' + t('An error occurred while saving the appointment.'));
+      console.error('Error saving client:', error);
+      alert(t('Error') + ': ' + t('An error occurred while saving the client.'));
+      return null;
     }
   };
 
+  const handleSaveAppointment = async (clientId) => {
+    try {
+      const newBooking = {
+        ...bookingDetails,
+        client: clientId,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+
+      const response = await Functions.featchCreateAppointment(newBooking);
+
+      if (response) {
+        const cachedAppointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+        cachedAppointments.push(newBooking);
+        localStorage.setItem('appointments', JSON.stringify(cachedAppointments));
+
+        alert(t('Success') + ': ' + t('Saved!'));
+        navigate(-1);
+      } else {
+        alert(t('Error') + ': ' + t('Failed to save the appointment.'));
+      }
+    } catch (error) {
+      console.error('Error saving appointment:', error);
+      alert(t('Error') + ': ' + t('An error occurred while saving the appointment.'));
+    }
+  };
 
   const handleSave = async () => {
-    if (!bookingDetails.client || !bookingDetails.service || !bookingDetails.phoneNumber) {
+    if (!bookingDetails.name || !bookingDetails.phoneNumber || !bookingDetails.service) {
       alert(t('Error') + ': ' + t('Please fill in all required fields.'));
       return;
     }
-    const clients = JSON.parse(localStorage.getItem('clients')) || [];
-    const foundClient = clients.find(client => client.phoneNumber === bookingDetails.phoneNumber);
-    if(foundClient){
-      handleSaveAppointment(foundClient);
+
+    const clients = JSON.parse(localStorage.getItem('clients') || '[]');
+    const foundClient = clients.find(
+      (client) => client.phoneNumber === bookingDetails.phoneNumber
+    );
+
+    if (foundClient) {
+      await handleSaveAppointment(foundClient._id);
+    } else {
+      const createdClient = await handleSaveClient();
+      if (createdClient) {
+        await handleSaveAppointment(createdClient._id);
+      }
     }
-    else{
-      const Client= await handleSaveClient();
-      if(Client)
-        handleSaveAppointment(Client);
-    }
-    
-  }
+  };
+
+  if (loading) return <p>{t('Loading...')}</p>;
 
   return (
     <SC.Container>
@@ -136,8 +156,10 @@ const VisitorBooking = () => {
         <SC.Label2>{t('Client Name')}</SC.Label2>
         <SC.Input2
           type="text"
-          value={bookingDetails.client}
-          onChange={(e) => setBookingDetails({ ...bookingDetails, client: e.target.value })}
+          value={bookingDetails.name}
+          onChange={(e) =>
+            setBookingDetails({ ...bookingDetails, name: e.target.value })
+          }
           placeholder={t('Enter your name')}
         />
 
@@ -145,7 +167,9 @@ const VisitorBooking = () => {
         <SC.Input2
           type="text"
           value={bookingDetails.phoneNumber}
-          onChange={(e) => setBookingDetails({ ...bookingDetails, phoneNumber: e.target.value })}
+          onChange={(e) =>
+            setBookingDetails({ ...bookingDetails, phoneNumber: e.target.value })
+          }
           placeholder={t('Enter your phone number')}
         />
 
@@ -153,7 +177,9 @@ const VisitorBooking = () => {
         <SC.Input2
           type="text"
           value={bookingDetails.service}
-          onChange={(e) => setBookingDetails({ ...bookingDetails, service: e.target.value })}
+          onChange={(e) =>
+            setBookingDetails({ ...bookingDetails, service: e.target.value })
+          }
           placeholder={t('Enter service')}
         />
 

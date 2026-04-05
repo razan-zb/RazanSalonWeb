@@ -17,14 +17,13 @@ const FirstSectionOneBox = () => {
   const [time, setTime] = useState('');
   const [clients, setClients] = useState([]);
   const location = useLocation();
-  const { appointment } = location.state || {};
+  const { appointment } = location.state || {} ;
   
   useEffect(() => {
     const fetchData = async () => {
         try {
             // Load cached clients first
             const cachedClients = JSON.parse(localStorage.getItem('clients')) || [];
-
             if (cachedClients.length > 0) {
                 setClients(cachedClients);
             }
@@ -92,7 +91,7 @@ const handleDelete = async () => {
       updatedAt: new Date().toISOString(),
     };
 
-   
+   console.log(updatedAppointment)
     try {
       const response = await Functions.fetchUpdateAppointment(updatedAppointment);
       

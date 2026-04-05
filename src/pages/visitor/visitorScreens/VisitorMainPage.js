@@ -3,13 +3,34 @@ import * as SC from './visitorMainPageStyling';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaCalendarPlus, FaSearch, FaTimesCircle } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
 
 const VisitorMainPage = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-
+  const [clientName, setClientName] = useState('');
   // Optional: adapt layout direction to current language
   const dir = i18n.dir?.() || (['ar', 'he'].includes(i18n.language) ? 'rtl' : 'ltr');
+
+  useEffect(() => {
+    try {
+      //getting the client user
+      const storedClient = localStorage.getItem('client');
+      const clientPhone = storedClient ? JSON.parse(storedClient) : '';
+  
+      const cachedClients = JSON.parse(localStorage.getItem('clients') || '[]');
+  
+      const currentClient = cachedClients.find(
+        (c) => c?.phoneNumber === clientPhone
+      );
+  
+      if (currentClient) {
+        setClientName(currentClient.name);
+      }
+    } catch (error) {
+      console.error('Error loading client name:', error);
+    }
+  }, []);
 
   return (
     <SC.Container dir={dir}>
@@ -27,6 +48,11 @@ const VisitorMainPage = () => {
 
       {/* Title */}
       <SC.Title>{t('Welcome to Razan Salon')}</SC.Title>
+      {clientName && (
+        <SC.SubTitle>
+          {t('Hello')}, {clientName} 👋
+        </SC.SubTitle>
+      )}
       <SC.SubTitle>{t('How can we help you today?')}</SC.SubTitle>
 
       {/* Actions */}
