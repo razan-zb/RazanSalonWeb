@@ -105,51 +105,6 @@ export const TopBar2 = styled.div`
   flex-direction: column;
 
 `;
-export const Label2 = styled.label`
-  display: block;
-  font-size: 14px;
-  font-weight: 600;
-  color: #227439;
-  margin-bottom: 8px;
-`;
-export const Input2 = styled.input`
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #d5d5d5;
-  border-radius: 10px;
-  font-size: 15px;
-  outline: none;
-  box-sizing: border-box;
-
-  &:focus {
-    border-color: #227439;
-  }
-`;
-export const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-`;
-export const Button = styled.button`
-  background: #227439;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 12px 22px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-
-  &:hover {
-    background: #1b5f2f;
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-`;
-
 export const PageTitle = styled.h2`
   margin: 0;
   font-size: 22px;
@@ -213,4 +168,100 @@ export const ListItem1 = styled.li`
 `;
 
 
+export const BackButton = styled.button`
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+`;
+
+
+export const FormSubTitle = styled.p`
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+  margin-top: -8px;
+  margin-bottom: 20px;
+`;
+
+export const FormCard = styled.div`
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+export const FormGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const Label2 = styled.label`
+  font-size: 15px;
+  font-weight: 600;
+  color: #227439;
+`;
+
+export const Input2 = styled.input`
+  width: 100%;
+  height: 48px;
+  border: 1px solid #d1d5db;
+  border-radius: 14px;
+  padding: 0 14px;
+  font-size: 16px;
+  background: #fff;
+  outline: none;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: #227439;
+    box-shadow: 0 0 0 3px rgba(34, 116, 57, 0.12);
+  }
+`;
+
+export const TextArea2 = styled.textarea`
+  width: 100%;
+  min-height: 96px;
+  border: 1px solid #d1d5db;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 16px;
+  background: #fff;
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: #227439;
+    box-shadow: 0 0 0 3px rgba(34, 116, 57, 0.12);
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+`;
+
+export const Button = styled.button`
+  width: 100%;
+  height: 52px;
+  border: none;
+  border-radius: 16px;
+  background: #227439;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:hover {
+    background: #1c6230;
+  }
+`;
 

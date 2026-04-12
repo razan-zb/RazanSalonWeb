@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import * as Functions from '../../../assest/helpers/api';
 import * as SC from './visitorMainPageStyling';
-import { FaArrowLeft } from 'react-icons/fa';
-
+import { FaArrowLeft ,FaSpinner} from 'react-icons/fa';
 const NewVisitor = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const [saveLoading, setSaveLoading] = useState(false);
 
   const dir =
     i18n.dir?.() || (['ar', 'he'].includes(i18n.language) ? 'rtl' : 'ltr');
@@ -41,66 +41,65 @@ const NewVisitor = () => {
     return `client_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
   };
 
-  const handleSave = async () => {
-    if (
-      !clientData.name ||
-      !clientData.phoneNumber ||
-      !clientData.birthday ||
-      !clientData.address ||
-      !clientData.naturalHairColor ||
-      !clientData.hairType
-    ) {
-      alert(t('Error') + ': ' + t('All fields are required.'));
-      return;
-    }
+const handleSave = async () => {
+  if (
+    !clientData.name ||
+    !clientData.phoneNumber ||
+    !clientData.birthday ||
+    !clientData.address ||
+    !clientData.naturalHairColor ||
+    !clientData.hairType
+  ) {
+    alert(t('Error') + ': ' + t('All fields are required.'));
+    return;
+  }
 
-    try {
-      const response = await Functions.featchsaveClient(clientData);
+  try {
+    setSaveLoading(true);
 
-      if (response) {
-        const cachedClients = JSON.parse(localStorage.getItem('clients') || '[]');
+    const response = await Functions.featchsaveClient(clientData);
 
-        const updatedClients = cachedClients.map((client) =>
-          client._id === clientData._id ? clientData : client
-        );
+    if (response) {
+      const cachedClients = JSON.parse(localStorage.getItem('clients') || '[]');
 
-        if (!cachedClients.some((client) => client._id === clientData._id)) {
-          updatedClients.push(clientData);
-        }
+      const updatedClients = cachedClients.map((client) =>
+        client._id === clientData._id ? clientData : client
+      );
 
-        localStorage.setItem('clients', JSON.stringify(updatedClients));
-
-        // optional: save current visitor phone
-        localStorage.setItem('client', JSON.stringify(clientData.phoneNumber));
-
-        alert(t('Success') + ': ' + t('Visitor has been saved successfully.'));
-        alert(t('Please now register using your phone number to continue.'));
-
-        navigate(-1);
-      } else {
-        alert(t('Error') + ': ' + t('Failed to save visitor. Please try again.'));
+      if (!cachedClients.some((client) => client._id === clientData._id)) {
+        updatedClients.push(clientData);
       }
-    } catch (error) {
-      console.error('Error saving visitor:', error);
-      alert(t('Error') + ': ' + t('An error occurred while saving the visitor.'));
-    }
-  };
 
+      localStorage.setItem('clients', JSON.stringify(updatedClients));
+      localStorage.setItem('client', JSON.stringify(clientData.phoneNumber));
+
+      alert(t('Success') + ': ' + t('Visitor has been saved successfully.'));
+      navigate(-1);
+    } else {
+      alert(t('Error') + ': ' + t('Failed to save visitor. Please try again.'));
+    }
+  } catch (error) {
+    console.error('Error saving visitor:', error);
+    alert(t('Error') + ': ' + t('An error occurred while saving the visitor.'));
+  } finally {
+    setSaveLoading(false);
+  }
+};
   return (
     <SC.Container2 dir={dir}>
       <SC.TopBar2>
-        <FaArrowLeft
-          size={22}
-          color="#227439"
-          onClick={() => navigate(-1)}
-          style={{ cursor: 'pointer' }}
-        />
+        <SC.BackButton onClick={() => navigate(-1)}>
+          <FaArrowLeft size={22} color="#227439" />
+        </SC.BackButton>
       </SC.TopBar2>
-
+  
       <SC.PageTitle>{t('New Visitor')}</SC.PageTitle>
-
-      <SC.List>
-        <SC.ListItem1>
+      <SC.FormSubTitle>
+        {t('Please fill in your details to continue')}
+      </SC.FormSubTitle>
+  
+      <SC.FormCard>
+        <SC.FormGroup>
           <SC.Label2>{t('Name')}</SC.Label2>
           <SC.Input2
             type="text"
@@ -109,10 +108,11 @@ const NewVisitor = () => {
               setClientData({ ...clientData, name: e.target.value })
             }
             placeholder={t('Enter your name')}
+            disabled={saveLoading}
           />
-        </SC.ListItem1>
-
-        <SC.ListItem1>
+        </SC.FormGroup>
+  
+        <SC.FormGroup>
           <SC.Label2>{t('Phone')}</SC.Label2>
           <SC.Input2
             type="text"
@@ -121,10 +121,11 @@ const NewVisitor = () => {
               setClientData({ ...clientData, phoneNumber: e.target.value })
             }
             placeholder={t('Enter your phone number')}
+            disabled={saveLoading}
           />
-        </SC.ListItem1>
-
-        <SC.ListItem1>
+        </SC.FormGroup>
+  
+        <SC.FormGroup>
           <SC.Label2>{t('Address')}</SC.Label2>
           <SC.Input2
             type="text"
@@ -133,10 +134,11 @@ const NewVisitor = () => {
               setClientData({ ...clientData, address: e.target.value })
             }
             placeholder={t('Enter your address')}
+            disabled={saveLoading}
           />
-        </SC.ListItem1>
-
-        <SC.ListItem1>
+        </SC.FormGroup>
+  
+        <SC.FormGroup>
           <SC.Label2>{t('Birthday')}</SC.Label2>
           <SC.Input2
             type="date"
@@ -145,9 +147,9 @@ const NewVisitor = () => {
               setClientData({ ...clientData, birthday: e.target.value })
             }
           />
-        </SC.ListItem1>
-
-        <SC.ListItem1>
+        </SC.FormGroup>
+  
+        <SC.FormGroup>
           <SC.Label2>{t('Natural Hair Color')}</SC.Label2>
           <SC.Input2
             type="text"
@@ -159,10 +161,11 @@ const NewVisitor = () => {
               })
             }
             placeholder={t('Enter natural hair color')}
+            disabled={saveLoading}
           />
-        </SC.ListItem1>
-
-        <SC.ListItem1>
+        </SC.FormGroup>
+  
+        <SC.FormGroup>
           <SC.Label2>{t('Hair Type')}</SC.Label2>
           <SC.Input2
             type="text"
@@ -171,13 +174,13 @@ const NewVisitor = () => {
               setClientData({ ...clientData, hairType: e.target.value })
             }
             placeholder={t('Enter hair type')}
+            disabled={saveLoading}
           />
-        </SC.ListItem1>
-
-        <SC.ListItem1>
+        </SC.FormGroup>
+  
+        <SC.FormGroup>
           <SC.Label2>{t('Notes')}</SC.Label2>
-          <SC.Input2
-            type="text"
+          <SC.TextArea2
             value={clientData.problemsOrNotes}
             onChange={(e) =>
               setClientData({
@@ -186,15 +189,27 @@ const NewVisitor = () => {
               })
             }
             placeholder={t('Enter notes')}
+            disabled={saveLoading}
           />
-        </SC.ListItem1>
-      </SC.List>
-
-      <SC.ButtonContainer>
-        <SC.Button onClick={handleSave}>{t('Save')}</SC.Button>
+        </SC.FormGroup>
+  
+        <SC.ButtonContainer>
+          <SC.Button onClick={handleSave} disabled={saveLoading}>
+            {saveLoading ? (
+              <>
+                <FaSpinner className="spin" style={{ marginRight: '8px' }} />
+                {t('Saving...')}
+              </>
+            ) : (
+              t('Save')
+            )}
+          </SC.Button>
       </SC.ButtonContainer>
+      </SC.FormCard>
     </SC.Container2>
   );
 };
 
 export default NewVisitor;
+
+
