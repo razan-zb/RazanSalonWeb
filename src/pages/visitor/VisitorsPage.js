@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import TopBar from './TopBar';
 import SalonServices from './innerComponents/SalonServices';
 import mario2 from '../../assest/images/mario2.png';
-import { FaInstagram, FaPhone, FaMapMarkerAlt, FaClock, FaArrowLeft,FaArrowRight } from 'react-icons/fa'; // Import icons
+import { FaInstagram, FaPhone, FaMapMarkerAlt, FaClock,FaArrowRight } from 'react-icons/fa'; // Import icons
 import { useNavigate } from 'react-router-dom';
 
 const VisitorsPage = () => {

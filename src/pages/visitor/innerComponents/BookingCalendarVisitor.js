@@ -82,6 +82,7 @@ const BookingCalendarVisitor = () => {
             // Check for cached appointments
             const cachedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
             const cachedUser = JSON.parse(localStorage.getItem('user')) || null;
+            console.log(cachedUser)
 
             // Set the cached data first to make the UI responsive
             if (cachedAppointments.length > 0) {

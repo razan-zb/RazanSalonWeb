@@ -33,7 +33,7 @@ import VisitorMainPage from './pages/visitor/visitorScreens/VisitorMainPage';
 import PreviousBookingsPage from  './pages/visitor/visitorScreens/PreviousBookingsPage';
 import CancelBookingPage from  './pages/visitor/visitorScreens/CancelBookingPage';
 import VisitorRegisterPage from  './pages/visitor/visitorScreens/VisitorRegisterPage';
-
+import NewVisitor from  './pages/visitor/visitorScreens/NewVisitor';
 
 // Import Helper Functions
 import * as Functions from './assest/helpers/api';
@@ -160,6 +160,7 @@ const App = () => {
           <Route path="/previous-booking" element={<PreviousBookingsPage/>} />
           <Route path="/cancel-booking" element={<CancelBookingPage/>} />
           <Route path="/visitor-register" element={<VisitorRegisterPage/>} />
+          <Route path="/new-visitor" element={<NewVisitor/>} />
 
           
           

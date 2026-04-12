@@ -23,7 +23,7 @@ const VisitorMainPage = () => {
       const currentClient = cachedClients.find(
         (c) => c?.phoneNumber === clientPhone
       );
-  
+ 
       if (currentClient) {
         setClientName(currentClient.name);
       }

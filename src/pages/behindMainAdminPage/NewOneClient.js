@@ -35,9 +35,7 @@ const OneClient = () => {
   const generateUniqueId = () => {
     return `client_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
   };
-  const handleBack = () => {
-    navigate(-1); // Go back
-  };
+
 
   const handleSave = async () => {
     if (

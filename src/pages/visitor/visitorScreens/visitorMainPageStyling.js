@@ -105,6 +105,50 @@ export const TopBar2 = styled.div`
   flex-direction: column;
 
 `;
+export const Label2 = styled.label`
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #227439;
+  margin-bottom: 8px;
+`;
+export const Input2 = styled.input`
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d5d5d5;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: #227439;
+  }
+`;
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+`;
+export const Button = styled.button`
+  background: #227439;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 22px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    background: #1b5f2f;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+`;
 
 export const PageTitle = styled.h2`
   margin: 0;
@@ -167,3 +211,6 @@ export const ListItem1 = styled.li`
   justify-content: space-between;
   align-items: center;
 `;
+
+
+

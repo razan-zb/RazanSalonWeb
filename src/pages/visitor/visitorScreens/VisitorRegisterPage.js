@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import * as SC from './visitorRegisterPageStyling';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,30 @@ const VisitorRegisterPage = () => {
   const dir = i18n.dir?.() || (['ar', 'he'].includes(i18n.language) ? 'rtl' : 'ltr');
   const [phone, setPhone] = useState('');
   const [error, setError] = useState('');
+  const [clientName, setClientName] = useState('');
+
+  useEffect(() => {
+    try {
+      //getting the client user
+      const storedClient = localStorage.getItem('client');
+      const clientPhone = storedClient ? JSON.parse(storedClient) : '';
+  
+      const cachedClients = JSON.parse(localStorage.getItem('clients') || '[]');
+  
+      const currentClient = cachedClients.find(
+        (c) => c?.phoneNumber === clientPhone
+      );
+      if(currentClient===undefined){
+        console.log(currentClient)
+      }
+ 
+      if (currentClient) {
+        setClientName(currentClient.name);
+      }
+    } catch (error) {
+      console.error('Error loading client name:', error);
+    }
+  }, []);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -19,9 +43,19 @@ const VisitorRegisterPage = () => {
       setError(t('Enter a valid phone number'));
       return;
     }
+
+    const cachedClients = JSON.parse(localStorage.getItem('clients') || '[]');
+    const currentClient = cachedClients.find(
+      (c) => c?.phoneNumber === clean
+    );
+    if(currentClient===undefined){
+      navigate('/new-visitor');
+    }else{
+      navigate('/mainVisitorScreen');
+    }
+
     localStorage.setItem('client', JSON.stringify(clean)); // save
 
-        navigate('/mainVisitorScreen'); // go to main visitor page
   };
 
   return (

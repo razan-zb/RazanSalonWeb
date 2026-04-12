@@ -31,6 +31,7 @@ const VisitorBooking = () => {
     const fetchData = async () => {
       try {
         const storedClient = localStorage.getItem('client');
+        console.log(storedClient)
         const clientPhone = storedClient ? JSON.parse(storedClient) : '';
         const cachedClients = JSON.parse(localStorage.getItem('clients') || '[]');
 
