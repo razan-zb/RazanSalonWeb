@@ -18,7 +18,7 @@ export const Container = styled.div`
 export const ClientsListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: red;
   min-height: 100vh; /* Full height of the viewport */
   padding: 20px;
   min-height: 100vh;
